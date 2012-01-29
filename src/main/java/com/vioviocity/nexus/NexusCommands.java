@@ -400,72 +400,76 @@ public class NexusCommands implements CommandExecutor {
                 if (tpr.equals("accept")) {
                     
                     // check tp request
-                    int index = checkTpRequest(player, false);
-                    if (index > -1) {
-                        
-                        // accept tp request
-                        String tpName = tpRequest.get(index).substring(tpRequest.get(index).indexOf(",") + 1);
-                        for (Player each : onlinePlayers) {
-                            if (each.getName().toLowerCase().contains(tpName)) {
-                                each.teleport(player);
-                                break;
+                    String tpToName = null;
+                    String tpFromName = null;
+                    for (String each : tpRequest) {
+                        tpToName = each.substring(each.indexOf(',') + 1);
+                        if (player.getName().equals(tpToName)) {
+                            tpFromName = each.substring(0, each.indexOf(','));
+                            for (Player each2 : onlinePlayers) {
+                                if (each2.getName().equals(tpFromName)) {
+                                    each2.teleport(player);
+                                    player.sendMessage(ChatColor.GREEN + "Accepted teleport request.");
+                                    tpRequest.remove(tpFromName + ',' + tpToName);
+                                    return true;
+                                }
                             }
+                            break;
                         }
-                        tpRequest.remove(index);
-                        return true;
-                        
-                    // request not found
-                    } else {
-                        player.sendMessage(ChatColor.RED + "You do not have a pending teleport request.");
-                        return true;
                     }
+                    
+                    // no pending request
+                    player.sendMessage(ChatColor.RED + "You do not have a pending teleport request.");
+                    return true;
                     
                 // tpr [deny]
                 } else if (tpr.equals("deny")) {
-                    
-                    // check tp request
-                    int index = checkTpRequest(player, false);
-                    if (index > -1) {
-                        
-                        // deny tp request
-                        String tpName = tpRequest.get(index).substring(tpRequest.get(index).indexOf(",") + 1);
-                        for (Player each : onlinePlayers) {
-                            if (each.getName().toLowerCase().contains(tpName)) {
-                                each.sendMessage(ChatColor.RED + "Your teleport request has been denied.");
-                                break;
+                    String tpToName = null;
+                    String tpFromName = null;
+                    for (String each : tpRequest) {
+                        tpToName = each.substring(each.indexOf(',') + 1);
+                        if (player.getName().equals(tpToName)){
+                            tpFromName = each.substring(0, each.indexOf(','));
+                            for (Player each2 : onlinePlayers) {
+                                if (each2.getName().equals(tpFromName)) {
+                                    player.sendMessage(ChatColor.RED + "Denied teleport request.");
+                                    each2.sendMessage(ChatColor.RED + "Your teleport request has been denied.");
+                                    tpRequest.remove(tpFromName + ',' + tpToName);
+                                    return true;
+                                }
                             }
                         }
-                        tpRequest.remove(index);
-                        return true;
-                        
-                    // request not found
-                    } else {
-                        player.sendMessage(ChatColor.RED + "You do not have a pending teleport request.");
-                        return true;
                     }
+                    
+                    // no pending request
+                    player.sendMessage(ChatColor.RED + "You do not have a pending teleport request.");
+                    return true;
                     
                 // tpr [cancel]
                 } else if (tpr.equals("cancel")) {
                     
-                    // check tp request
-                    int index = checkTpRequest(player, true);
-                    if (index > -1) {
-                        
-                        // cancel tp request
-                        tpRequest.remove(index);
-                        return true;
-                        
-                    // request not found
-                    } else {
-                        player.sendMessage(ChatColor.RED + "You have not sent a teleport request.");
-                        return true;
+                    String tpToName = null;
+                    String tpFromName = null;
+                    for (String each : tpRequest) {
+                        tpToName = each.substring(0, each.indexOf(','));
+                        if (player.getName().equalsIgnoreCase(tpToName)) {
+                            tpFromName = each.substring(each.indexOf(',') + 1);
+                            player.sendMessage(ChatColor.RED + "Cancelled teleport request.");
+                            tpRequest.remove(tpToName + ',' + tpFromName);
+                            return true;
+                        }
                     }
+                    
+                    // no pending request
+                    player.sendMessage(ChatColor.RED + "You have not sent a teleport request.");
+                    return true;
                 }
                 
                 // tpr (player)
-                String tpName = args[0].toLowerCase();
+                String tpToName = args[0].toLowerCase();
+                String tpFromName = null;
                 for (Player each : onlinePlayers) {
-                    if (each.getName().toLowerCase().contains(tpName)) {
+                    if (each.getName().toLowerCase().contains(tpToName)) {
                         
                         // check tp toggle
                         if (!checkTpToggle(each)) {
@@ -473,23 +477,24 @@ public class NexusCommands implements CommandExecutor {
                             return true;
                         }
                         
-                        int index = checkTpRequest(player, true);
-                        if (index > -1) {
-                            tpRequest.set(index, player.getName() + "," + each.getName());
-                            player.sendMessage(ChatColor.GREEN + "Teleport request sent to " + each.getName() + ".");
-                            each.sendMessage(ChatColor.RED + "Received teleport request from " + player.getName() + ".");
-                        } else {
-                            tpRequest.add(player.getName() + "," + each.getName());
-                            player.sendMessage(ChatColor.GREEN + "Teleport request sent to " + each.getName() + ".");
-                            each.sendMessage(ChatColor.RED + "Received teleport request from " + player.getName() + ".");
+                        for (String each2 : tpRequest) {
+                            tpFromName = each2.substring(0, each2.indexOf(','));
+                            if (player.getName().equalsIgnoreCase(tpFromName)) {
+                                tpRequest.set(tpRequest.indexOf(each2), player.getName() + ',' + each.getName());
+                                player.sendMessage(ChatColor.GREEN + "Teleport request sent to " + each.getName() + '.');
+                                each.sendMessage(ChatColor.RED + "Received teleport request from " + player.getName() + '.');
+                                return true;
+                            }
                         }
-                        
+                        tpRequest.add(player.getName() + ',' + each.getName());
+                        player.sendMessage(ChatColor.GREEN + "Teleport request send to " + each.getName() + '.');
+                        each.sendMessage(ChatColor.RED + "Received teleport request from " + player.getName() + '.');
                         return true;
                     }
                 }
                 
                 // player not online
-                player.sendMessage(ChatColor.RED + tpName + " is not online.");
+                player.sendMessage(ChatColor.RED + tpToName + " is not online.");
                 
             // invalid args
             } else {
@@ -524,20 +529,4 @@ public class NexusCommands implements CommandExecutor {
         
         return true;
     }
-    
-    private int checkTpRequest(Player player, boolean toPlayer) {
-        String tpName;
-        for (String each: tpRequest) {
-            if (toPlayer) {
-                tpName = each.substring(0, each.indexOf(','));
-            } else {
-                tpName = each.substring(each.indexOf(",") + 1);
-            }
-            if (player.getName().equalsIgnoreCase(tpName))
-                return tpRequest.indexOf(each);
-        }
-        
-        return -1;
-    }
-    
 }
