@@ -1,0 +1,33 @@
+0.0.12
+    Implemented /tpr (player), sends teleport request to another player
+    Added /tpr [accept|deny|cancel], accepts or denies teleport request
+    Added /tp [toggle], toggles incoming teleports
+    Removed several redundant player notifications
+0.0.11
+    Modularized code, command permission check
+    Fixed permission issue not notifying player upon not passing arguments to /tp
+0.0.10
+    Commands now support partial names of players
+0.0.9
+    Implemented /tp (player) (player), teleports to another player or player to player
+0.0.8
+    Changed /mode arguments from [survival|creative] to (player) and functioning as a toggle
+    Changed /weather duration showing ticks to minutes
+0.0.7
+    Implemented /kick (player) command, kicks player from server
+    Implemented /ban (player) command, bans player from server
+    Implemented /unban (player) command, unbans player from server
+0.0.6
+    Implemented /online command, shows online players
+0.0.5
+    Implemented /mode [survival|creative] command, sets current game mode
+    Fixed permission issue not allowing players with permission to issue associated commands
+0.0.4
+    Implemented permissions support
+0.0.3
+    Implemented /weather command, shows current weather
+    Added /weather [clear|storm|thunder], sets current weather
+0.0.2
+    Added /time [dawn|day|dusk|night] command arguments, sets current time
+0.0.1
+    Implemented /time command, shows current time

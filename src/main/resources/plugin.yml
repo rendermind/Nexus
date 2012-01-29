@@ -1,0 +1,72 @@
+author: VioVioCity
+main: com.vioviocity.nexus.Nexus
+name: Nexus
+version: 0.0.12
+commands:
+  test:
+    description: Runs a pre-coded test.
+    usage: /<command> ... who knows?
+  time:
+    description: Sets or checks current time.
+    usage: /<command> [dawn|day|dusk|night]
+  weather:
+    description: Sets or checks current weather.
+    usage: /<command> [clear|storm|thunder]
+  mode:
+    description: Toggles current game mode.
+    usage: /<command> (player)
+  online:
+    description: Shows list of online players.
+    usage: /<command>
+  kick:
+    description: Kicks player from server.
+    usage: /<command> (player)
+  ban:
+    description: Bans player from server.
+    usage: /<command> (player)
+  unban:
+    description: Unbans player from server.
+    usage: /<command> (player)
+  tp:
+    description: Teleports player to another player, also toggles teleportation.
+    usage: /<command> (player) (player), /<command> [toggle]
+  tpr:
+    description: Sends teleport request to another player, also to accept or deny a request.
+    usage: /<command> (player), /<command> [accept|deny|cancel]
+permissions:
+  nexus.time.check:
+    description: Allows players to check current time.
+    default: true
+  nexus.time.set:
+    description: Allows players to set current time.
+    default: op
+  nexus.weather.check:
+    description: Allows players to check current weather and duration.
+    default: true
+  nexus.weather.set:
+    description: Allows players to set current weather.
+    default: op
+  nexus.mode:
+    description: Allows players to set game mode.
+    default: op
+  nexus.online:
+    description: Allows players to show list of online players.
+    default: true
+  nexus.kick:
+    description: Allows players to kick other players.
+    default: op
+  nexus.ban:
+    description: Allows players to ban other players.
+    default: op
+  nexus.unban:
+    description: Allows players to unban other players.
+    default: op
+  nexus.tp:
+    description: Allows players to teleport to other players.
+    default: op
+  nexus.tp.toggle:
+    description: Allows players to toggle teleports.
+    default: op
+  nexus.tpr:
+    description: Allows players to send teleport request to another player.
+    default: true
