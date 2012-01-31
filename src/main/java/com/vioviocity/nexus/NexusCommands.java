@@ -1,27 +1,21 @@
 package com.vioviocity.nexus;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-class RequestPlayer {
-    public Player player;
-    public int index;
-}
 
 public class NexusCommands implements CommandExecutor {
 
     // initialize global variables
-    List<String> tpRequest = new ArrayList<String>();
-    List<String> tpToggle = new ArrayList<String>();
-    RequestPlayer tpRequestPlayer = new RequestPlayer();
+    static List<String> tpRequest = new ArrayList<String>();
+    static List<String> tpToggle = new ArrayList<String>();
+    static List<String> tpBack = new ArrayList<String>();
     
     private Nexus plugin;
         
@@ -45,7 +39,7 @@ public class NexusCommands implements CommandExecutor {
         
         // test, runs pre-coded test
         if (cmd.getName().equalsIgnoreCase("test")) {
-            for (String each : tpRequest) {
+            for (String each : tpBack) {
                 player.sendMessage(each);
             }
             
@@ -205,7 +199,7 @@ public class NexusCommands implements CommandExecutor {
                 playerList += each.getName() + ", ";
             }
             playerList = playerList.substring(0, playerList.length() - 2);
-            player.sendMessage(ChatColor.GREEN + "Online Players [" + onlinePlayers.length + "/" +
+            player.sendMessage(ChatColor.GREEN + "Online Players [" + onlinePlayers.length + '/' +
                     plugin.getServer().getMaxPlayers() + "]: " + ChatColor.WHITE + playerList);
             
             return true;
@@ -370,7 +364,7 @@ public class NexusCommands implements CommandExecutor {
                                 
                                 each1.teleport(each2);
                                 player.sendMessage(ChatColor.GREEN + each1.getName() + " was teleported to " +
-                                        each2.getName() + ".");
+                                        each2.getName() + '.');
                                 
                                 return true;
                             }
@@ -400,8 +394,8 @@ public class NexusCommands implements CommandExecutor {
                 if (tpr.equals("accept")) {
                     
                     // check tp request
-                    String tpToName = null;
-                    String tpFromName = null;
+                    String tpToName;
+                    String tpFromName;
                     for (String each : tpRequest) {
                         tpToName = each.substring(each.indexOf(',') + 1);
                         if (player.getName().equals(tpToName)) {
@@ -424,8 +418,8 @@ public class NexusCommands implements CommandExecutor {
                     
                 // tpr [deny]
                 } else if (tpr.equals("deny")) {
-                    String tpToName = null;
-                    String tpFromName = null;
+                    String tpToName;
+                    String tpFromName;
                     for (String each : tpRequest) {
                         tpToName = each.substring(each.indexOf(',') + 1);
                         if (player.getName().equals(tpToName)){
@@ -448,8 +442,8 @@ public class NexusCommands implements CommandExecutor {
                 // tpr [cancel]
                 } else if (tpr.equals("cancel")) {
                     
-                    String tpToName = null;
-                    String tpFromName = null;
+                    String tpToName;
+                    String tpFromName;
                     for (String each : tpRequest) {
                         tpToName = each.substring(0, each.indexOf(','));
                         if (player.getName().equalsIgnoreCase(tpToName)) {
@@ -467,7 +461,7 @@ public class NexusCommands implements CommandExecutor {
                 
                 // tpr (player)
                 String tpToName = args[0].toLowerCase();
-                String tpFromName = null;
+                String tpFromName;
                 for (Player each : onlinePlayers) {
                     if (each.getName().toLowerCase().contains(tpToName)) {
                         
@@ -504,6 +498,56 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        if (cmd.getName().equalsIgnoreCase("back")) {
+            // permission check
+            if (!checkPermission("nexus.back", player))
+                return false;
+            
+            // invalid args
+            if (args.length > 0)
+                return false;
+            
+            String tpName;
+            Location tpBackLocation = player.getLocation();
+            //Location tpTempLocation = player.getLocation();
+            for (String each: tpBack) {
+                tpName = each.substring(0, each.indexOf(','));
+                if (player.getName().equalsIgnoreCase(tpName)) {
+                    String worldName = each.substring(each.indexOf("map:") + 4, each.indexOf("x:"));
+                    double x = Double.parseDouble(each.substring(each.indexOf("x:") + 2, each.indexOf("y:")));
+                    double y = Double.parseDouble(each.substring(each.indexOf("y:") + 2, each.indexOf("z:")));
+                    double z = Double.parseDouble(each.substring(each.indexOf("z:") + 2, each.indexOf("yaw:")));
+                    float yaw = Float.parseFloat(each.substring(each.indexOf("yaw:") + 4, each.indexOf("pitch:")));
+                    float pitch = Float.parseFloat(each.substring(each.indexOf("pitch:") + 6));
+                    tpBackLocation.setX(x);
+                    tpBackLocation.setY(y);
+                    tpBackLocation.setZ(z);
+                    tpBackLocation.setYaw(yaw);
+                    tpBackLocation.setPitch(pitch);
+                    for (World each2: plugin.getServer().getWorlds()) {
+                        if (each2.getName().equals(worldName)) {
+                            tpBackLocation.setWorld(each2);
+                        }
+                    }
+                    player.teleport(tpBackLocation);
+                    
+                    //worldName = tpTempLocation.getWorld().getName();
+                    //x = round(tpTempLocation.getX());
+                    //y = round(tpTempLocation.getY());
+                    //z = round(tpTempLocation.getZ());
+                    //yaw = (float) round(tpTempLocation.getYaw());
+                    //pitch = (float) round(tpTempLocation.getPitch());
+                    //tpBack.set(each.indexOf(each), player.getName() + ',' + "map:" + worldName + "x:" + x +
+                    //        "y:" + y + "z:" + z + "yaw:" + yaw + "pitch:" + pitch);
+                    return true;
+                }
+            }
+            
+            // no tp back
+            player.sendMessage(ChatColor.RED + "You do not have a prior location.");
+            return true;
+        }
+        
         return false;
     }
     
@@ -518,8 +562,8 @@ public class NexusCommands implements CommandExecutor {
     
     private boolean checkTpToggle(Player player) {
         for (String every : tpToggle) {
-            String tpName = every.substring(0, every.indexOf(","));
-            String tpAble = every.substring(every.indexOf(",") + 1);
+            String tpName = every.substring(0, every.indexOf(','));
+            String tpAble = every.substring(every.indexOf(',') + 1);
             if (player.getName().equalsIgnoreCase(tpName)) {
                 if (tpAble.equals("false")) {
                     return false;
@@ -528,5 +572,10 @@ public class NexusCommands implements CommandExecutor {
         }
         
         return true;
+    }
+    
+    private double round(double value) {
+        DecimalFormat newFormat = new DecimalFormat("#.#");
+        return Double.valueOf(newFormat.format(value));
     }
 }

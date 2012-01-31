@@ -5,8 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Nexus extends JavaPlugin {
     
-    Logger log = Logger.getLogger("Nexus");
     private NexusCommands myExecutor;
+    Logger log = Logger.getLogger("Nexus");
     
     public void onDisable() {
         log.info(this + " is now disabled.");
@@ -14,6 +14,8 @@ public class Nexus extends JavaPlugin {
 
     public void onEnable() {
         log.info(this + " is now enabled.");
+        
+        getServer().getPluginManager().registerEvents(new NexusPlayerListener(), this);
         
         myExecutor = new NexusCommands(this);
         getCommand("test").setExecutor(myExecutor);
@@ -26,5 +28,6 @@ public class Nexus extends JavaPlugin {
         getCommand("unban").setExecutor(myExecutor);
         getCommand("tp").setExecutor(myExecutor);
         getCommand("tpr").setExecutor(myExecutor);
+        getCommand("back").setExecutor(myExecutor);
     }
 }

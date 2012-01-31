@@ -1,7 +1,7 @@
 author: VioVioCity
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.0.13
+version: 0.0.14
 commands:
   test:
     description: Runs a pre-coded test.
@@ -33,7 +33,13 @@ commands:
   tpr:
     description: Sends teleport request to another player, also to accept or deny a request.
     usage: /<command> (player), /<command> [accept|deny|cancel]
+  back:
+    description: Teleports player to prior location.
+    usage: /<command>
 permissions:
+  nexus.test:
+    description: Allows players to run a pre-coded test.
+    default: op
   nexus.time.check:
     description: Allows players to check current time.
     default: true
@@ -69,4 +75,10 @@ permissions:
     default: op
   nexus.tpr:
     description: Allows players to send teleport request to another player.
+    default: true
+  nexus.back:
+    description: Allows players to teleport to prior location.
+    default: true
+  nexus.back.death:
+    description: Allows players to teleport to death location.
     default: true
