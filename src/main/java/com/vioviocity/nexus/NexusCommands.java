@@ -530,15 +530,6 @@ public class NexusCommands implements CommandExecutor {
                         }
                     }
                     player.teleport(tpBackLocation);
-                    
-                    //worldName = tpTempLocation.getWorld().getName();
-                    //x = round(tpTempLocation.getX());
-                    //y = round(tpTempLocation.getY());
-                    //z = round(tpTempLocation.getZ());
-                    //yaw = (float) round(tpTempLocation.getYaw());
-                    //pitch = (float) round(tpTempLocation.getPitch());
-                    //tpBack.set(each.indexOf(each), player.getName() + ',' + "map:" + worldName + "x:" + x +
-                    //        "y:" + y + "z:" + z + "yaw:" + yaw + "pitch:" + pitch);
                     return true;
                 }
             }
@@ -551,7 +542,7 @@ public class NexusCommands implements CommandExecutor {
         return false;
     }
     
-    private boolean checkPermission(String permission, Player player) {
+    static boolean checkPermission(String permission, Player player) {
         if (!player.hasPermission(permission)) {
             player.sendMessage(ChatColor.RED + "You do not have permission.");
             return false;

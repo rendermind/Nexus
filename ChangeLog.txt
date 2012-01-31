@@ -1,14 +1,16 @@
-0.0.18
+0.0.19
     "support multiple homes"
-0.0.17
+0.0.18
     Implemented /home, teleports player to home locale
     Added /home [set], sets player home locale
-0.0.16
+0.0.17
     Implemented /cp (locale), teleports player to checkpoint locale
     Added /cp (locale) [set], creates or sets checkpoint locale
-0.0.15
+0.0.16
     Implemented /spawn, teleports player to spawn point
     Added /spawn [set], sets player spawn point
+0.0.15
+    Added /back on death when player has nexus.back.death permission
 0.0.14
     Implemented /back command, teleports player to prior location
     Updated to Bukkit 1.1-R3
