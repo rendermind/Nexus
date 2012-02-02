@@ -19,10 +19,13 @@ public class NexusPlayerListener implements Listener{
     
     @EventHandler
     public void onPlayerDeath(EntityDeathEvent event) {
-        Player player = (Player) event.getEntity();
-        // permission check
-        if (NexusCommands.checkPermission("nexus.back.death", player))
-            setTpBack(player, player.getLocation());
+        // check if entity is player
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+            // permission check
+            if (NexusCommands.checkPermission("nexus.back.death", player))
+                setTpBack(player, player.getLocation());
+        }
     }
     
     private void setTpBack(Player player, Location locale) {

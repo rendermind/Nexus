@@ -1,14 +1,21 @@
-0.0.19
+0.0.20
     "support multiple homes"
-0.0.18
+0.0.19
     Implemented /home, teleports player to home locale
     Added /home [set], sets player home locale
-0.0.17
+0.0.18
     Implemented /cp (locale), teleports player to checkpoint locale
-    Added /cp (locale) [set], creates or sets checkpoint locale
-0.0.16
+    Added /cp (locale) [set|list], creates or sets checkpoint locale
+0.0.17
     Implemented /spawn, teleports player to spawn point
     Added /spawn [set], sets player spawn point
+0.0.16
+    Implemented /level, checks current xp
+    Implemented /heal (player), set player health and food levels to max
+    Implemented /kill (player), kills specified player
+    Changed /unban permissions to match /ban
+    Fixed /back on death issue causing severe warnings upon mob death
+    Cleaned up command descriptions
 0.0.15
     Added /back on death when player has nexus.back.death permission
 0.0.14

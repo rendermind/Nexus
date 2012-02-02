@@ -46,6 +46,7 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- TIME -----
         if (cmd.getName().equalsIgnoreCase("time")) {
             // permission check
             if (!checkPermission("nexus.time.check", player))
@@ -96,6 +97,7 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- WEATHER -----
         if (cmd.getName().equalsIgnoreCase("weather")) {
             // permission check
             if (!checkPermission("nexus.weather.check", player))
@@ -106,9 +108,9 @@ public class NexusCommands implements CommandExecutor {
                 int tick = (int) player.getWorld().getWeatherDuration();
                 int minutes = (tick / 20) / 60;
                 if (world.hasStorm()) {
-                    player.sendMessage(ChatColor.GREEN + "Weather: Storming / Duration: " + minutes + " minute(s)");
+                    player.sendMessage(ChatColor.GREEN + "Weather: Storming,  Duration: " + minutes + " minute(s)");
                 } else {
-                    player.sendMessage(ChatColor.GREEN + "Weather: Clear / Duration: " + minutes + " minute(s)");
+                    player.sendMessage(ChatColor.GREEN + "Weather: Clear,  Duration: " + minutes + " minute(s)");
                 }
                 
             // permission check
@@ -141,6 +143,27 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- SPAWN -----
+        if (cmd.getName().equalsIgnoreCase("spawn")) {
+            // permission check
+            if (!checkPermission("nexus.spawn", player))
+                return true;
+            
+            // spawn (no args)
+            if (args.length == 0) {
+                player.teleport(player.getWorld().getSpawnLocation());
+                
+            // spawn [set]
+            } else if (args.length == 1) {
+                
+                
+            // invalid args
+            } else {
+                return false;
+            }
+        }
+        
+        // ----- MODE -----
         if (cmd.getName().equalsIgnoreCase("mode")) {
             // permission check
             if (!checkPermission("nexus.mode", player))
@@ -184,6 +207,7 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- ONLINE -----
         if (cmd.getName().equalsIgnoreCase("online")) {
             // permission check
             if (!checkPermission("nexus.online", player))
@@ -205,6 +229,7 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- KICK -----
         if (cmd.getName().equalsIgnoreCase("kick")) {
             // permission check
             if (!checkPermission("nexus.kick", player))
@@ -232,7 +257,8 @@ public class NexusCommands implements CommandExecutor {
             
             return true;
         }
-            
+         
+        // ----- BAN -----
         if (cmd.getName().equalsIgnoreCase("ban")) {
             // permission check
             if (!checkPermission("nexus.ban", player))
@@ -262,9 +288,10 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- UNBAN -----
         if (cmd.getName().equalsIgnoreCase("unban")) {
             // permission check
-            if (!checkPermission("nexus.unban", player))
+            if (!checkPermission("nexus.ban", player))
                 return true;
             
             // unban (player)
@@ -290,6 +317,7 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- TP -----
         if (cmd.getName().equalsIgnoreCase("tp")) {
             // permission check
             if (!checkPermission("nexus.tp", player))
@@ -383,6 +411,7 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- TPR -----
         if (cmd.getName().equalsIgnoreCase("tpr")) {
             // permission check
             if (!checkPermission("nexus.tpr", player))
@@ -498,6 +527,7 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- BACK -----
         if (cmd.getName().equalsIgnoreCase("back")) {
             // permission check
             if (!checkPermission("nexus.back", player))
@@ -536,6 +566,98 @@ public class NexusCommands implements CommandExecutor {
             
             // no tp back
             player.sendMessage(ChatColor.RED + "You do not have a prior location.");
+            return true;
+        }
+        
+        // ----- HEAL -----
+        if (cmd.getName().equalsIgnoreCase("heal")) {
+            // check permission
+            if (!checkPermission("nexus.heal", player))
+                return false;
+            
+            // heal (no args)
+            if (args.length == 0) {
+                player.setHealth(player.getMaxHealth());
+                player.setFoodLevel(20);
+                
+            // heal (player)
+            } else if (args.length == 1) {
+                String healName = args[0].toLowerCase();
+                for (Player each : onlinePlayers) {
+                    if (each.getName().toLowerCase().contains(healName)) {
+                        each.setHealth(each.getMaxHealth());
+                        each.setFoodLevel(20);
+                        each.sendMessage(ChatColor.GREEN + player.getName() + " has healed you.");
+                        player.sendMessage(ChatColor.GREEN + "You have healed " + each.getName() + ".");
+                        return true;
+                    }
+                }
+                
+                // player not online
+                player.sendMessage(ChatColor.RED + healName + " is not online.");
+                return true;
+                
+            // invalid args
+            } else {
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // ----- KILL -----
+        if (cmd.getName().equalsIgnoreCase("kill")) {
+            // check permission
+            if (!checkPermission("nexus.kill", player))
+                return false;
+
+            // kill (player)
+            if (args.length == 1) {
+                String killName = args[0].toLowerCase();
+                for (Player each : onlinePlayers) {
+                    if (each.getName().toLowerCase().contains(killName)) {
+                        each.setHealth(0);
+                        each.sendMessage(ChatColor.RED + player.getName() + " has killed you.");
+                        return true;
+                    }
+                }
+                
+                // player not online
+                player.sendMessage(ChatColor.RED + killName + " is not online.");
+                return true;
+                
+            // invalid args
+            } else {
+                return false;
+            }
+        }
+        
+        // ----- LEVEL -----
+        if (cmd.getName().equalsIgnoreCase("level")) {
+            // level (no args)
+            if (args.length == 0) {
+                // permission check
+                if (!checkPermission("nexus.level.check", player))
+                    return false;
+                
+                int expNext = (int) (7 + (int) (player.getLevel() * 3.5));
+                int actualNext = expNext - (int) (player.getExp() * expNext) + player.getTotalExperience();
+                player.sendMessage(ChatColor.GREEN + "Level: " + player.getLevel() + ", Exp: " +
+                        player.getTotalExperience() + "/" + actualNext);
+            
+            // level (player) (level)
+            } else if (args.length == 2) {
+                // permission check
+                if (!checkPermission("nexus.level.set", player))
+                    return false;
+                
+                
+                
+            // invalid args
+            } else {
+                return false;
+            }
+            
             return true;
         }
         
