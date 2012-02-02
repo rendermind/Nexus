@@ -1,6 +1,5 @@
 package com.vioviocity.nexus;
 
-import java.io.File;
 import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,7 +21,7 @@ public class Nexus extends JavaPlugin {
         getCommand("test").setExecutor(myExecutor);
         getCommand("time").setExecutor(myExecutor);
         getCommand("weather").setExecutor(myExecutor);
-        getCommand("spawn").setExecutor(myExecutor);
+        //getCommand("spawn").setExecutor(myExecutor);
         getCommand("mode").setExecutor(myExecutor);
         getCommand("online").setExecutor(myExecutor);
         getCommand("kick").setExecutor(myExecutor);

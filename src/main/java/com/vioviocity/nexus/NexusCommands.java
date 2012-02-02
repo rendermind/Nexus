@@ -645,13 +645,63 @@ public class NexusCommands implements CommandExecutor {
                 player.sendMessage(ChatColor.GREEN + "Level: " + player.getLevel() + ", Exp: " +
                         player.getTotalExperience() + "/" + actualNext);
             
+            // level (level)
+            } else if (args.length == 1) {
+                // permission check
+                if (!checkPermission("nexus.level.set", player))
+                    return false;
+                int level = Integer.parseInt(args[0]);
+                
+                // check max level
+                if (level > 10000) {
+                    player.sendMessage(ChatColor.RED + "Maxiumum level is 10,000.");
+                    return true;
+                }
+
+                // set player level
+                player.setLevel(0);
+                player.setExp(0);
+                player.setTotalExperience(0);
+                for (int i = 0; i < level; i ++) {
+                     player.setTotalExperience(player.getTotalExperience() + (int) (7 + (int) (player.getLevel() * 3.5)));
+                     player.setLevel(player.getLevel() + 1);
+                }
+                
             // level (player) (level)
             } else if (args.length == 2) {
                 // permission check
                 if (!checkPermission("nexus.level.set", player))
                     return false;
                 
+                String levelName = args[0].toLowerCase();
+                int level = Integer.parseInt(args[1]);
                 
+                // check max level
+                if (level > 10000) {
+                    player.sendMessage(ChatColor.RED + "Maximium level is 10,000.");
+                    return true;
+                }
+                
+                for (Player each : onlinePlayers) {
+                    if (each.getName().toLowerCase().contains(levelName)) {
+                        
+                        // set player level
+                        player.setLevel(0);
+                        player.setExp(0);
+                        player.setTotalExperience(0);
+                        for (int i = 0; i < level; i ++) {
+                            player.setTotalExperience(player.getTotalExperience() + (int) (7 + (int) (player.getLevel() * 3.5)));
+                            player.setLevel(player.getLevel() + 1);
+                        }
+                        
+                        each.sendMessage(ChatColor.GREEN + player.getName() + " has set your level to " + level);
+                        player.sendMessage(ChatColor.GREEN + levelName + " set to level " + level);
+                        return true;
+                    }
+                }
+                
+                // player not found
+                player.sendMessage(ChatColor.RED + levelName + " is not online.");
                 
             // invalid args
             } else {

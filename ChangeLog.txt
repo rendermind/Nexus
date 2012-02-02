@@ -1,17 +1,21 @@
-0.0.20
+0.0.21
     "support multiple homes"
+0.0.20
+    Implemented /home, teleports to home location
+    Added /home [set], changes home location to current location
 0.0.19
-    Implemented /home, teleports player to home locale
-    Added /home [set], sets player home locale
+    Implemented /cp (locale), teleports to specified checkpoint location
+    Added /cp (locale) [set], creates or changes specified checkpoint location
+    Added /cp [list], displays a list of checkpoints
 0.0.18
-    Implemented /cp (locale), teleports player to checkpoint locale
-    Added /cp (locale) [set|list], creates or sets checkpoint locale
+    Implemented /spawn, teleports to spawn location
+    Added /spawn [set], changes spawn location to current location
 0.0.17
-    Implemented /spawn, teleports player to spawn point
-    Added /spawn [set], sets player spawn point
+    Implemented /nexus help, displays list of nexus commands
 0.0.16
-    Implemented /level, checks current xp
-    Implemented /heal (player), set player health and food levels to max
+    Implemented /level, displays current level and experience
+    Added /level (player) (level), changes specified player's level
+    Implemented /heal (player), changes specified player's heal and food to max
     Implemented /kill (player), kills specified player
     Changed /unban permissions to match /ban
     Fixed /back on death issue causing severe warnings upon mob death
@@ -19,13 +23,13 @@
 0.0.15
     Added /back on death when player has nexus.back.death permission
 0.0.14
-    Implemented /back command, teleports player to prior location
+    Implemented /back command, teleports to prior location
     Updated to Bukkit 1.1-R3
 0.0.13
     Fixed /tpr [accept|deny] not accepting or denying teleport requests
 0.0.12
-    Implemented /tpr (player), sends teleport request to another player
-    Added /tpr [accept|deny|cancel], accepts or denies teleport request
+    Implemented /tpr (player), sends teleport request to specified player
+    Added /tpr [accept|deny|cancel], handles teleport requests
     Added /tp [toggle], toggles incoming teleports
     Removed several redundant player notifications
 0.0.11
@@ -34,25 +38,25 @@
 0.0.10
     Commands now support partial names of players
 0.0.9
-    Implemented /tp (player) (player), teleports to another player or player to player
+    Implemented /tp (player) (player), teleports player to player
 0.0.8
     Changed /mode arguments from [survival|creative] to (player) and functioning as a toggle
     Changed /weather duration showing ticks to minutes
 0.0.7
-    Implemented /kick (player) command, kicks player from server
-    Implemented /ban (player) command, bans player from server
-    Implemented /unban (player) command, unbans player from server
+    Implemented /kick (player) command, kicks specified player
+    Implemented /ban (player) command, bans specified player
+    Implemented /unban (player) command, unbans specified player
 0.0.6
-    Implemented /online command, shows online players
+    Implemented /online command, displays a list of online players
 0.0.5
-    Implemented /mode [survival|creative] command, sets current game mode
+    Implemented /mode [survival|creative] command, sets game mode
     Fixed permission issue not allowing players with permission to issue associated commands
 0.0.4
     Implemented permissions support
 0.0.3
-    Implemented /weather command, shows current weather
-    Added /weather [clear|storm|thunder], sets current weather
+    Implemented /weather command, displays the current weather condition
+    Added /weather [clear|storm|thunder], changes the current weather condition
 0.0.2
-    Added /time [dawn|day|dusk|night] command arguments, sets current time
+    Added /time [dawn|day|dusk|night] command arguments, changes the current in-game time.
 0.0.1
-    Implemented /time command, shows current time
+    Implemented /time command, displays the current in-game time.
