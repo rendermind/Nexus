@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Logger;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,17 +24,17 @@ public class Nexus extends JavaPlugin {
     }
 
     public void onEnable() {
-        log.info(this + " is now enabled.");
-        
+        // register events
         getServer().getPluginManager().registerEvents(new NexusPlayerListener(), this);
         
+        // setup config files
         loadCommandConfig();
         saveCommandConfig();
         loadSpawnConfig();
         saveSpawnConfig();
         
+        // register commands based on config
         myExecutor = new NexusCommands(this);
-        getCommand("test").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.commands.time"))
             getCommand("time").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.commands.weather"))
@@ -62,6 +63,9 @@ public class Nexus extends JavaPlugin {
         getCommand("kill").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.commands.level"))
         getCommand("level").setExecutor(myExecutor);
+        
+        // plugin enabled
+        log.info(this + " is now enabled.");
     }
     
     public FileConfiguration loadCommandConfig() {
@@ -92,8 +96,18 @@ public class Nexus extends JavaPlugin {
         if (spawnConfig == null) {
             if (spawnConfigFile == null)
                 spawnConfigFile = new File(this.getDataFolder(), "spawn.yml");
-            if (spawnConfigFile.exists())
+            if (spawnConfigFile.exists()) {
                 spawnConfig = YamlConfiguration.loadConfiguration(spawnConfigFile);
+            } else {
+                InputStream defConfigStream = getResource("spawn.yml");
+                spawnConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+                
+                Location spawn = getServer().getWorld("world").getSpawnLocation();
+                spawnConfig.set("nexus.spawn.world", spawn.getWorld().getName());
+                spawnConfig.set("nexus.spawn.x", spawn.getX());
+                spawnConfig.set("nexus.spawn.y", spawn.getWorld().getHighestBlockAt(spawn).getY());
+                spawnConfig.set("nexus.spawn.z", spawn.getZ());
+            }
         }
         return spawnConfig;
     }

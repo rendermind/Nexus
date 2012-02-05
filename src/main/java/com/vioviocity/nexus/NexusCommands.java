@@ -18,7 +18,6 @@ public class NexusCommands implements CommandExecutor {
     static List<String> tpBack = new ArrayList<String>();
     
     private Nexus plugin;
-        
     public NexusCommands(Nexus plugin) {
         this.plugin = plugin;
     }
@@ -37,17 +36,8 @@ public class NexusCommands implements CommandExecutor {
         onlinePlayers = plugin.getServer().getOnlinePlayers();
         bannedPlayers = plugin.getServer().getOfflinePlayers();
         
-        // test, runs pre-coded test
-        if (cmd.getName().equalsIgnoreCase("test")) {
-            for (String each : tpBack) {
-                player.sendMessage(each);
-            }
-            
-            return true;
-        }
-        
         // ----- HELP -----
-        if (cmd.getName().equalsIgnoreCase("help")) {
+        /*if (cmd.getName().equalsIgnoreCase("help")) {
             // permission check
             if (!checkPermission("nexus.help", player))
                 return true;
@@ -66,10 +56,10 @@ public class NexusCommands implements CommandExecutor {
             }
             
             return true;
-        }
+        }*/
         
         // ----- TIME -----
-        if (cmd.getName().equalsIgnoreCase("time")) {
+        if (cmd.getName().equalsIgnoreCase("time") && Nexus.commandConfig.getBoolean("nexus.commands.time")) {
             // permission check
             if (!checkPermission("nexus.time.check", player))
                 return true;
@@ -120,7 +110,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- WEATHER -----
-        if (cmd.getName().equalsIgnoreCase("weather")) {
+        if (cmd.getName().equalsIgnoreCase("weather") && Nexus.commandConfig.getBoolean("nexus.commands.weather")) {
             // permission check
             if (!checkPermission("nexus.weather.check", player))
                 return true;
@@ -166,15 +156,14 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- SPAWN -----
-        if (cmd.getName().equalsIgnoreCase("spawn")) {
+        if (cmd.getName().equalsIgnoreCase("spawn") && Nexus.commandConfig.getBoolean("nexus.commands.spawn")) {
             // permission check
             if (!checkPermission("nexus.spawn", player))
                 return true;
             
-            Location spawn = player.getLocation();
             // spawn (no args)
             if (args.length == 0) {
-                spawn = player.getLocation();
+                Location spawn = player.getLocation();
                 spawn.setWorld(plugin.getServer().getWorld(Nexus.spawnConfig.getString("nexus.spawn.world")));
                 spawn.setX(Nexus.spawnConfig.getDouble("nexus.spawn.x"));
                 spawn.setY(Nexus.spawnConfig.getDouble("nexus.spawn.y"));
@@ -186,7 +175,7 @@ public class NexusCommands implements CommandExecutor {
                 
             // spawn [set]
             } else if (args.length == 1) {
-                spawn = player.getLocation();
+                Location spawn = player.getLocation();
                 Nexus.spawnConfig.set("nexus.spawn.world", spawn.getWorld().getName());
                 Nexus.spawnConfig.set("nexus.spawn.x", spawn.getX());
                 Nexus.spawnConfig.set("nexus.spawn.y", spawn.getY());
@@ -204,7 +193,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- MODE -----
-        if (cmd.getName().equalsIgnoreCase("mode")) {
+        if (cmd.getName().equalsIgnoreCase("mode") && Nexus.commandConfig.getBoolean("nexus.commands.mode")) {
             // permission check
             if (!checkPermission("nexus.mode", player))
                 return true;
@@ -248,7 +237,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- ONLINE -----
-        if (cmd.getName().equalsIgnoreCase("online")) {
+        if (cmd.getName().equalsIgnoreCase("online") && Nexus.commandConfig.getBoolean("nexus.commands.online")) {
             // permission check
             if (!checkPermission("nexus.online", player))
                 return true;
@@ -270,7 +259,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- KICK -----
-        if (cmd.getName().equalsIgnoreCase("kick")) {
+        if (cmd.getName().equalsIgnoreCase("kick") && Nexus.commandConfig.getBoolean("nexus.commands.kick")) {
             // permission check
             if (!checkPermission("nexus.kick", player))
                 return true;
@@ -299,7 +288,7 @@ public class NexusCommands implements CommandExecutor {
         }
          
         // ----- BAN -----
-        if (cmd.getName().equalsIgnoreCase("ban")) {
+        if (cmd.getName().equalsIgnoreCase("ban") && Nexus.commandConfig.getBoolean("nexus.commands.ban")) {
             // permission check
             if (!checkPermission("nexus.ban", player))
                 return true;
@@ -329,7 +318,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- UNBAN -----
-        if (cmd.getName().equalsIgnoreCase("unban")) {
+        if (cmd.getName().equalsIgnoreCase("unban") && Nexus.commandConfig.getBoolean("nexus.commands.ban")) {
             // permission check
             if (!checkPermission("nexus.ban", player))
                 return true;
@@ -358,7 +347,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- TP -----
-        if (cmd.getName().equalsIgnoreCase("tp")) {
+        if (cmd.getName().equalsIgnoreCase("tp") && Nexus.commandConfig.getBoolean("nexus.commands.tp")) {
             // permission check
             if (!checkPermission("nexus.tp", player))
                 return true;
@@ -452,7 +441,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- TPR -----
-        if (cmd.getName().equalsIgnoreCase("tpr")) {
+        if (cmd.getName().equalsIgnoreCase("tpr") && Nexus.commandConfig.getBoolean("nexus.commands.tpr")) {
             // permission check
             if (!checkPermission("nexus.tpr", player))
                 return true;
@@ -568,7 +557,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- BACK -----
-        if (cmd.getName().equalsIgnoreCase("back")) {
+        if (cmd.getName().equalsIgnoreCase("back") && Nexus.commandConfig.getBoolean("nexus.commands.back")) {
             // permission check
             if (!checkPermission("nexus.back", player))
                 return false;
@@ -610,7 +599,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- HEAL -----
-        if (cmd.getName().equalsIgnoreCase("heal")) {
+        if (cmd.getName().equalsIgnoreCase("heal") && Nexus.commandConfig.getBoolean("nexus.commands.heal")) {
             // check permission
             if (!checkPermission("nexus.heal", player))
                 return false;
@@ -646,7 +635,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- KILL -----
-        if (cmd.getName().equalsIgnoreCase("kill")) {
+        if (cmd.getName().equalsIgnoreCase("kill") && Nexus.commandConfig.getBoolean("nexus.commands.kill")) {
             // check permission
             if (!checkPermission("nexus.kill", player))
                 return false;
@@ -673,7 +662,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- LEVEL -----
-        if (cmd.getName().equalsIgnoreCase("level")) {
+        if (cmd.getName().equalsIgnoreCase("level") && Nexus.commandConfig.getBoolean("nexus.commands.level")) {
             // level (no args)
             if (args.length == 0) {
                 // permission check

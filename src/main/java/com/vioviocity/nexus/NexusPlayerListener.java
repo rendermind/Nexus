@@ -16,24 +16,10 @@ public class NexusPlayerListener implements Listener{
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        Location spawn;
-        
-        // create initial spawn
-        if (!Nexus.spawnConfigFile.exists()) {
-            spawn = player.getWorld().getSpawnLocation();
-            Nexus.spawnConfig.set("nexus.spawn.world", spawn.getWorld().getName());
-            Nexus.spawnConfig.set("nexus.spawn.x", spawn.getX());
-            Nexus.spawnConfig.set("nexus.spawn.y", spawn.getY());
-            Nexus.spawnConfig.set("nexus.spawn.z", spawn.getZ());
-            Nexus.spawnConfig.set("nexus.spawn.yaw", spawn.getYaw());
-            Nexus.spawnConfig.set("nexus.spawn.pitch", spawn.getPitch());
-            Nexus.saveSpawnConfig();
-            Nexus.spawnConfig = YamlConfiguration.loadConfiguration(Nexus.spawnConfigFile);
-        }
         
         // new player to spawn
         if (!player.hasPlayedBefore()) {
-            spawn = player.getLocation();
+            Location spawn = player.getLocation();
             spawn.setWorld(Bukkit.getServer().getWorld(Nexus.spawnConfig.getString("nexus.spawn.world")));
             spawn.setX(Nexus.spawnConfig.getDouble("nexus.spawn.x"));
             spawn.setY(Nexus.spawnConfig.getDouble("nexus.spawn.y"));

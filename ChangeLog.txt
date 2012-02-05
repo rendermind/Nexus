@@ -9,6 +9,8 @@
     Added /cp [list], displays a list of checkpoints
 0.0.18
     Implemented command config to toggle available commands
+    Fixed /spawn issue causing players to spawn inside blocks and suffocate
+    Known issue: /spawn only works with default world titled 'world'
 0.0.17
     Implemented /spawn, teleports to spawn location
     Added /spawn [set], changes spawn location to current location
