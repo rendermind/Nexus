@@ -1,14 +1,48 @@
 package com.vioviocity.nexus;
 
 import java.text.DecimalFormat;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class NexusPlayerListener implements Listener{
+    
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        Location spawn;
+        
+        // create initial spawn
+        if (!Nexus.spawnConfigFile.exists()) {
+            spawn = player.getWorld().getSpawnLocation();
+            Nexus.spawnConfig.set("nexus.spawn.world", spawn.getWorld().getName());
+            Nexus.spawnConfig.set("nexus.spawn.x", spawn.getX());
+            Nexus.spawnConfig.set("nexus.spawn.y", spawn.getY());
+            Nexus.spawnConfig.set("nexus.spawn.z", spawn.getZ());
+            Nexus.spawnConfig.set("nexus.spawn.yaw", spawn.getYaw());
+            Nexus.spawnConfig.set("nexus.spawn.pitch", spawn.getPitch());
+            Nexus.saveSpawnConfig();
+            Nexus.spawnConfig = YamlConfiguration.loadConfiguration(Nexus.spawnConfigFile);
+        }
+        
+        // new player to spawn
+        if (!player.hasPlayedBefore()) {
+            spawn = player.getLocation();
+            spawn.setWorld(Bukkit.getServer().getWorld(Nexus.spawnConfig.getString("nexus.spawn.world")));
+            spawn.setX(Nexus.spawnConfig.getDouble("nexus.spawn.x"));
+            spawn.setY(Nexus.spawnConfig.getDouble("nexus.spawn.y"));
+            spawn.setZ(Nexus.spawnConfig.getDouble("nexus.spawn.z"));
+            spawn.setYaw((float) Nexus.spawnConfig.getDouble("nexus.spawn.yaw"));
+            spawn.setPitch((float) Nexus.spawnConfig.getDouble("nexus.spawn.pitch"));
+            player.teleport(spawn);
+        }
+    }
 
     @EventHandler
     public void onPlayerTeleport(PlayerTeleportEvent event) {

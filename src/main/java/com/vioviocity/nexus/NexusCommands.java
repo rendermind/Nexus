@@ -46,6 +46,28 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- HELP -----
+        if (cmd.getName().equalsIgnoreCase("help")) {
+            // permission check
+            if (!checkPermission("nexus.help", player))
+                return true;
+            
+            // help (no args)
+            if (args.length == 0) {
+                plugin.getDescription().getCommands();
+                
+            // help (command)
+            } else if (args.length == 1) {
+                
+                
+            // invalid args
+            } else {
+                return false;
+            }
+            
+            return true;
+        }
+        
         // ----- TIME -----
         if (cmd.getName().equalsIgnoreCase("time")) {
             // permission check
@@ -149,13 +171,31 @@ public class NexusCommands implements CommandExecutor {
             if (!checkPermission("nexus.spawn", player))
                 return true;
             
+            Location spawn = player.getLocation();
             // spawn (no args)
             if (args.length == 0) {
-                player.teleport(player.getWorld().getSpawnLocation());
+                spawn = player.getLocation();
+                spawn.setWorld(plugin.getServer().getWorld(Nexus.spawnConfig.getString("nexus.spawn.world")));
+                spawn.setX(Nexus.spawnConfig.getDouble("nexus.spawn.x"));
+                spawn.setY(Nexus.spawnConfig.getDouble("nexus.spawn.y"));
+                spawn.setZ(Nexus.spawnConfig.getDouble("nexus.spawn.z"));
+                spawn.setYaw((float) Nexus.spawnConfig.getDouble("nexus.spawn.yaw"));
+                spawn.setPitch((float) Nexus.spawnConfig.getDouble("nexus.spawn.pitch"));
+                player.teleport(spawn);
+                return true;
                 
             // spawn [set]
             } else if (args.length == 1) {
-                
+                spawn = player.getLocation();
+                Nexus.spawnConfig.set("nexus.spawn.world", spawn.getWorld().getName());
+                Nexus.spawnConfig.set("nexus.spawn.x", spawn.getX());
+                Nexus.spawnConfig.set("nexus.spawn.y", spawn.getY());
+                Nexus.spawnConfig.set("nexus.spawn.z", spawn.getZ());
+                Nexus.spawnConfig.set("nexus.spawn.yaw", spawn.getYaw());
+                Nexus.spawnConfig.set("nexus.spawn.pitch", spawn.getPitch());
+                Nexus.saveSpawnConfig();
+                player.sendMessage(ChatColor.GREEN + "Spawn location set.");
+                return true;
                 
             // invalid args
             } else {

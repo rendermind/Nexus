@@ -1,0 +1,15 @@
+nexus:
+  commands:
+    time: true
+    weather: true
+    spawn: true
+    mode: true
+    online: true
+    kick: true
+    ban: true
+    tp: true
+    tpr: true
+    back: true
+    heal: true
+    kill: true
+    level: true

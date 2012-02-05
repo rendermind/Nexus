@@ -1,11 +1,14 @@
 author: VioVioCity
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.0.16
+version: 0.0.18
 commands:
   test:
     description: Runs a pre-coded test.
     usage: /<command> ... who knows?
+  help:
+    description: Displays a list of available commands.
+    usage: /<command>
   time:
     description: Displays or changes the current in-game time.
     usage: /<command> [dawn|day|dusk|night]
@@ -40,7 +43,7 @@ commands:
     description: Teleports to prior location.
     usage: /<command>
   heal:
-    description: Heals specified player.
+    description: Changes specified player's health and food to max.
     usage: /<command> (player)
   kill:
     description: Kills specified player.
@@ -52,6 +55,9 @@ permissions:
   nexus.test:
     description: Allows use of /test.
     default: op
+  nexus.help:
+    description: Allows use of /help.
+    default: true
   nexus.time.check:
     description: Allows use of /time.
     default: true
