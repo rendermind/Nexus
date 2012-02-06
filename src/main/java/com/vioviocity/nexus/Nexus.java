@@ -109,8 +109,7 @@ public class Nexus extends JavaPlugin {
                 InputStream defConfigStream = getResource("spawn.yml");
                 spawnConfig = YamlConfiguration.loadConfiguration(defConfigStream);
                 
-                Location spawn = getServer().getWorld("world").getSpawnLocation();
-                
+                Location spawn = getServer().getWorlds().get(0).getSpawnLocation();
                 spawnConfig.set("nexus.spawn.world", spawn.getWorld().getName());
                 spawnConfig.set("nexus.spawn.x", spawn.getX());
                 spawnConfig.set("nexus.spawn.y", spawn.getWorld().getHighestBlockAt(spawn).getY());

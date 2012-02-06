@@ -8,6 +8,7 @@
     Added /wp (waypoint) [set|delete], creates, deletes, or changes specified checkpoint location
     Added /wp [list], displays a list of checkpoints
     Fixed issue: /tp could not be enabled in commands.yml
+    Fixed issue: /spawn not compatible with non-default world names
 0.0.18
     Implemented command config to toggle available commands
     Fixed /spawn issue causing players to spawn inside blocks and suffocate
