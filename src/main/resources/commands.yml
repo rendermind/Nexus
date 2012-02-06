@@ -9,8 +9,10 @@ nexus:
     ban: true
     tp: true
     tpr: true
+    tpc: true
     wp: true
     back: true
     heal: true
     kill: true
     level: true
+    item: true

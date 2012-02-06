@@ -1,7 +1,7 @@
 author: VioVioCity
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.0.19
+version: 0.0.20
 commands:
   time:
     description: Displays or changes the current in-game time.
@@ -33,9 +33,12 @@ commands:
   tpr:
     description: Sends teleport request to specified player, also handles teleport requests.
     usage: /<command> (player), /<command> [accept|deny|cancel]
+  tpc:
+    description: Teleports to specfied x and z coordinates
+    usage: /<command> (x) (z)
   wp:
     description: Changes or teleports player to specified waypoint, also displays list of waypoints.
-    usage: /<command> (waypoint) [set|delete], /<command> [list]
+    usage: /<command> [list], /<command> (waypoint) [set|delete]
   back:
     description: Teleports to prior location.
     usage: /<command>
@@ -48,6 +51,9 @@ commands:
   level:
     description: Displays and changes current level and experience.
     usage: /<command> (player) (level)
+  item:
+    description: Gives specified player a quantity of an item.
+    usage: /<command> (player) (id) (quantity)
 permissions:
   nexus.time.check:
     description: Allows use of /time.
@@ -83,11 +89,14 @@ permissions:
     description: Allows use of /tp (player) (player).
     default: op
   nexus.tp.toggle:
-    description: Allows use of /to [toggle].
+    description: Allows use of /tp [toggle].
     default: op
   nexus.tpr:
     description: Allows use of /tpr (player), also /tpr [accept|deny|cancel]
     default: true
+  nexus.tpc:
+    description: Allows use of /tpc (x) (z)
+    default: op
   nexus.wp:
     description: Allows use of /wp (waypoint), also /wp [list]
     default: true
@@ -111,4 +120,7 @@ permissions:
     default: true
   nexus.level.set:
     description: Allows use of /xp (player) (level).
+    default: op
+  nexus.item:
+    description: Allows use of /item (player) (id) (quantity)
     default: op

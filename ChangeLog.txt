@@ -1,8 +1,13 @@
 0.0.xx
+    Implemented /help, displays list of available commands
+0.0.xx
     "support multiple homes"
 0.0.xx
     Implemented /home, teleports to home location
     Added /home [set], changes home location to current location
+0.0.20
+    Implemented /tpc (x) (z), teleports to specified x and z coordinates
+    Implemented /item (player) (id) (quantity), gives specified player a quantity of an item.
 0.0.19
     Implemented /wp (waypoint), teleports to specified checkpoint location
     Added /wp (waypoint) [set|delete], creates, deletes, or changes specified checkpoint location

@@ -2,12 +2,14 @@ package com.vioviocity.nexus;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class NexusCommands implements CommandExecutor {
 
@@ -555,6 +557,28 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- TPC -----
+        if (cmd.getName().equalsIgnoreCase("tpc") && Nexus.commandConfig.getBoolean("nexus.command.tpc")) {
+            // permission check
+            if (!checkPermission("nexus.tpc", player))
+                return false;
+            
+            // tpc (x) (z)
+            if (args.length == 2) {
+                Location teleport = player.getLocation();
+                double x = Double.parseDouble(args[0]);
+                double z = Double.parseDouble(args[1]);
+                teleport.setX(x);
+                teleport.setZ(z);
+                teleport.setY(teleport.getWorld().getHighestBlockYAt(teleport));
+                player.teleport(teleport);
+                
+            // invalid args
+            } else {
+                return false;
+            }
+        }
+        
         // ----- WP -----
         if (cmd.getName().equalsIgnoreCase("wp") && Nexus.commandConfig.getBoolean("nexus.command.wp")) {
             // wp (waypoint), wp [list]
@@ -864,6 +888,51 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- ITEM -----
+        if (cmd.getName().equalsIgnoreCase("item") && Nexus.commandConfig.getBoolean("nexus.command.item")) {
+            // permission check
+            if (!checkPermission("nexus.item", player))
+                return false;
+            
+            // item (id)
+            if (args.length == 1) {
+                int id = Integer.parseInt(args[0]);
+                ItemStack item = new ItemStack(id, 64);
+                player.getInventory().addItem(item);
+                return true;
+                
+            // item (id) (quantity)
+            } else if (args.length == 2) {
+                int id = Integer.parseInt(args[0]);
+                int quantity = Integer.parseInt(args[1]);
+                ItemStack item = new ItemStack(id, quantity);
+                player.getInventory().addItem(item);
+                return true;
+                
+            // item (player) (id) (quantity)
+            } else if (args.length == 3) {
+                String itemName = args[0].toLowerCase();
+                int id = Integer.parseInt(args[1]);
+                int quantity = Integer.parseInt(args[2]);
+                ItemStack item = new ItemStack(id, quantity);
+                for (Player each : onlinePlayers) {
+                    if (each.getName().toLowerCase().contains(itemName)) {
+                        each.getInventory().addItem(item);
+                        player.sendMessage(ChatColor.GREEN + "Gave " + each.getName() + " item ID " + id + " (x" + quantity + ").");
+                        return true;
+                    }
+                }
+                
+                player.sendMessage(ChatColor.RED + itemName + " is not online.");
+                return true;
+            
+            // invalid args
+            } else {
+                return false;
+            }
+        }
+        
+        // end of commands
         return false;
     }
     

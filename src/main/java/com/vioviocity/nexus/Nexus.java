@@ -60,6 +60,8 @@ public class Nexus extends JavaPlugin {
             getCommand("tp").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.command.tpr"))
             getCommand("tpr").setExecutor(myExecutor);
+        if (commandConfig.getBoolean("nexus.command.tpc"))
+            getCommand("tpc").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.command.wp"))
             getCommand("wp").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.command.back"))
@@ -70,6 +72,8 @@ public class Nexus extends JavaPlugin {
             getCommand("kill").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.command.level"))
             getCommand("level").setExecutor(myExecutor);
+        if (commandConfig.getBoolean("nexus.command.item"))
+            getCommand("item").setExecutor(myExecutor);
         
         // plugin enabled
         log.info(this + " is now enabled.");
