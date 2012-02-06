@@ -3,10 +3,11 @@
 0.0.xx
     Implemented /home, teleports to home location
     Added /home [set], changes home location to current location
-0.0.xx
-    Implemented /cp (locale), teleports to specified checkpoint location
-    Added /cp (locale) [set], creates or changes specified checkpoint location
-    Added /cp [list], displays a list of checkpoints
+0.0.19
+    Implemented /wp (waypoint), teleports to specified checkpoint location
+    Added /wp (waypoint) [set|delete], creates, deletes, or changes specified checkpoint location
+    Added /wp [list], displays a list of checkpoints
+    Fixed issue: /tp could not be enabled in commands.yml
 0.0.18
     Implemented command config to toggle available commands
     Fixed /spawn issue causing players to spawn inside blocks and suffocate

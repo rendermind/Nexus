@@ -1,5 +1,5 @@
 nexus:
-  commands:
+  command:
     time: true
     weather: true
     spawn: true
@@ -9,6 +9,7 @@ nexus:
     ban: true
     tp: true
     tpr: true
+    wp: true
     back: true
     heal: true
     kill: true

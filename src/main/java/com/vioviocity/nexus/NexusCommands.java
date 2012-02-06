@@ -9,7 +9,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-
 public class NexusCommands implements CommandExecutor {
 
     // initialize global variables
@@ -59,7 +58,7 @@ public class NexusCommands implements CommandExecutor {
         }*/
         
         // ----- TIME -----
-        if (cmd.getName().equalsIgnoreCase("time") && Nexus.commandConfig.getBoolean("nexus.commands.time")) {
+        if (cmd.getName().equalsIgnoreCase("time") && Nexus.commandConfig.getBoolean("nexus.command.time")) {
             // permission check
             if (!checkPermission("nexus.time.check", player))
                 return true;
@@ -110,7 +109,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- WEATHER -----
-        if (cmd.getName().equalsIgnoreCase("weather") && Nexus.commandConfig.getBoolean("nexus.commands.weather")) {
+        if (cmd.getName().equalsIgnoreCase("weather") && Nexus.commandConfig.getBoolean("nexus.command.weather")) {
             // permission check
             if (!checkPermission("nexus.weather.check", player))
                 return true;
@@ -156,7 +155,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- SPAWN -----
-        if (cmd.getName().equalsIgnoreCase("spawn") && Nexus.commandConfig.getBoolean("nexus.commands.spawn")) {
+        if (cmd.getName().equalsIgnoreCase("spawn") && Nexus.commandConfig.getBoolean("nexus.command.spawn")) {
             // permission check
             if (!checkPermission("nexus.spawn", player))
                 return true;
@@ -193,7 +192,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- MODE -----
-        if (cmd.getName().equalsIgnoreCase("mode") && Nexus.commandConfig.getBoolean("nexus.commands.mode")) {
+        if (cmd.getName().equalsIgnoreCase("mode") && Nexus.commandConfig.getBoolean("nexus.command.mode")) {
             // permission check
             if (!checkPermission("nexus.mode", player))
                 return true;
@@ -237,7 +236,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- ONLINE -----
-        if (cmd.getName().equalsIgnoreCase("online") && Nexus.commandConfig.getBoolean("nexus.commands.online")) {
+        if (cmd.getName().equalsIgnoreCase("online") && Nexus.commandConfig.getBoolean("nexus.command.online")) {
             // permission check
             if (!checkPermission("nexus.online", player))
                 return true;
@@ -288,7 +287,7 @@ public class NexusCommands implements CommandExecutor {
         }
          
         // ----- BAN -----
-        if (cmd.getName().equalsIgnoreCase("ban") && Nexus.commandConfig.getBoolean("nexus.commands.ban")) {
+        if (cmd.getName().equalsIgnoreCase("ban") && Nexus.commandConfig.getBoolean("nexus.command.ban")) {
             // permission check
             if (!checkPermission("nexus.ban", player))
                 return true;
@@ -318,7 +317,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- UNBAN -----
-        if (cmd.getName().equalsIgnoreCase("unban") && Nexus.commandConfig.getBoolean("nexus.commands.ban")) {
+        if (cmd.getName().equalsIgnoreCase("unban") && Nexus.commandConfig.getBoolean("nexus.command.ban")) {
             // permission check
             if (!checkPermission("nexus.ban", player))
                 return true;
@@ -347,7 +346,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- TP -----
-        if (cmd.getName().equalsIgnoreCase("tp") && Nexus.commandConfig.getBoolean("nexus.commands.tp")) {
+        if (cmd.getName().equalsIgnoreCase("tp") && Nexus.commandConfig.getBoolean("nexus.command.tp")) {
             // permission check
             if (!checkPermission("nexus.tp", player))
                 return true;
@@ -441,7 +440,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- TPR -----
-        if (cmd.getName().equalsIgnoreCase("tpr") && Nexus.commandConfig.getBoolean("nexus.commands.tpr")) {
+        if (cmd.getName().equalsIgnoreCase("tpr") && Nexus.commandConfig.getBoolean("nexus.command.tpr")) {
             // permission check
             if (!checkPermission("nexus.tpr", player))
                 return true;
@@ -556,8 +555,133 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- WP -----
+        if (cmd.getName().equalsIgnoreCase("wp") && Nexus.commandConfig.getBoolean("nexus.command.wp")) {
+            // wp (waypoint), wp [list]
+            if (args.length == 1) {
+                // permission check
+                if (!checkPermission("nexus.wp", player))
+                    return false;
+                
+                // wp [list]
+                if (args[0].equalsIgnoreCase("list")) {
+                    List <String> waypoints = Nexus.waypointConfig.getStringList("nexus.waypoint.list");
+                    
+                    // waypoints not set
+                    if (waypoints.isEmpty()) {
+                        player.sendMessage(ChatColor.RED + "Waypoints have not been set.");
+                        return true;
+                    }
+                    
+                    // display list of waypoints
+                    String waypointList = "";
+                    for (String each : waypoints) {
+                        waypointList += each + ", ";
+                    }
+                    waypointList = waypointList.substring(0, waypointList.length() - 2);
+                    player.sendMessage(ChatColor.GREEN + "Waypoints: " + ChatColor.WHITE + waypointList);
+                    return true;
+                    
+                // wp (waypoint)
+                } else {
+                    String wpName = args[0].toLowerCase();
+                    List <String> waypoints = Nexus.waypointConfig.getStringList("nexus.waypoint.list");
+                    
+                    // teleport to waypoint
+                    for (String each : waypoints) {
+                        if (wpName.equalsIgnoreCase(each)) {
+                            String path = "nexus.waypoint." + wpName + ".";
+                            Location waypoint = player.getLocation();
+                            
+                            waypoint.setWorld(plugin.getServer().getWorld(Nexus.waypointConfig.getString(path + "world")));
+                            waypoint.setX(Nexus.waypointConfig.getDouble(path + "x"));
+                            waypoint.setY(Nexus.waypointConfig.getDouble(path + "y"));
+                            waypoint.setZ(Nexus.waypointConfig.getDouble(path + "z"));
+                            waypoint.setYaw((float) Nexus.waypointConfig.getDouble(path + "yaw"));
+                            waypoint.setPitch((float) Nexus.waypointConfig.getDouble(path + "pitch"));
+                            player.teleport(waypoint);
+                            return true;
+                        }
+                    }
+                    
+                    // waypoint not found
+                    player.sendMessage(ChatColor.RED + "Waypoint does not exist.");
+                    return true;
+                }
+                
+            // wp (waypoint) [set|delete]
+            } else if (args.length == 2) {
+                // permission check
+                if (!checkPermission("nexus.wp.set", player))
+                    return false;
+                
+                String wpName = args[0];
+                
+                // wp (waypoint) [set]
+                if (args[1].equalsIgnoreCase("set")) {
+                    List <String> waypoints = Nexus.waypointConfig.getStringList("nexus.waypoint.list");
+                    
+                    // check if waypoint exists
+                    for (String each : waypoints) {
+                        if (wpName.equalsIgnoreCase(each)) {
+                            waypoints.set(waypoints.indexOf(each), wpName);
+                            Nexus.waypointConfig.set("nexus.waypoint.list", waypoints);
+                            String path = "nexus.waypoint." + wpName.toLowerCase() + ".";
+                            Nexus.waypointConfig.set(path + "world", player.getLocation().getWorld().getName());
+                            Nexus.waypointConfig.set(path + "x", player.getLocation().getX());
+                            Nexus.waypointConfig.set(path + "y", player.getLocation().getY());
+                            Nexus.waypointConfig.set(path + "z", player.getLocation().getZ());
+                            Nexus.waypointConfig.set(path + "yaw", player.getLocation().getYaw());
+                            Nexus.waypointConfig.set(path + "pitch", player.getLocation().getPitch());
+                            Nexus.saveWaypointConfig();
+                            player.sendMessage(ChatColor.GREEN + "Waypoint " + wpName + " reset.");
+                            return true;
+                        }
+                    }
+                    
+                    // create new waypoint
+                    waypoints.add(wpName);
+                    Nexus.waypointConfig.set("nexus.waypoint.list", waypoints);
+                    String path = "nexus.waypoint." + wpName.toLowerCase() + ".";
+                    Nexus.waypointConfig.set(path + "world", player.getLocation().getWorld().getName());
+                    Nexus.waypointConfig.set(path + "x", player.getLocation().getX());
+                    Nexus.waypointConfig.set(path + "y", player.getLocation().getY());
+                    Nexus.waypointConfig.set(path + "z", player.getLocation().getZ());
+                    Nexus.waypointConfig.set(path + "yaw", player.getLocation().getYaw());
+                    Nexus.waypointConfig.set(path + "pitch", player.getLocation().getPitch());
+                    Nexus.saveWaypointConfig();
+                    player.sendMessage(ChatColor.GREEN + "Waypoint " + wpName + " set.");
+                    return true;
+                    
+                // wp (waypoint) [delete]
+                } else if (args[1].equalsIgnoreCase("delete")) {
+                    List <String> waypoints = Nexus.waypointConfig.getStringList("nexus.waypoint.list");
+                    
+                    for (String each : waypoints) {
+                        if (wpName.equalsIgnoreCase(each)) {
+                            waypoints.remove(each);
+                            Nexus.waypointConfig.set("nexus.waypoint.list", waypoints);
+                            Nexus.saveWaypointConfig();
+                            player.sendMessage(ChatColor.RED + "Waypoint " + each + " deleted.");
+                            return true;
+                        }
+                    }
+                    
+                    // waypoint no found
+                    player.sendMessage(ChatColor.RED + "Waypoint does not exist.");
+                    return true;
+                }
+                
+                return false;
+                
+            // invalid args
+            } else {
+                return false;
+            }
+        }
+        
         // ----- BACK -----
-        if (cmd.getName().equalsIgnoreCase("back") && Nexus.commandConfig.getBoolean("nexus.commands.back")) {
+        if (cmd.getName().equalsIgnoreCase("back") && Nexus.commandConfig.getBoolean("nexus.command.back")) {
             // permission check
             if (!checkPermission("nexus.back", player))
                 return false;
@@ -599,7 +723,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- HEAL -----
-        if (cmd.getName().equalsIgnoreCase("heal") && Nexus.commandConfig.getBoolean("nexus.commands.heal")) {
+        if (cmd.getName().equalsIgnoreCase("heal") && Nexus.commandConfig.getBoolean("nexus.command.heal")) {
             // check permission
             if (!checkPermission("nexus.heal", player))
                 return false;
@@ -635,7 +759,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- KILL -----
-        if (cmd.getName().equalsIgnoreCase("kill") && Nexus.commandConfig.getBoolean("nexus.commands.kill")) {
+        if (cmd.getName().equalsIgnoreCase("kill") && Nexus.commandConfig.getBoolean("nexus.command.kill")) {
             // check permission
             if (!checkPermission("nexus.kill", player))
                 return false;
@@ -662,7 +786,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- LEVEL -----
-        if (cmd.getName().equalsIgnoreCase("level") && Nexus.commandConfig.getBoolean("nexus.commands.level")) {
+        if (cmd.getName().equalsIgnoreCase("level") && Nexus.commandConfig.getBoolean("nexus.command.level")) {
             // level (no args)
             if (args.length == 0) {
                 // permission check

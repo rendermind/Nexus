@@ -3,7 +3,6 @@ package com.vioviocity.nexus;
 import java.text.DecimalFormat;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -1,7 +1,7 @@
 author: VioVioCity
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.0.18
+version: 0.0.19
 commands:
   time:
     description: Displays or changes the current in-game time.
@@ -10,8 +10,8 @@ commands:
     description: Displays or changes the current weather condition.
     usage: /<command> [clear|storm|thunder]
   spawn:
-    description: Teleports to spawn location.
-    usage: /<command>
+    description: Teleports to or changes spawn location.
+    usage: /<command> [set]
   mode:
     description: Toggle specified player's current game mode.
     usage: /<command> (player)
@@ -33,6 +33,9 @@ commands:
   tpr:
     description: Sends teleport request to specified player, also handles teleport requests.
     usage: /<command> (player), /<command> [accept|deny|cancel]
+  wp:
+    description: Changes or teleports player to specified waypoint, also displays list of waypoints.
+    usage: /<command> (waypoint) [set|delete], /<command> [list]
   back:
     description: Teleports to prior location.
     usage: /<command>
@@ -85,6 +88,12 @@ permissions:
   nexus.tpr:
     description: Allows use of /tpr (player), also /tpr [accept|deny|cancel]
     default: true
+  nexus.wp:
+    description: Allows use of /wp (waypoint), also /wp [list]
+    default: true
+  nexus.wp.set:
+    description: Allows use of /wp [set]
+    default: op
   nexus.back:
     description: Allows use of /back.
     default: true
