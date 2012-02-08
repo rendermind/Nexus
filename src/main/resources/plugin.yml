@@ -1,8 +1,11 @@
 author: VioVioCity
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.0.20
+version: 0.0.21
 commands:
+  test:
+    description: Runs a pre-coded test.
+    usage: /<command> (no idea...)
   time:
     description: Displays or changes the current in-game time.
     usage: /<command> [dawn|day|dusk|night]
@@ -54,14 +57,23 @@ commands:
   item:
     description: Gives specified player a quantity of an item.
     usage: /<command> (player) (id) (quantity)
+  broadcast:
+    description: Displays important message for all players.
+    usage: /<command> (message)
+  msg:
+    description: Sends private message to specified player.
+    usage: /<command> (player) (message)
+  reply:
+    description: Sends private message in response to last received private message.
+    usage: /<command> (message)
 permissions:
-  nexus.time.check:
+  nexus.time:
     description: Allows use of /time.
     default: true
   nexus.time.set:
     description: Allows use of /time [dawn|day|dusk|night].
     default: op
-  nexus.weather.check:
+  nexus.weather:
     description: Allows use of /weather.
     default: true
   nexus.weather.set:
@@ -83,7 +95,7 @@ permissions:
     description: Allows use of /kick (player).
     default: op
   nexus.ban:
-    description: Allows use of /ban (player).
+    description: Allows use of /ban (player), also /unban (player).
     default: op
   nexus.tp:
     description: Allows use of /tp (player) (player).
@@ -115,12 +127,18 @@ permissions:
   nexus.kill:
     description: Allows use of /kill (player).
     default: op
-  nexus.level.check:
+  nexus.level:
     description: Allows use of /xp.
     default: true
   nexus.level.set:
     description: Allows use of /xp (player) (level).
     default: op
   nexus.item:
-    description: Allows use of /item (player) (id) (quantity)
+    description: Allows use of /item (player) (id) (quantity).
     default: op
+  nexus.broadcast:
+    description: Allows use of /broadcast (message).
+    default: op
+  nexus.msg:
+    description: Allows use of /msg (player) (message), also /r (message).
+    default: true

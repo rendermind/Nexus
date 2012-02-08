@@ -1,3 +1,4 @@
 nexus:
+  version: 0.0.21
   waypoint:
     list:

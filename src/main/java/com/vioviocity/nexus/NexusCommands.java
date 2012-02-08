@@ -2,7 +2,6 @@ package com.vioviocity.nexus;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import org.bukkit.*;
 import org.bukkit.command.Command;
@@ -17,6 +16,7 @@ public class NexusCommands implements CommandExecutor {
     static List<String> tpRequest = new ArrayList<String>();
     static List<String> tpToggle = new ArrayList<String>();
     static List<String> tpBack = new ArrayList<String>();
+    static List<String> msgReply = new ArrayList<String>();
     
     private Nexus plugin;
     public NexusCommands(Nexus plugin) {
@@ -59,10 +59,21 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }*/
         
+        if (cmd.getName().equalsIgnoreCase("test")) {
+            if (args.length > 0)
+                return false;
+            
+            player.sendMessage("--- START OF TEST ---");
+            for (String each : msgReply) {
+                player.sendMessage(each);
+            }
+            return true;
+        }
+        
         // ----- TIME -----
         if (cmd.getName().equalsIgnoreCase("time") && Nexus.commandConfig.getBoolean("nexus.command.time")) {
             // permission check
-            if (!checkPermission("nexus.time.check", player))
+            if (!checkPermission("nexus.time", player))
                 return true;
             
             // time (no args)
@@ -113,7 +124,7 @@ public class NexusCommands implements CommandExecutor {
         // ----- WEATHER -----
         if (cmd.getName().equalsIgnoreCase("weather") && Nexus.commandConfig.getBoolean("nexus.command.weather")) {
             // permission check
-            if (!checkPermission("nexus.weather.check", player))
+            if (!checkPermission("nexus.weather", player))
                 return true;
             
             // weather (no args)
@@ -814,7 +825,7 @@ public class NexusCommands implements CommandExecutor {
             // level (no args)
             if (args.length == 0) {
                 // permission check
-                if (!checkPermission("nexus.level.check", player))
+                if (!checkPermission("nexus.level", player))
                     return false;
                 
                 int expNext = (int) (7 + (int) (player.getLevel() * 3.5));
@@ -930,6 +941,117 @@ public class NexusCommands implements CommandExecutor {
             } else {
                 return false;
             }
+        }
+        
+        // ----- BROADCAST -----
+        if (cmd.getName().equalsIgnoreCase("broadcast") && Nexus.commandConfig.getBoolean("nexus.command.broadcast")) {
+            // permission check
+            if (!checkPermission("nexus.broadcast", player))
+                return false;
+            
+            // invalid args
+            if (args.length == 0)
+                return false;
+            
+            // broadcast (message)
+            String message = "";
+            for (String each : args) {
+                message += each + " ";
+            }
+            message = message.substring(0, message.length() - 1);
+            plugin.getServer().broadcastMessage(ChatColor.RED + "[Broadcast] " + ChatColor.WHITE + message);
+            return true;
+        }
+        
+        // ----- MSG -----
+        if (cmd.getName().equalsIgnoreCase("msg") && Nexus.commandConfig.getBoolean("nexus.command.msg")) {
+            // permission check
+            if (!checkPermission("nexus.msg", player))
+                return false;
+            
+            // invalid args
+            if (args.length == 0)
+                return false;
+            
+            // msg (player) (message)
+            String msgName = args[0];
+            String message = "";
+            for (int i = 1; i < args.length; i ++) {
+                message += args[i] + " ";
+            }
+            message = message.substring(0, message.length() - 1);
+            for (Player each : onlinePlayers) {
+                if (each.getName().toLowerCase().contains(msgName)) {
+                    each.sendMessage(ChatColor.GREEN + "[" + player.getName() + " -> me] " + ChatColor.WHITE + message);
+                    player.sendMessage(ChatColor.GREEN + "[me -> " + each.getName() + "] " + ChatColor.WHITE + message);
+                        
+                    for (String each2 : msgReply) {
+                        String msgFrom = each2.substring(0, each2.indexOf(','));
+                        String msgTo = each2.substring(each2.indexOf(',') + 1);
+                        if (player.getName().equals(msgFrom)) {
+                            msgReply.remove(msgFrom + ',' + msgTo);
+                            msgReply.add(player.getName() + ',' + each.getName());
+                            return true;
+                        }
+                    }
+                        
+                    msgReply.add(player.getName() + ',' + each.getName());
+                    return true;
+                }
+            }
+                
+            // player not found
+            player.sendMessage(ChatColor.RED + msgName + " is not online.");
+            return true;
+        }
+        
+        // ----- REPLY -----
+        if (cmd.getName().equalsIgnoreCase("reply") && Nexus.commandConfig.getBoolean("nexus.command.msg")) {
+            // check permission
+            if (!checkPermission("nexus.msg", player))
+                return false;
+            
+            // invalid args
+            if (args.length == 0)
+                return false;
+            
+            // reply (message)
+            String message = "";
+            for (int i = 0; i < args.length; i ++) {
+                message += args[i] + " ";
+            }
+            message = message.substring(0, message.length() - 1);
+            for (String each : msgReply) {
+                String msgFrom = each.substring(0, each.indexOf(','));
+                String msgTo = each.substring(each.indexOf(',') + 1);
+                if (player.getName().equals(msgTo)) {
+                    for (Player each2 : onlinePlayers) {
+                        if (each2.getName().equals(msgFrom)) {
+                            each2.sendMessage(ChatColor.GREEN + "[" + player.getName() + " -> me] " + ChatColor.WHITE + message);
+                            player.sendMessage(ChatColor.GREEN + "[me -> " + each2.getName() + "] " + ChatColor.WHITE + message);
+                            
+                            for (String each3 : msgReply) {
+                                if (player.getName().equals(msgTo)) {
+                                    msgReply.remove(msgTo);
+                                    msgReply.add(player.getName() + ',' + each2.getName());
+                                    return true;
+                                }
+                            }
+                            
+                            msgReply.add(player.getName() + ',' + each2.getName());
+                            return true;
+                        }
+                    }
+                    
+                    // player not found
+                    player.sendMessage(ChatColor.RED + msgFrom + " is not online.");
+                    return true;
+                }
+            }
+            
+            // player not found
+            player.sendMessage(ChatColor.RED + "You have not received a message.");
+            return true;
         }
         
         // end of commands

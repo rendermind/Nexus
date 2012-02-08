@@ -2,9 +2,17 @@
     Implemented /help, displays list of available commands
 0.0.xx
     "support multiple homes"
-0.0.xx
+0.0.23
     Implemented /home, teleports to home location
     Added /home [set], changes home location to current location
+0.0.22
+    Implemented /mute (player), disables chat for specified player
+    Implemented /unmute (player), enables chat for specified player
+0.0.21
+    Implemented /broadcast (message), displays important message for all players
+    Implemented /msg (player) (message), sends private message to specified player
+    Implemented /reply (message), sends private message in response to last received private message.
+    Changed /time and /weather permission nodes
 0.0.20
     Implemented /tpc (x) (z), teleports to specified x and z coordinates
     Implemented /item (player) (id) (quantity), gives specified player a quantity of an item.

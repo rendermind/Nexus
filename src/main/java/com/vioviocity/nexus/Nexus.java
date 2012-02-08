@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Logger;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -40,6 +39,7 @@ public class Nexus extends JavaPlugin {
         
         // register commands based on config
         myExecutor = new NexusCommands(this);
+        getCommand("test").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.command.time"))
             getCommand("time").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.command.weather"))
@@ -74,6 +74,33 @@ public class Nexus extends JavaPlugin {
             getCommand("level").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.command.item"))
             getCommand("item").setExecutor(myExecutor);
+        if (commandConfig.getBoolean("nexus.command.broadcast"))
+            getCommand("broadcast").setExecutor(myExecutor);
+        if (commandConfig.getBoolean("nexus.command.msg")) {
+            getCommand("msg").setExecutor(myExecutor);
+            getCommand("reply").setExecutor(myExecutor);
+        }
+        
+        //check yaml versions
+        try {
+            if (!spawnConfig.getString("nexus.version").equals(this.getDescription().getVersion())) {
+                log.warning("Nexus\\spawn.yml is out of date!.");
+                log.warning("- Backup file data, delete .yml file, then restart server.");
+            }
+            if (!commandConfig.getString("nexus.version").equals(this.getDescription().getVersion())) {
+                log.warning("Nexus\\commands.yml is out of date!.");
+                log.warning("- Backup file data, delete .yml file, then restart server.");
+            }
+            if (!waypointConfig.getString("nexus.version").equals(this.getDescription().getVersion())) {
+                log.warning("Nexus\\waypoints.yml is out of date!.");
+                log.warning("- Backup file data, delete .yml file, then restart server.");
+            }
+        } catch (NullPointerException e) {
+            log.warning("Nexus\\spawn.yml is out of date!.");
+            log.warning("Nexus\\commands.yml is out of date!");
+            log.warning("Nexus\\waypoints.yml is out of date!");
+            log.warning("- Backup file data, delete .yml files, then restart server.");
+        }
         
         // plugin enabled
         log.info(this + " is now enabled.");

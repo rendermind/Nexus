@@ -1,4 +1,5 @@
 nexus:
+  version: 0.0.21
   spawn:
     world: world
     x: 0
