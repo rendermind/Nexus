@@ -1,5 +1,5 @@
 nexus:
-  version: 0.0.21
+  version: b
   command:
     time: true
     weather: true
@@ -19,3 +19,4 @@ nexus:
     item: true
     broadcast: true
     msg: true
+    mute: true

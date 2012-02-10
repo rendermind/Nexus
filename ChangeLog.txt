@@ -8,6 +8,11 @@
 0.0.22
     Implemented /mute (player), disables chat for specified player
     Implemented /unmute (player), enables chat for specified player
+    Fixed Issue: /kick not being accessible
+    Fixed Issue: most commands displayed usage without valid permission
+    Fixed Issue: /time, /weather, and /spawn allowed usage without valid permission
+    Fixed Issue: /level (player) (level) will level up issuer instead of specified player
+    Fixed Issue: /back on death defaulted to all players
 0.0.21
     Implemented /broadcast (message), displays important message for all players
     Implemented /msg (player) (message), sends private message to specified player

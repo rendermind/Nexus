@@ -80,26 +80,20 @@ public class Nexus extends JavaPlugin {
             getCommand("msg").setExecutor(myExecutor);
             getCommand("reply").setExecutor(myExecutor);
         }
+        if (commandConfig.getBoolean("nexus.command.mute")) {
+            getCommand("mute").setExecutor(myExecutor);
+            getCommand("unmute").setExecutor(myExecutor);
+        }
         
         //check yaml versions
         try {
-            if (!spawnConfig.getString("nexus.version").equals(this.getDescription().getVersion())) {
-                log.warning("Nexus\\spawn.yml is out of date!.");
-                log.warning("- Backup file data, delete .yml file, then restart server.");
-            }
-            if (!commandConfig.getString("nexus.version").equals(this.getDescription().getVersion())) {
+            if (!commandConfig.getString("nexus.version").equals("b")) {
                 log.warning("Nexus\\commands.yml is out of date!.");
                 log.warning("- Backup file data, delete .yml file, then restart server.");
             }
-            if (!waypointConfig.getString("nexus.version").equals(this.getDescription().getVersion())) {
-                log.warning("Nexus\\waypoints.yml is out of date!.");
-                log.warning("- Backup file data, delete .yml file, then restart server.");
-            }
         } catch (NullPointerException e) {
-            log.warning("Nexus\\spawn.yml is out of date!.");
             log.warning("Nexus\\commands.yml is out of date!");
-            log.warning("Nexus\\waypoints.yml is out of date!");
-            log.warning("- Backup file data, delete .yml files, then restart server.");
+            log.warning("- Backup file data, delete .yml file, then restart server.");
         }
         
         // plugin enabled

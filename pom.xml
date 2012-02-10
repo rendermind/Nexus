@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.vioviocity.nexus</groupId>
     <artifactId>Nexus</artifactId>
-    <version>0.0.21</version>
+    <version>0.0.22</version>
     <name>Nexus</name>
     <repositories>
         <repository>

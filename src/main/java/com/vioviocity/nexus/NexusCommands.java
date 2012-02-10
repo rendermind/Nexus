@@ -17,6 +17,7 @@ public class NexusCommands implements CommandExecutor {
     static List<String> tpToggle = new ArrayList<String>();
     static List<String> tpBack = new ArrayList<String>();
     static List<String> msgReply = new ArrayList<String>();
+    static List<String> msgMute = new ArrayList<String>();
     
     private Nexus plugin;
     public NexusCommands(Nexus plugin) {
@@ -59,25 +60,14 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }*/
         
-        if (cmd.getName().equalsIgnoreCase("test")) {
-            if (args.length > 0)
-                return false;
-            
-            player.sendMessage("--- START OF TEST ---");
-            for (String each : msgReply) {
-                player.sendMessage(each);
-            }
-            return true;
-        }
-        
         // ----- TIME -----
         if (cmd.getName().equalsIgnoreCase("time") && Nexus.commandConfig.getBoolean("nexus.command.time")) {
-            // permission check
-            if (!checkPermission("nexus.time", player))
-                return true;
-            
             // time (no args)
             if (args.length == 0) {
+                // permission check
+                if (!checkPermission("nexus.time", player))
+                    return true;
+                
                 int tick = (int) player.getWorld().getTime();
                 int hour = tick / 1000;
                 // calculate true hour
@@ -91,13 +81,15 @@ public class NexusCommands implements CommandExecutor {
                 } else {
                     player.sendMessage(ChatColor.GREEN + "Time: " + hour + ":" + minute + " / Tick: " + tick);
                 }
-                
-            // permission check
-            if (!checkPermission("nexus.time.set", player))
                 return true;
                         
             // time [dawn|day|dusk|night]
             } else if (args.length == 1) {
+                // permission check
+                if (!checkPermission("nexus.time.set", player))
+                    return true;
+                
+                
                 String time = args[0].toLowerCase();
                 if (time.equals("dawn")) {
                     player.getWorld().setTime(22200);
@@ -123,12 +115,12 @@ public class NexusCommands implements CommandExecutor {
         
         // ----- WEATHER -----
         if (cmd.getName().equalsIgnoreCase("weather") && Nexus.commandConfig.getBoolean("nexus.command.weather")) {
-            // permission check
-            if (!checkPermission("nexus.weather", player))
-                return true;
-            
             // weather (no args)
             if (args.length == 0) {
+                // permission check
+                if (!checkPermission("nexus.weather", player))
+                    return true;
+                
                 int tick = (int) player.getWorld().getWeatherDuration();
                 int minutes = (tick / 20) / 60;
                 if (world.hasStorm()) {
@@ -136,13 +128,14 @@ public class NexusCommands implements CommandExecutor {
                 } else {
                     player.sendMessage(ChatColor.GREEN + "Weather: Clear,  Duration: " + minutes + " minute(s)");
                 }
-                
-            // permission check
-            if (!checkPermission("nexus.weather.set", player))
                 return true;
             
             // weather [clear|storm|thunder]
             } else if (args.length == 1) {
+                // permission check
+                if (!checkPermission("nexus.weather.set", player))
+                    return true;
+                
                 String weather = args[0].toLowerCase();
                 if (weather.equals("clear")) {
                     world.setStorm(false);
@@ -169,12 +162,12 @@ public class NexusCommands implements CommandExecutor {
         
         // ----- SPAWN -----
         if (cmd.getName().equalsIgnoreCase("spawn") && Nexus.commandConfig.getBoolean("nexus.command.spawn")) {
-            // permission check
-            if (!checkPermission("nexus.spawn", player))
-                return true;
-            
             // spawn (no args)
             if (args.length == 0) {
+                // permission check
+                if (!checkPermission("nexus.spawn", player))
+                    return true;
+                
                 Location spawn = player.getLocation();
                 spawn.setWorld(plugin.getServer().getWorld(Nexus.spawnConfig.getString("nexus.spawn.world")));
                 spawn.setX(Nexus.spawnConfig.getDouble("nexus.spawn.x"));
@@ -187,7 +180,12 @@ public class NexusCommands implements CommandExecutor {
                 
             // spawn [set]
             } else if (args.length == 1) {
+                // permission check
+                if (!checkPermission("nexus.spawn.set", player))
+                    return true;
+                
                 Location spawn = player.getLocation();
+                player.getWorld().setSpawnLocation((int) spawn.getX(), (int) spawn.getY(), (int) spawn.getZ());
                 Nexus.spawnConfig.set("nexus.spawn.world", spawn.getWorld().getName());
                 Nexus.spawnConfig.set("nexus.spawn.x", spawn.getX());
                 Nexus.spawnConfig.set("nexus.spawn.y", spawn.getY());
@@ -271,7 +269,7 @@ public class NexusCommands implements CommandExecutor {
         }
         
         // ----- KICK -----
-        if (cmd.getName().equalsIgnoreCase("kick") && Nexus.commandConfig.getBoolean("nexus.commands.kick")) {
+        if (cmd.getName().equalsIgnoreCase("kick") && Nexus.commandConfig.getBoolean("nexus.command.kick")) {
             // permission check
             if (!checkPermission("nexus.kick", player))
                 return true;
@@ -572,7 +570,7 @@ public class NexusCommands implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("tpc") && Nexus.commandConfig.getBoolean("nexus.command.tpc")) {
             // permission check
             if (!checkPermission("nexus.tpc", player))
-                return false;
+                return true;
             
             // tpc (x) (z)
             if (args.length == 2) {
@@ -596,7 +594,7 @@ public class NexusCommands implements CommandExecutor {
             if (args.length == 1) {
                 // permission check
                 if (!checkPermission("nexus.wp", player))
-                    return false;
+                    return true;
                 
                 // wp [list]
                 if (args[0].equalsIgnoreCase("list")) {
@@ -648,7 +646,7 @@ public class NexusCommands implements CommandExecutor {
             } else if (args.length == 2) {
                 // permission check
                 if (!checkPermission("nexus.wp.set", player))
-                    return false;
+                    return true;
                 
                 String wpName = args[0];
                 
@@ -719,7 +717,7 @@ public class NexusCommands implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("back") && Nexus.commandConfig.getBoolean("nexus.command.back")) {
             // permission check
             if (!checkPermission("nexus.back", player))
-                return false;
+                return true;
             
             // invalid args
             if (args.length > 0)
@@ -761,7 +759,7 @@ public class NexusCommands implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("heal") && Nexus.commandConfig.getBoolean("nexus.command.heal")) {
             // check permission
             if (!checkPermission("nexus.heal", player))
-                return false;
+                return true;
             
             // heal (no args)
             if (args.length == 0) {
@@ -797,7 +795,7 @@ public class NexusCommands implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("kill") && Nexus.commandConfig.getBoolean("nexus.command.kill")) {
             // check permission
             if (!checkPermission("nexus.kill", player))
-                return false;
+                return true;
 
             // kill (player)
             if (args.length == 1) {
@@ -826,7 +824,7 @@ public class NexusCommands implements CommandExecutor {
             if (args.length == 0) {
                 // permission check
                 if (!checkPermission("nexus.level", player))
-                    return false;
+                    return true;
                 
                 int expNext = (int) (7 + (int) (player.getLevel() * 3.5));
                 int actualNext = expNext - (int) (player.getExp() * expNext) + player.getTotalExperience();
@@ -837,7 +835,7 @@ public class NexusCommands implements CommandExecutor {
             } else if (args.length == 1) {
                 // permission check
                 if (!checkPermission("nexus.level.set", player))
-                    return false;
+                    return true;
                 int level = Integer.parseInt(args[0]);
                 
                 // check max level
@@ -859,7 +857,7 @@ public class NexusCommands implements CommandExecutor {
             } else if (args.length == 2) {
                 // permission check
                 if (!checkPermission("nexus.level.set", player))
-                    return false;
+                    return true;
                 
                 String levelName = args[0].toLowerCase();
                 int level = Integer.parseInt(args[1]);
@@ -874,12 +872,12 @@ public class NexusCommands implements CommandExecutor {
                     if (each.getName().toLowerCase().contains(levelName)) {
                         
                         // set player level
-                        player.setLevel(0);
-                        player.setExp(0);
-                        player.setTotalExperience(0);
+                        each.setLevel(0);
+                        each.setExp(0);
+                        each.setTotalExperience(0);
                         for (int i = 0; i < level; i ++) {
-                            player.setTotalExperience(player.getTotalExperience() + (int) (7 + (int) (player.getLevel() * 3.5)));
-                            player.setLevel(player.getLevel() + 1);
+                            each.setTotalExperience(each.getTotalExperience() + (int) (7 + (int) (each.getLevel() * 3.5)));
+                            each.setLevel(each.getLevel() + 1);
                         }
                         
                         each.sendMessage(ChatColor.GREEN + player.getName() + " has set your level to " + level);
@@ -903,7 +901,7 @@ public class NexusCommands implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("item") && Nexus.commandConfig.getBoolean("nexus.command.item")) {
             // permission check
             if (!checkPermission("nexus.item", player))
-                return false;
+                return true;
             
             // item (id)
             if (args.length == 1) {
@@ -947,11 +945,17 @@ public class NexusCommands implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("broadcast") && Nexus.commandConfig.getBoolean("nexus.command.broadcast")) {
             // permission check
             if (!checkPermission("nexus.broadcast", player))
-                return false;
+                return true;
             
             // invalid args
             if (args.length == 0)
                 return false;
+            
+            // check for mute
+            if (checkMsgMute(player.getName())) {
+                player.sendMessage(ChatColor.RED + "You are muted.");
+                return true;
+            }
             
             // broadcast (message)
             String message = "";
@@ -967,11 +971,17 @@ public class NexusCommands implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("msg") && Nexus.commandConfig.getBoolean("nexus.command.msg")) {
             // permission check
             if (!checkPermission("nexus.msg", player))
-                return false;
+                return true;
             
             // invalid args
             if (args.length == 0)
                 return false;
+            
+            // check for mute
+            if (checkMsgMute(player.getName())) {
+                player.sendMessage(ChatColor.RED + "You are muted.");
+                return true;
+            }
             
             // msg (player) (message)
             String msgName = args[0];
@@ -1009,11 +1019,17 @@ public class NexusCommands implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("reply") && Nexus.commandConfig.getBoolean("nexus.command.msg")) {
             // check permission
             if (!checkPermission("nexus.msg", player))
-                return false;
+                return true;
             
             // invalid args
             if (args.length == 0)
                 return false;
+            
+            // check for mute
+            if (checkMsgMute(player.getName())) {
+                player.sendMessage(ChatColor.RED + "You are muted.");
+                return true;
+            }
             
             // reply (message)
             String message = "";
@@ -1054,6 +1070,76 @@ public class NexusCommands implements CommandExecutor {
             return true;
         }
         
+        // ----- MUTE -----
+        if (cmd.getName().equalsIgnoreCase("mute") && Nexus.commandConfig.getBoolean("nexus.command.mute")) {
+            //permission check
+            if (!checkPermission("nexus.mute", player))
+                return true;
+            
+            // mute (player)
+            if (args.length == 1) {
+                String muteName = args[0];
+                for (String each : msgMute) {
+                    if (each.toLowerCase().contains(muteName.toLowerCase())) {
+                        player.sendMessage(ChatColor.RED + each + " is already muted.");
+                        return true;
+                    }
+                }
+                for (Player each : onlinePlayers) {
+                    if (each.getName().toLowerCase().contains(muteName)) {
+                        msgMute.add(each.getName());
+                        each.sendMessage(ChatColor.RED + "You are now muted.");
+                        player.sendMessage(ChatColor.RED + each.getName() + " is now muted.");
+                        return true;
+                    }
+                }
+                
+                // player not found
+                player.sendMessage(ChatColor.RED + muteName + " is not online.");
+                return true;
+                
+            // invalid args
+            } else {
+                return false;
+            }
+        }
+        
+        // ----- UNMUTE -----
+        if (cmd.getName().equalsIgnoreCase("unmute") && Nexus.commandConfig.getBoolean("nexus.command.mute")) {
+            // permission check
+            if (!checkPermission("nexus.mute", player))
+                return true;
+            
+            if (args.length == 1) {
+                String muteName = args[0];
+                for (String each : msgMute) {
+                    if (each.toLowerCase().contains(muteName.toLowerCase())) {
+                        msgMute.remove(each);
+                        for (Player each2 : onlinePlayers) {
+                            if (each2.getName().toLowerCase().contains(muteName.toLowerCase()))
+                                each2.sendMessage(ChatColor.GREEN + "You are now unmuted.");
+                        }
+                        player.sendMessage(ChatColor.GREEN + each + " is now unmuted.");
+                        return true;
+                    }
+                }
+                for (Player each : onlinePlayers) {
+                    if (each.getName().toLowerCase().contains(muteName.toLowerCase())) {
+                        player.sendMessage(ChatColor.RED + each.getName() + " is not muted.");
+                        return true;
+                    }
+                }
+                                
+                // player not found
+                player.sendMessage(ChatColor.RED + muteName + " is not online");
+                return true;
+                
+            // invalid args
+            } else {
+                return false;
+            }
+        }
+        
         // end of commands
         return false;
     }
@@ -1068,9 +1154,9 @@ public class NexusCommands implements CommandExecutor {
     }
     
     private boolean checkTpToggle(Player player) {
-        for (String every : tpToggle) {
-            String tpName = every.substring(0, every.indexOf(','));
-            String tpAble = every.substring(every.indexOf(',') + 1);
+        for (String each : tpToggle) {
+            String tpName = each.substring(0, each.indexOf(','));
+            String tpAble = each.substring(each.indexOf(',') + 1);
             if (player.getName().equalsIgnoreCase(tpName)) {
                 if (tpAble.equals("false")) {
                     return false;
@@ -1079,6 +1165,14 @@ public class NexusCommands implements CommandExecutor {
         }
         
         return true;
+    }
+    
+    private boolean checkMsgMute(String player) {
+        for (String each : msgMute) {
+            if (each.toLowerCase().contains(player.toLowerCase()))
+                return true;
+        }
+        return false;
     }
     
     private double round(double value) {

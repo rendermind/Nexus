@@ -1,7 +1,7 @@
 author: VioVioCity
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.0.21
+version: 0.0.22
 commands:
   test:
     description: Runs a pre-coded test.
@@ -66,6 +66,12 @@ commands:
   reply:
     description: Sends private message in response to last received private message.
     usage: /<command> (message)
+  mute:
+    description: Disables chat of specified player.
+    usage: /<command> (player)
+  unmute:
+    description: Enables chat of a specified player.
+    usage: /<command> (player)
 permissions:
   nexus.time:
     description: Allows use of /time.
@@ -120,7 +126,7 @@ permissions:
     default: true
   nexus.back.death:
     description: Allows use of /back on death.
-    default: true
+    default: op
   nexus.heal:
     description: Allows use of /heal (player).
     default: op
@@ -142,3 +148,6 @@ permissions:
   nexus.msg:
     description: Allows use of /msg (player) (message), also /r (message).
     default: true
+  nexus.mute:
+    description: Allows use of /mute (player), also /unmute (player)
+    default: op
