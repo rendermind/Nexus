@@ -2,9 +2,13 @@
     Implemented /help, displays list of available commands
 0.0.xx
     "support multiple homes"
-0.0.23
+0.0.xx
     Implemented /home, teleports to home location
     Added /home [set], changes home location to current location
+0.1.0
+    Updated from alpha to beta
+    Modularized code, all commands into separate classes
+    Fixed Issue: /tpc (x) (z) displays usage even after proper use
 0.0.22
     Implemented /mute (player), disables chat for specified player
     Implemented /unmute (player), enables chat for specified player

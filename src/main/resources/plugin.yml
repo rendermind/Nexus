@@ -1,7 +1,7 @@
 author: VioVioCity
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.0.22
+version: 0.1.0
 commands:
   test:
     description: Runs a pre-coded test.
@@ -146,7 +146,7 @@ permissions:
     description: Allows use of /broadcast (message).
     default: op
   nexus.msg:
-    description: Allows use of /msg (player) (message), also /r (message).
+    description: Allows use of /msg (player) (message), also /reply (message).
     default: true
   nexus.mute:
     description: Allows use of /mute (player), also /unmute (player)

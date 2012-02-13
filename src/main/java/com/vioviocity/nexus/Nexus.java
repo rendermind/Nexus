@@ -1,12 +1,17 @@
 package com.vioviocity.nexus;
 
+import com.vioviocity.nexus.commands.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Nexus extends JavaPlugin {
@@ -14,12 +19,16 @@ public class Nexus extends JavaPlugin {
     private NexusCommands myExecutor;
     static Logger log = Logger.getLogger("Nexus");
     
-    static FileConfiguration commandConfig = null;
+    static public FileConfiguration commandConfig = null;
     static File commandConfigFile = null;
-    static FileConfiguration spawnConfig = null;
+    static public FileConfiguration spawnConfig = null;
     static File spawnConfigFile = null;
     static FileConfiguration waypointConfig = null;
     static File waypointConfigFile = null;
+    static FileConfiguration itemConfig = null;
+    static File itemConfigFile = null;
+    
+    static Map<String,Integer> itemList = new HashMap<String,Integer>(500);
     
     public void onDisable() {
         log.info(this + " is now disabled.");
@@ -37,45 +46,54 @@ public class Nexus extends JavaPlugin {
         loadWaypointConfig();
         saveWaypointConfig();
         
+        // load item list
+        loadItemConfig();
+        saveItemConfig();
+        for (String each : itemConfig.getStringList("nexus.items")) {
+            int id = Integer.parseInt(each.substring(0, each.indexOf(",")));
+            String item = each.substring(each.indexOf(",") + 1);
+            itemList.put(item, id);
+        }
+        
         // register commands based on config
         myExecutor = new NexusCommands(this);
         getCommand("test").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.command.time"))
-            getCommand("time").setExecutor(myExecutor);
+            getCommand("time").setExecutor(new TimeCommand(this));
         if (commandConfig.getBoolean("nexus.command.weather"))
-            getCommand("weather").setExecutor(myExecutor);
+            getCommand("weather").setExecutor(new WeatherCommand(this));
         if (commandConfig.getBoolean("nexus.command.spawn"))
-            getCommand("spawn").setExecutor(myExecutor);
+            getCommand("spawn").setExecutor(new SpawnCommand(this));
         if (commandConfig.getBoolean("nexus.command.mode"))
-            getCommand("mode").setExecutor(myExecutor);
+            getCommand("mode").setExecutor(new ModeCommand(this));
         if (commandConfig.getBoolean("nexus.command.online"))
-            getCommand("online").setExecutor(myExecutor);
+            getCommand("online").setExecutor(new OnlineCommand(this));
         if (commandConfig.getBoolean("nexus.command.kick"))
-            getCommand("kick").setExecutor(myExecutor);
+            getCommand("kick").setExecutor(new KickCommand(this));
         if (commandConfig.getBoolean("nexus.command.ban")) {
-            getCommand("ban").setExecutor(myExecutor);
-            getCommand("unban").setExecutor(myExecutor);
+            getCommand("ban").setExecutor(new BanCommand(this));
+            getCommand("unban").setExecutor(new UnbanCommand(this));
         }
         if (commandConfig.getBoolean("nexus.command.tp"))
-            getCommand("tp").setExecutor(myExecutor);
+            getCommand("tp").setExecutor(new TpCommand(this));
         if (commandConfig.getBoolean("nexus.command.tpr"))
-            getCommand("tpr").setExecutor(myExecutor);
+            getCommand("tpr").setExecutor(new TprCommand(this));
         if (commandConfig.getBoolean("nexus.command.tpc"))
-            getCommand("tpc").setExecutor(myExecutor);
+            getCommand("tpc").setExecutor(new TpcCommand(this));
         if (commandConfig.getBoolean("nexus.command.wp"))
             getCommand("wp").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.command.back"))
             getCommand("back").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.command.heal"))
-            getCommand("heal").setExecutor(myExecutor);
+            getCommand("heal").setExecutor(new HealCommand(this));
         if (commandConfig.getBoolean("nexus.command.kill"))
-            getCommand("kill").setExecutor(myExecutor);
+            getCommand("kill").setExecutor(new KillCommand(this));
         if (commandConfig.getBoolean("nexus.command.level"))
             getCommand("level").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.command.item"))
-            getCommand("item").setExecutor(myExecutor);
+            getCommand("item").setExecutor(new ItemCommand(this));
         if (commandConfig.getBoolean("nexus.command.broadcast"))
-            getCommand("broadcast").setExecutor(myExecutor);
+            getCommand("broadcast").setExecutor(new BroadcastCommand(this));
         if (commandConfig.getBoolean("nexus.command.msg")) {
             getCommand("msg").setExecutor(myExecutor);
             getCommand("reply").setExecutor(myExecutor);
@@ -100,6 +118,7 @@ public class Nexus extends JavaPlugin {
         log.info(this + " is now enabled.");
     }
     
+    //
     public FileConfiguration loadCommandConfig() {
         if (commandConfig == null) {
             if (commandConfigFile == null)
@@ -114,16 +133,18 @@ public class Nexus extends JavaPlugin {
         return commandConfig;
     }
     
+    //
     public void saveCommandConfig() {
         if (commandConfig == null || commandConfigFile == null)
             return;
         try {
             commandConfig.save(commandConfigFile);
         } catch (IOException e) {
-            log.severe("Unable to save command config to " + commandConfigFile + ".");
+            log.severe("Unable to save command config to " + commandConfigFile + '.');
         }
     }
     
+    //
     public FileConfiguration loadSpawnConfig() {
         if (spawnConfig == null) {
             if (spawnConfigFile == null)
@@ -144,16 +165,18 @@ public class Nexus extends JavaPlugin {
         return spawnConfig;
     }
     
+    //
     static public void saveSpawnConfig() {
         if (spawnConfig == null || spawnConfigFile == null)
             return;
         try {
             spawnConfig.save(spawnConfigFile);
         } catch (IOException e) {
-            log.severe("Unable to save spawn config to " + spawnConfigFile + ".");
+            log.severe("Unable to save spawn config to " + spawnConfigFile + '.');
         }
     }
     
+    //
     public FileConfiguration loadWaypointConfig() {
         if (waypointConfig == null) {
             if (waypointConfigFile == null)
@@ -168,13 +191,50 @@ public class Nexus extends JavaPlugin {
         return waypointConfig;
     }
     
+    //
     static public void saveWaypointConfig() {
         if (waypointConfig == null || waypointConfigFile == null)
             return;
         try {
             waypointConfig.save(waypointConfigFile);
         } catch (IOException e) {
-            log.severe("Unable to save waypoint config to " + waypointConfigFile + ".");
+            log.severe("Unable to save waypoint config to " + waypointConfigFile + '.');
+        }
+    }
+    
+    //
+    public FileConfiguration loadItemConfig() {
+        if (itemConfig == null) {
+            if (itemConfigFile == null)
+                itemConfigFile = new File(this.getDataFolder(), "items.yml");
+            if (itemConfigFile.exists()) {
+                itemConfig = YamlConfiguration.loadConfiguration(itemConfigFile);
+            } else {
+                InputStream defConfigStream = getResource("items.yml");
+                itemConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+            }
+        }
+        return itemConfig;
+    }
+    
+    //
+    public void saveItemConfig() {
+        if (itemConfig == null || itemConfigFile == null)
+            return;
+        try {
+            itemConfig.save(itemConfigFile);
+        } catch (IOException e) {
+            log.severe("Unable to save item config to " + itemConfigFile + '.');
+        }
+    }
+    
+    //
+    static public boolean checkPermission(String permission, Player player) {
+        if (!player.hasPermission(permission)) {
+            player.sendMessage(ChatColor.RED + "You do not have permission.");
+            return false;
+        } else {
+            return true;
         }
     }
 }

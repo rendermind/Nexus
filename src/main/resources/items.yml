@@ -1,0 +1,10 @@
+nexus:
+  version: a
+  items:
+  - 1,stone
+  - 2,grass
+  - 3,dirt
+  - 4,cobble
+  - 5,plank
+  - 6,sapling
+  - 7,bedrock
