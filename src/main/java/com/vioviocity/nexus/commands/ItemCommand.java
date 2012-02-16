@@ -30,7 +30,7 @@ public class ItemCommand implements CommandExecutor{
             if (!Nexus.commandConfig.getBoolean("nexus.command.item"))
                 return true;
             // check permission
-            if (!Nexus.checkPermission("nexus.item", player))
+            if (!Nexus.checkPermission("nexus.item", player, true))
                 return true;
             // invalid args
             if (args.length < 1 || args.length > 3)

@@ -42,7 +42,7 @@ public class TpCommand implements CommandExecutor{
                 // tp [toggle]
                 if (args[0].equalsIgnoreCase("toggle")) {
                     // check permission
-                    if (!Nexus.checkPermission("nexus.tp.toggle", player))
+                    if (!Nexus.checkPermission("nexus.tp.toggle", player, true))
                         return true;
                     
                     // toggle true
@@ -61,7 +61,7 @@ public class TpCommand implements CommandExecutor{
                 }
                 
                 // check permission
-                if (!Nexus.checkPermission("nexus.tp", player))
+                if (!Nexus.checkPermission("nexus.tp", player, true))
                     return true;
                 
                 // tp (player)
@@ -89,7 +89,7 @@ public class TpCommand implements CommandExecutor{
             }
             
             // check permission
-            if (!Nexus.checkPermission("nexus.tp", player))
+            if (!Nexus.checkPermission("nexus.tp", player, true))
                 return true;
             
             // tp (player) (player)

@@ -35,7 +35,7 @@ public class LevelCommand implements CommandExecutor{
             // level (no args)
             if (args.length == 0) {
                 // check permission
-                if (!Nexus.checkPermission("nexus.level", player))
+                if (!Nexus.checkPermission("nexus.level", player, true))
                     return true;
                 
                 // level display
@@ -49,7 +49,7 @@ public class LevelCommand implements CommandExecutor{
             // level (level)
             if (args.length == 1) {
                 // check permission
-                if (!Nexus.checkPermission("nexus.level.set", player))
+                if (!Nexus.checkPermission("nexus.level.set", player, true))
                     return true;
                 
                 // initialize variable
@@ -75,7 +75,7 @@ public class LevelCommand implements CommandExecutor{
             // level (player) (level)
             if (args.length == 2) {
                 // check permission
-                if (!Nexus.checkPermission("nexus.level.set", player))
+                if (!Nexus.checkPermission("nexus.level.set", player, true))
                     return true;
                 
                 // initialize variables

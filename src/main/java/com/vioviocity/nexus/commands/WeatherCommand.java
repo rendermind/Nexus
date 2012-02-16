@@ -36,7 +36,7 @@ public class WeatherCommand implements CommandExecutor{
             // weather (no args)
             if (args.length == 0) {
                 //permission check
-                if (!Nexus.checkPermission("nexus.weather", player))
+                if (!Nexus.checkPermission("nexus.weather", player, true))
                     return true;
                 
                 int tick = (int) world.getWeatherDuration();
@@ -52,7 +52,7 @@ public class WeatherCommand implements CommandExecutor{
             // weather [clear|storm|thunder]
             if (args.length == 1) {
                 // permission check
-                if (!Nexus.checkPermission("nexus.weather.set", player))
+                if (!Nexus.checkPermission("nexus.weather.set", player, true))
                     return true;
                 
                 String weather = args[0].toLowerCase();

@@ -29,7 +29,7 @@ public class KickCommand implements CommandExecutor{
             if (!Nexus.commandConfig.getBoolean("nexus.command.kick"))
                 return true;
             // check permission
-            if (!Nexus.checkPermission("nexus.kick", player))
+            if (!Nexus.checkPermission("nexus.kick", player, true))
                 return true;
             // invalid args
             if (args.length < 1 || args.length > 1)

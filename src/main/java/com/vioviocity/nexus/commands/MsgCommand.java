@@ -29,7 +29,7 @@ public class MsgCommand implements CommandExecutor{
             if (!Nexus.commandConfig.getBoolean("nexus.command.msg"))
                 return true;
             // check permission
-            if (!Nexus.checkPermission("nexus.msg", player))
+            if (!Nexus.checkPermission("nexus.msg", player, true))
                 return true;
             // invalid args
             if (args.length < 2)

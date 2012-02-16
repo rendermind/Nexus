@@ -28,7 +28,7 @@ public class TpcCommand implements CommandExecutor{
             if (!Nexus.commandConfig.getBoolean("nexus.command.tpc"))
                 return true;
             // check permission
-            if (!Nexus.checkPermission("nexus.tpc", player))
+            if (!Nexus.checkPermission("nexus.tpc", player, true))
                 return true;
             // invalid args
             if (args.length < 2 || args.length > 2)

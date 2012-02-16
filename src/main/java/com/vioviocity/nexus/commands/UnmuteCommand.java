@@ -31,7 +31,7 @@ public class UnmuteCommand implements CommandExecutor{
             if (!Nexus.commandConfig.getBoolean("nexus.command.mute"))
                 return true;
             // check permission
-            if (!Nexus.checkPermission("nexus.mute", player))
+            if (!Nexus.checkPermission("nexus.mute", player, true))
                 return true;
             // invalid args
             if (args.length < 1 || args.length > 1)

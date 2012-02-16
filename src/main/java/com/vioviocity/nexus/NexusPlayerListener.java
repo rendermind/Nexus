@@ -2,7 +2,6 @@ package com.vioviocity.nexus;
 
 import com.vioviocity.nexus.commands.BackCommand;
 import com.vioviocity.nexus.commands.MuteCommand;
-import java.text.DecimalFormat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -64,7 +63,7 @@ public class NexusPlayerListener implements Listener{
             Player player = (Player) event.getEntity();
             
             // back on death
-            if (Nexus.checkPermission("nexus.back.death", player))
+            if (Nexus.checkPermission("nexus.back.death", player, false))
                 BackCommand.tpBack.put(player, player.getLocation());
         }
     }

@@ -30,7 +30,7 @@ public class KillCommand implements CommandExecutor{
             if (!Nexus.commandConfig.getBoolean("nexus.command.kill"))
                 return true;
             // check permission
-            if (!Nexus.checkPermission("nexus.kill", player))
+            if (!Nexus.checkPermission("nexus.kill", player, true))
                 return true;
             // invalid args
             if (args.length > 1)

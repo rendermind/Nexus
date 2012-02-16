@@ -29,7 +29,7 @@ public class BanCommand implements CommandExecutor{
             if (!Nexus.commandConfig.getBoolean("nexus.command.ban"))
                 return true;
             // check permission
-            if (!Nexus.checkPermission("nexus.ban", player))
+            if (!Nexus.checkPermission("nexus.ban", player, true))
                 return true;
             // invalid args
             if (args.length < 1 || args.length > 1)

@@ -33,7 +33,7 @@ public class BackCommand implements CommandExecutor{
             if (!Nexus.commandConfig.getBoolean("nexus.command.back"))
                 return true;
             // check permission
-            if (!Nexus.checkPermission("nexus.back", player))
+            if (!Nexus.checkPermission("nexus.back", player, true))
                 return true;
             // invalid args
             if (args.length > 0)

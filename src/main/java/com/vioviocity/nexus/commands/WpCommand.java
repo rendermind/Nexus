@@ -36,7 +36,7 @@ public class WpCommand implements CommandExecutor {
             // wp [list], wp (player)
             if (args.length == 1) {
                 // check permission
-                if (!Nexus.checkPermission("nexus.wp", player))
+                if (!Nexus.checkPermission("nexus.wp", player, true))
                     return true;
                 
                 // wp [list]
@@ -90,7 +90,7 @@ public class WpCommand implements CommandExecutor {
             // wp (waypoint) [set|delete]
             if (args.length == 2) {
                 // check permission
-                if (!Nexus.checkPermission("nexus.wp.set", player))
+                if (!Nexus.checkPermission("nexus.wp.set", player, true))
                     return true;
                 
                 // initialize variables

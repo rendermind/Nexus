@@ -28,7 +28,7 @@ public class BroadcastCommand implements CommandExecutor{
             if (!Nexus.commandConfig.getBoolean("nexus.command.broadcast"))
                 return true;
             // check permission
-            if (!Nexus.checkPermission("nexus.broadcast", player))
+            if (!Nexus.checkPermission("nexus.broadcast", player, true))
                 return true;
             
             // check mute

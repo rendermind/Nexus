@@ -29,7 +29,7 @@ public class OnlineCommand implements CommandExecutor {
             if (!Nexus.commandConfig.getBoolean("nexus.command.online"))
                 return true;
             // check permission
-            if (!Nexus.checkPermission("nexus.online", player))
+            if (!Nexus.checkPermission("nexus.online", player, true))
                 return true;
             // invalid args
             if (args.length > 0)

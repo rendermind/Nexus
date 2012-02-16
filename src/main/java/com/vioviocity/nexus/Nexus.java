@@ -226,9 +226,10 @@ public class Nexus extends JavaPlugin {
     }
     
     //
-    static public boolean checkPermission(String permission, Player player) {
+    static public boolean checkPermission(String permission, Player player, Boolean notify) {
         if (!player.hasPermission(permission)) {
-            player.sendMessage(ChatColor.RED + "You do not have permission.");
+            if (notify)
+                player.sendMessage(ChatColor.RED + "You do not have permission.");
             return false;
         } else {
             return true;

@@ -37,7 +37,7 @@ public class SpawnCommand implements CommandExecutor{
             // spawn (no args)
             if (args.length == 0) {
                 // permission check
-                if (!Nexus.checkPermission("nexus.spawn", player))
+                if (!Nexus.checkPermission("nexus.spawn", player, true))
                     return true;
                 
                 Location spawn = player.getLocation();
@@ -54,7 +54,7 @@ public class SpawnCommand implements CommandExecutor{
             // spawn [set]
             if (args.length == 1) {
                 // permission check
-                if (!Nexus.checkPermission("nexus.spawn.set", player))
+                if (!Nexus.checkPermission("nexus.spawn.set", player, true))
                     return true;
                 
                 Location spawn = player.getLocation();

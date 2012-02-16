@@ -36,7 +36,7 @@ public class TimeCommand implements CommandExecutor{
             // time (no args)
             if (args.length == 0) {
                 // check permission
-                if (!Nexus.checkPermission("nexus.time", player))
+                if (!Nexus.checkPermission("nexus.time", player, true))
                     return true;
                 
                 int tick = (int) world.getTime();
@@ -56,7 +56,7 @@ public class TimeCommand implements CommandExecutor{
             // time [dawn|day|dusk|night]
             if (args.length == 1) {
                 // check permission
-                if (!Nexus.checkPermission("nexus.time.set", player))
+                if (!Nexus.checkPermission("nexus.time.set", player, true))
                     return true;
                 
                 String time = args[0].toLowerCase();

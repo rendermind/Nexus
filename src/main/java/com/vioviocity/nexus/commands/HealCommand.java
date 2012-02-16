@@ -28,7 +28,7 @@ public class HealCommand implements CommandExecutor{
             // check if enabled
             if (!Nexus.commandConfig.getBoolean("nexus.command.heal"))
                 return true;
-            if (!Nexus.checkPermission("nexus.heal", player))
+            if (!Nexus.checkPermission("nexus.heal", player, true))
                 return true;
             // invalid args
             if (args.length > 1)
