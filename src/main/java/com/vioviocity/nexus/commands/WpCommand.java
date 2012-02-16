@@ -4,7 +4,6 @@ import com.vioviocity.nexus.Nexus;
 import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -73,9 +72,9 @@ public class WpCommand implements CommandExecutor {
                         
                         // teleport to waypoint
                         waypoint.setWorld(plugin.getServer().getWorld(Nexus.waypointConfig.getString(path + "world")));
-                        waypoint.setX(Nexus.waypointConfig.getDouble(path + "X"));
-                        waypoint.setY(Nexus.waypointConfig.getDouble(path + "Y"));
-                        waypoint.setZ(Nexus.waypointConfig.getDouble(path + "Z"));
+                        waypoint.setX(Nexus.waypointConfig.getDouble(path + "x"));
+                        waypoint.setY(Nexus.waypointConfig.getDouble(path + "y"));
+                        waypoint.setZ(Nexus.waypointConfig.getDouble(path + "z"));
                         waypoint.setYaw((float) Nexus.waypointConfig.getDouble(path + "yaw"));
                         waypoint.setPitch((float) Nexus.waypointConfig.getDouble(path + "pitch"));
                         player.teleport(waypoint);

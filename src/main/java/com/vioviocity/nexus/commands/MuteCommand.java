@@ -1,8 +1,8 @@
 package com.vioviocity.nexus.commands;
 
 import com.vioviocity.nexus.Nexus;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class MuteCommand implements CommandExecutor{
     
-    static public Map<Player,Boolean> msgMute = new HashMap<Player,Boolean>(200);
+    static public List<Player> msgMute = new ArrayList<Player>();
     
     private Nexus plugin;
     public MuteCommand(Nexus plugin) {
@@ -45,16 +45,14 @@ public class MuteCommand implements CommandExecutor{
                 for (Player each : onlinePlayers) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         
-                        // check mute
-                        if (msgMute.containsKey(each)) {
-                            if (msgMute.get(each)) {
-                                player.sendMessage(ChatColor.RED + each.getName() + " is already muted.");
-                                return true;
-                            }
+                        //check mute
+                        if (msgMute.contains(each)) {
+                            player.sendMessage(ChatColor.RED + each.getName() + " is already muted.");
+                            return true;
                         }
                         
                         // mute player
-                        msgMute.put(each,Boolean.TRUE);
+                        msgMute.add(each);
                         each.sendMessage(ChatColor.RED + "You are now muted.");
                         player.sendMessage(ChatColor.RED + each.getName() + " is now muted.");
                         return true;

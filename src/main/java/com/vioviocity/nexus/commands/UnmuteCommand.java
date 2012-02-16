@@ -11,8 +11,6 @@ import org.bukkit.entity.Player;
 
 public class UnmuteCommand implements CommandExecutor{
     
-    static public Map<Player,Boolean> msgMute = new HashMap<Player,Boolean>(200);
-    
     private Nexus plugin;
     public UnmuteCommand(Nexus plugin) {
         this.plugin = plugin;
@@ -46,16 +44,16 @@ public class UnmuteCommand implements CommandExecutor{
                     if (each.getName().toLowerCase().contains(playerName)) {
                         
                         // check mute
-                        if (!msgMute.containsKey(each)) {
+                        if (!MuteCommand.msgMute.contains(each)) {
                             player.sendMessage(ChatColor.RED + each.getName() + " is not muted.");
                             return true;
                         }
                         
                         // unmute player
-                        if (msgMute.get(each)) {
+                        if (MuteCommand.msgMute.contains(each)) {
                             each.sendMessage(ChatColor.GREEN + "You are now unmuted.");
                             player.sendMessage(ChatColor.GREEN + each.getName() + " is now unmuted.");
-                            msgMute.remove(each);
+                            MuteCommand.msgMute.remove(each);
                             return true;
                         }
                     }

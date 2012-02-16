@@ -24,7 +24,6 @@ public class ReplyCommand implements CommandExecutor{
         
         // initialize core variables
         Player player = (Player) sender;
-        Player onlinePlayers[] = plugin.getServer().getOnlinePlayers();
         
         // command handler
         String cmd = command.getName().toLowerCase();
@@ -37,11 +36,9 @@ public class ReplyCommand implements CommandExecutor{
                 return true;
             
             // check mute
-            if (MuteCommand.msgMute.containsKey(player)) {
-                if (MuteCommand.msgMute.get(player)) {
-                    player.sendMessage(ChatColor.RED + "You are muted.");
-                    return true;
-                }
+            if (MuteCommand.msgMute.contains(player)) {
+                player.sendMessage(ChatColor.RED + "You are muted.");
+                return true;
             }
             
             // reply (no args)

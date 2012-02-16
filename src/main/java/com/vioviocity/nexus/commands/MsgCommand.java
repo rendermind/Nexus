@@ -36,11 +36,9 @@ public class MsgCommand implements CommandExecutor{
                 return false;
             
             // check mute
-            if (MuteCommand.msgMute.containsKey(player)) {
-                if (MuteCommand.msgMute.get(player)) {
-                    player.sendMessage(ChatColor.RED + "You are muted.");
-                    return true;
-                }
+            if (MuteCommand.msgMute.contains(player)) {
+                player.sendMessage(ChatColor.RED + "You are muted.");
+                return true;
             }
             
             // msg (player) (message)

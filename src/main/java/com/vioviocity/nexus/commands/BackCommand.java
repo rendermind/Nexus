@@ -3,6 +3,7 @@ package com.vioviocity.nexus.commands;
 import com.vioviocity.nexus.Nexus;
 import java.util.HashMap;
 import java.util.Map;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -38,12 +39,14 @@ public class BackCommand implements CommandExecutor{
             if (args.length > 0)
                 return false;
             
-            // initialize variables
-            String playerName;
-            Location backLocation = player.getLocation();
+            // no prior location
+            if (!tpBack.containsKey(player)) {
+                player.sendMessage(ChatColor.RED + "You do not have a prior location.");
+                return true;
+            }
             
             // back (no args)
-            
+            player.teleport(tpBack.get(player));
         }
         
         // end of command

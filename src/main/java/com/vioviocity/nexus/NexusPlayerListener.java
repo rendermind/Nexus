@@ -1,5 +1,6 @@
 package com.vioviocity.nexus;
 
+import com.vioviocity.nexus.commands.MuteCommand;
 import java.text.DecimalFormat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,17 +18,19 @@ public class NexusPlayerListener implements Listener{
     
     @EventHandler
     public void onPlayerChat(PlayerChatEvent event) {
+        // initialize variables
         Player player = event.getPlayer();
-        for (String each : NexusCommands.msgMute) {
-            if (each.equals(player.getName())) {
-                player.sendMessage(ChatColor.RED + "You are muted.");
-                event.setCancelled(true);
-            }
+        
+        // check mute
+        if (MuteCommand.msgMute.contains(player)) {
+            player.sendMessage(ChatColor.RED + "You are muted.");
+            event.setCancelled(true);
         }
     }
     
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
+        // initialize variables
         Player player = event.getPlayer();
         
         // new player to spawn
@@ -45,14 +48,14 @@ public class NexusPlayerListener implements Listener{
 
     @EventHandler
     public void onPlayerTeleport(PlayerTeleportEvent event) {
-        // ensure proper teleport cause
+        // check teleport cause
         if (!event.getCause().toString().equals("UNKNOWN"))
             setTpBack(event.getPlayer(), event.getFrom());
     }
     
     @EventHandler
     public void onPlayerDeath(EntityDeathEvent event) {
-        // check if entity is player
+        // check if player
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
             if (NexusCommands.checkPermission("nexus.back.death", player))
@@ -62,9 +65,12 @@ public class NexusPlayerListener implements Listener{
     
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
+        // initialize variables
         Player player = event.getPlayer();
         Location respawn = event.getRespawnLocation();
         Location worldSpawn = event.getPlayer().getWorld().getSpawnLocation();
+        
+        // teleport to spawn
         respawn.setX((int) respawn.getX());
         respawn.setY((int) respawn.getY());
         respawn.setZ((int) respawn.getZ());

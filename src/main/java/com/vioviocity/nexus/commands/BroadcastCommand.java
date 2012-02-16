@@ -32,7 +32,7 @@ public class BroadcastCommand implements CommandExecutor{
                 return true;
             
             // check mute
-            if (MuteCommand.msgMute.get(player)) {
+            if (MuteCommand.msgMute.contains(player)) {
                 player.sendMessage(ChatColor.RED + "You are muted.");
                 return true;
             }
