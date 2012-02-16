@@ -1,12 +1,15 @@
-0.0.xx
+0.1.xx
     Implemented /help, displays list of available commands
-0.0.xx
+0.1.xx
     "support multiple homes"
-0.0.xx
+0.1.xx
     Implemented /home, teleports to home location
     Added /home [set], changes home location to current location
 0.1.0
     Modularized code, all commands into separate classes
+    Implemented /inv [clear], clears inventory
+    Added /inv (player) [clear], clears specified player's inventory
+    Fixed Issue: /item supports metadata
     Fixed Issue: /tpc (x) (z) displays usage even after proper use
     Updated plugin version from alpha to beta
     Updated to CraftBukkit 1.1-R4

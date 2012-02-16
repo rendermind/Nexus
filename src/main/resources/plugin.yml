@@ -3,9 +3,6 @@ main: com.vioviocity.nexus.Nexus
 name: Nexus
 version: 0.1.0
 commands:
-  test:
-    description: Runs a pre-coded test.
-    usage: /<command> (no idea...)
   time:
     description: Displays or changes the current in-game time.
     usage: /<command> [dawn|day|dusk|night]
@@ -41,7 +38,7 @@ commands:
     usage: /<command> (x) (z)
   wp:
     description: Changes or teleports player to specified waypoint, also displays list of waypoints.
-    usage: /<command> [list], /<command> (waypoint) [set|delete]
+    usage: /<command> (waypoint) [set|delete], /<command> [list]
   back:
     description: Teleports to prior location.
     usage: /<command>
@@ -56,7 +53,7 @@ commands:
     usage: /<command> (player) (level)
   item:
     description: Gives specified player a quantity of an item.
-    usage: /<command> (player) (id) (quantity)
+    usage: /<command> (player) (id:dmg) (quantity)
   broadcast:
     description: Displays important message for all players.
     usage: /<command> (message)
@@ -72,6 +69,9 @@ commands:
   unmute:
     description: Enables chat of a specified player.
     usage: /<command> (player)
+  inv:
+    description: Access to player inventory.
+    usage: /<command (player) [clear]
 permissions:
   nexus.time:
     description: Allows use of /time.
@@ -150,4 +150,7 @@ permissions:
     default: true
   nexus.mute:
     description: Allows use of /mute (player), also /unmute (player)
+    default: op
+  nexus.inv.clear:
+    description: Allows use of /inv (player) [clear]
     default: op

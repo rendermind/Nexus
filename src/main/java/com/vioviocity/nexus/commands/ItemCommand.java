@@ -2,6 +2,7 @@ package com.vioviocity.nexus.commands;
 
 import com.vioviocity.nexus.Nexus;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -38,49 +39,89 @@ public class ItemCommand implements CommandExecutor{
             
             // item (id)
             if (args.length == 1) {
-                int id = Integer.parseInt(args[0]);
-                ItemStack item = new ItemStack(id, 64);
+                
+                // initialize variables
+                ItemStack item = new ItemStack(0, 64);
+                
+                // check metadata
+                if (args[0].contains(":")) {
+                    item.setTypeId(Integer.parseInt(args[0].substring(0, args[0].indexOf(":"))));
+                    item.setDurability(Short.parseShort(args[0].substring(args[0].indexOf(":") + 1)));
+                } else {
+                    item.setTypeId(Integer.parseInt(args[0]));
+                }
+                
+                // add item
                 player.getInventory().addItem(item);
                 return true;
             }
             
             // item (id) (qty) -or- item (player) (id)
             if (args.length == 2) {
+                
                 // initial variables
-                int id;
-                ItemStack item;
+                ItemStack item = new ItemStack(0, 64);
+                String playerName = args[0].toLowerCase();
                 
                 // item (player) (id)
-                String playerName = args[0].toLowerCase();
-                id = Integer.parseInt(args[1]);
-                item = new ItemStack(id, 64);
                 for (Player each : onlinePlayers) {
                     if (each.getName().toLowerCase().contains(playerName)) {
+                        
+                        // check metadata
+                        if (args[1].contains(":")) {
+                            item.setTypeId(Integer.parseInt(args[1].substring(0, args[1].indexOf(":"))));
+                            item.setDurability(Short.parseShort(args[1].substring(args[1].indexOf(":") + 1)));
+                        } else {
+                            item.setTypeId(Integer.parseInt(args[1]));
+                        }
+                        
+                        // add item
                         each.getInventory().addItem(item);
-                        each.sendMessage(ChatColor.GREEN + player.getName() + " gave you item ID " + id + " (x64).");
-                        player.sendMessage(ChatColor.GREEN + "Gave " + each.getName() + " item ID " + id + " (x64).");
+                        each.sendMessage(ChatColor.GREEN + player.getName() + " gave you item ID " + item.getTypeId() + " (x64).");
+                        player.sendMessage(ChatColor.GREEN + "Gave " + each.getName() + " item ID " + item.getTypeId() + " (x64).");
                         return true;
                     }
                 }
                 
+                // check metadata
+                if (args[0].contains(":")) {
+                    item.setTypeId(Integer.parseInt(args[0].substring(0, args[0].indexOf(":"))));
+                    item.setDurability(Short.parseShort(args[0].substring(args[0].indexOf(":") + 1)));
+                } else {
+                    item.setTypeId(Integer.parseInt(args[0]));
+                }
+                
                 // item (id) (qty)
-                id = Integer.parseInt(args[0]);
-                int qty = Integer.parseInt(args[1]);
-                item = new ItemStack(id, qty);
+                item.setAmount(Integer.parseInt(args[1]));
                 player.getInventory().addItem(item);
                 return true;
             }
             
             // item (player) (id) (qty)
+            
+            // initialize variables
             String playerName = args[0].toLowerCase();
-            int id = Integer.parseInt(args[1]);
-            int qty = Integer.parseInt(args[2]);
-            ItemStack item = new ItemStack(id, qty);
+            ItemStack item = new ItemStack(0, 64);
+            
+            // item (player) (id) (qty)
             for (Player each : onlinePlayers) {
                 if (each.getName().toLowerCase().contains(playerName)) {
+                    
+                    // check metadata
+                    if (args[1].contains(":")) {
+                        item.setTypeId(Integer.parseInt(args[1].substring(0, args[1].indexOf(":"))));
+                        item.setDurability(Short.parseShort(args[1].substring(args[1].indexOf(":") + 1)));
+                    } else {
+                        item.setTypeId(Integer.parseInt(args[1]));
+                    }
+                    
+                    // add item
+                    item.setAmount(Integer.parseInt(args[2]));
                     each.getInventory().addItem(item);
-                    each.sendMessage(ChatColor.GREEN + player.getName() + " gave you item ID " + id + " (x" + qty + ").");
-                    player.sendMessage(ChatColor.GREEN + "Gave " + each.getName() + " item ID " + id + " (x" + qty + ").");
+                    each.sendMessage(ChatColor.GREEN + player.getName() + " gave you item ID " + item.getTypeId() +
+                            " (x" + item.getAmount() + ").");
+                    player.sendMessage(ChatColor.GREEN + "Gave " + each.getName() + " item ID " + item.getTypeId() +
+                            " (x" + item.getAmount() + ").");
                     return true;
                 }
             }

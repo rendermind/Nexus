@@ -99,10 +99,12 @@ public class Nexus extends JavaPlugin {
             getCommand("mute").setExecutor(new MuteCommand(this));
             getCommand("unmute").setExecutor(new UnmuteCommand(this));
         }
+        if (commandConfig.getBoolean("nexus.command.inv"))
+            getCommand("inv").setExecutor(new InvCommand(this));
         
         //check yaml versions
         try {
-            if (!commandConfig.getString("nexus.version").equals("b")) {
+            if (!commandConfig.getString("nexus.version").equals("c")) {
                 log.warning("Nexus\\commands.yml is out of date!.");
                 log.warning("- Backup file data, delete .yml file, then restart server.");
             }
