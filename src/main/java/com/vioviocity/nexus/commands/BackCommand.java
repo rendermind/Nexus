@@ -1,19 +1,23 @@
 package com.vioviocity.nexus.commands;
 
 import com.vioviocity.nexus.Nexus;
-import org.bukkit.ChatColor;
+import java.util.HashMap;
+import java.util.Map;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class BroadcastCommand implements CommandExecutor{
+public class BackCommand implements CommandExecutor{
+    
+    static public Map<Player,Location> tpBack = new HashMap<Player,Location>(200);
     
     private Nexus plugin;
-    public BroadcastCommand(Nexus plugin) {
+    public BackCommand(Nexus plugin) {
         this.plugin = plugin;
     }
-
+    
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player))
             return true;
@@ -23,27 +27,23 @@ public class BroadcastCommand implements CommandExecutor{
         
         // command handler
         String cmd = command.getName().toLowerCase();
-        if (cmd.equals("broadcast")) {
+        if (cmd.equals("back")) {
             // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.broadcast"))
+            if (!Nexus.commandConfig.getBoolean("nexus.command.back"))
                 return true;
             // check permission
-            if (!Nexus.checkPermission("nexus.broadcast", player))
+            if (!Nexus.checkPermission("nexus.back", player))
                 return true;
+            // invalid args
+            if (args.length > 0)
+                return false;
             
-            // check mute
-            if (MuteCommand.msgMute.get(player)) {
-                player.sendMessage(ChatColor.RED + "You are muted.");
-                return true;
-            }
+            // initialize variables
+            String playerName;
+            Location backLocation = player.getLocation();
             
-            //broadcast (message)
-            String message = "";
-            for (String each : args)
-                message += each + ' ';
-            message = message.substring(0, message.length() - 1);
-            plugin.getServer().broadcastMessage(ChatColor.RED + "[Broadcast] " + ChatColor.WHITE + message);
-            return true;
+            // back (no args)
+            
         }
         
         // end of command

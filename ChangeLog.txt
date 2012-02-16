@@ -6,9 +6,10 @@
     Implemented /home, teleports to home location
     Added /home [set], changes home location to current location
 0.1.0
-    Updated from alpha to beta
     Modularized code, all commands into separate classes
     Fixed Issue: /tpc (x) (z) displays usage even after proper use
+    Updated plugin version from alpha to beta
+    Updated to CraftBukkit 1.1-R4
 0.0.22
     Implemented /mute (player), disables chat for specified player
     Implemented /unmute (player), enables chat for specified player
@@ -50,7 +51,7 @@
     Added /back on death when player has nexus.back.death permission
 0.0.14
     Implemented /back command, teleports to prior location
-    Updated to Bukkit 1.1-R3
+    Updated to CraftBukkit 1.1-R3
 0.0.13
     Fixed /tpr [accept|deny] not accepting or denying teleport requests
 0.0.12

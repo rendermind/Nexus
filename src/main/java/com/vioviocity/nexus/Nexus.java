@@ -23,7 +23,7 @@ public class Nexus extends JavaPlugin {
     static File commandConfigFile = null;
     static public FileConfiguration spawnConfig = null;
     static File spawnConfigFile = null;
-    static FileConfiguration waypointConfig = null;
+    static public FileConfiguration waypointConfig = null;
     static File waypointConfigFile = null;
     static FileConfiguration itemConfig = null;
     static File itemConfigFile = null;
@@ -81,26 +81,26 @@ public class Nexus extends JavaPlugin {
         if (commandConfig.getBoolean("nexus.command.tpc"))
             getCommand("tpc").setExecutor(new TpcCommand(this));
         if (commandConfig.getBoolean("nexus.command.wp"))
-            getCommand("wp").setExecutor(myExecutor);
+            getCommand("wp").setExecutor(new WpCommand(this));
         if (commandConfig.getBoolean("nexus.command.back"))
-            getCommand("back").setExecutor(myExecutor);
+            getCommand("back").setExecutor(new BackCommand(this));
         if (commandConfig.getBoolean("nexus.command.heal"))
             getCommand("heal").setExecutor(new HealCommand(this));
         if (commandConfig.getBoolean("nexus.command.kill"))
             getCommand("kill").setExecutor(new KillCommand(this));
         if (commandConfig.getBoolean("nexus.command.level"))
-            getCommand("level").setExecutor(myExecutor);
+            getCommand("level").setExecutor(new LevelCommand(this));
         if (commandConfig.getBoolean("nexus.command.item"))
             getCommand("item").setExecutor(new ItemCommand(this));
         if (commandConfig.getBoolean("nexus.command.broadcast"))
             getCommand("broadcast").setExecutor(new BroadcastCommand(this));
         if (commandConfig.getBoolean("nexus.command.msg")) {
-            getCommand("msg").setExecutor(myExecutor);
-            getCommand("reply").setExecutor(myExecutor);
+            getCommand("msg").setExecutor(new MsgCommand(this));
+            getCommand("reply").setExecutor(new ReplyCommand(this));
         }
         if (commandConfig.getBoolean("nexus.command.mute")) {
-            getCommand("mute").setExecutor(myExecutor);
-            getCommand("unmute").setExecutor(myExecutor);
+            getCommand("mute").setExecutor(new MuteCommand(this));
+            getCommand("unmute").setExecutor(new UnmuteCommand(this));
         }
         
         //check yaml versions
