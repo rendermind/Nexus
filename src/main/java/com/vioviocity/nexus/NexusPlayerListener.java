@@ -1,5 +1,6 @@
 package com.vioviocity.nexus;
 
+import com.vioviocity.nexus.commands.BackCommand;
 import com.vioviocity.nexus.commands.MuteCommand;
 import java.text.DecimalFormat;
 import org.bukkit.Bukkit;
@@ -48,9 +49,12 @@ public class NexusPlayerListener implements Listener{
 
     @EventHandler
     public void onPlayerTeleport(PlayerTeleportEvent event) {
+        // initialize variables
+        Player player = event.getPlayer();
+        
         // check teleport cause
         if (!event.getCause().toString().equals("UNKNOWN"))
-            setTpBack(event.getPlayer(), event.getFrom());
+            BackCommand.tpBack.put(player, event.getFrom());
     }
     
     @EventHandler
@@ -58,8 +62,10 @@ public class NexusPlayerListener implements Listener{
         // check if player
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
-            if (NexusCommands.checkPermission("nexus.back.death", player))
-                setTpBack(player, player.getLocation());
+            
+            // back on death
+            if (Nexus.checkPermission("nexus.back.death", player))
+                BackCommand.tpBack.put(player, player.getLocation());
         }
     }
     
@@ -87,35 +93,5 @@ public class NexusPlayerListener implements Listener{
             spawn.setPitch((float) Nexus.spawnConfig.getDouble("nexus.spawn.pitch"));
             event.setRespawnLocation(spawn);
         }
-    }
-    
-    private void setTpBack(Player player, Location locale) {
-        // player current location
-        String worldName = locale.getWorld().getName();
-        double x = round(locale.getX());
-        double y = round(locale.getY());
-        double z = round(locale.getZ());
-        float yaw = (float) round(locale.getYaw());
-        float pitch = (float) round(locale.getPitch());
-        
-        // change existing location
-        String tpName;
-        for (String each : NexusCommands.tpBack) {
-            tpName = each.substring(0, each.indexOf(','));
-            if (player.getName().equals(tpName)) {
-                NexusCommands.tpBack.set(NexusCommands.tpBack.indexOf(each), player.getName() + ',' + "map:" +
-                        worldName + "x:" + x + "y:" + y + "z:" + z + "yaw:" + yaw + "pitch:" + pitch);
-                return;
-            }
-        }
-        
-        // add new location
-        NexusCommands.tpBack.add(player.getName() + ',' + "map:" + worldName + "x:" + x + "y:" + y + "z:" + z +
-                "yaw:" + yaw + "pitch:" + pitch);
-    }
-    
-    private double round(double value) {
-        DecimalFormat newFormat = new DecimalFormat("#.#");
-        return Double.valueOf(newFormat.format(value));
     }
 }

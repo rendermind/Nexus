@@ -47,6 +47,7 @@ public class BackCommand implements CommandExecutor{
             
             // back (no args)
             player.teleport(tpBack.get(player));
+            return true;
         }
         
         // end of command

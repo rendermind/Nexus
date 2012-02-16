@@ -16,7 +16,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Nexus extends JavaPlugin {
     
-    private NexusCommands myExecutor;
     static Logger log = Logger.getLogger("Nexus");
     
     static public FileConfiguration commandConfig = null;
@@ -56,8 +55,6 @@ public class Nexus extends JavaPlugin {
         }
         
         // register commands based on config
-        myExecutor = new NexusCommands(this);
-        getCommand("test").setExecutor(myExecutor);
         if (commandConfig.getBoolean("nexus.command.time"))
             getCommand("time").setExecutor(new TimeCommand(this));
         if (commandConfig.getBoolean("nexus.command.weather"))
