@@ -29,7 +29,7 @@ public class InvCommand implements CommandExecutor{
             if (!Nexus.commandConfig.getBoolean("nexus.command.inv"))
                 return true;
             // invalid args
-            if (args.length > 2)
+            if (args.length < 1 || args.length > 2)
                 return false;
             
             // inv [clear]

@@ -24,15 +24,17 @@ public class Nexus extends JavaPlugin {
     static File spawnConfigFile = null;
     static public FileConfiguration waypointConfig = null;
     static File waypointConfigFile = null;
-    static FileConfiguration itemConfig = null;
+    static public FileConfiguration itemConfig = null;
     static File itemConfigFile = null;
     
-    static Map<String,Integer> itemList = new HashMap<String,Integer>(500);
+    static public Map<String,Integer> itemList = new HashMap<String,Integer>(500);
     
+    @Override
     public void onDisable() {
         log.info(this + " is now disabled.");
     }
 
+    @Override
     public void onEnable() {
         // register events
         getServer().getPluginManager().registerEvents(new NexusPlayerListener(), this);

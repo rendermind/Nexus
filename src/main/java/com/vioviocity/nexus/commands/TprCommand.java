@@ -36,7 +36,7 @@ public class TprCommand implements CommandExecutor{
             if (!Nexus.checkPermission("nexus.tpr", player, true))
                 return true;
             // invalid args
-            if (args.length > 1)
+            if (args.length != 1)
                 return false;
             
             // initialize variable

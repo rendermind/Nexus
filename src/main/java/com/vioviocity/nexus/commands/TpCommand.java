@@ -33,7 +33,7 @@ public class TpCommand implements CommandExecutor{
             if (!Nexus.commandConfig.getBoolean("nexus.command.tp"))
                 return true;
             // invalid args
-            if (args.length > 2)
+            if (args.length < 1 || args.length > 2)
                 return false;
             
             // tp [toggle] -or- tp (player)

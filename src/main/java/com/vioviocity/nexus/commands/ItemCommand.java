@@ -2,7 +2,6 @@ package com.vioviocity.nexus.commands;
 
 import com.vioviocity.nexus.Nexus;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -43,6 +42,10 @@ public class ItemCommand implements CommandExecutor{
                 // initialize variables
                 ItemStack item = new ItemStack(0, 64);
                 
+                // check item names
+                if (Nexus.itemList.containsKey(args[0].toLowerCase()))
+                    args[0] = Nexus.itemList.get(args[0].toLowerCase()).toString();
+                
                 // check metadata
                 if (args[0].contains(":")) {
                     item.setTypeId(Integer.parseInt(args[0].substring(0, args[0].indexOf(":"))));
@@ -67,6 +70,10 @@ public class ItemCommand implements CommandExecutor{
                 for (Player each : onlinePlayers) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         
+                        // check item names
+                        if (Nexus.itemList.containsKey(args[1].toLowerCase()))
+                        args[1] = Nexus.itemList.get(args[1].toLowerCase()).toString();
+                        
                         // check metadata
                         if (args[1].contains(":")) {
                             item.setTypeId(Integer.parseInt(args[1].substring(0, args[1].indexOf(":"))));
@@ -82,6 +89,10 @@ public class ItemCommand implements CommandExecutor{
                         return true;
                     }
                 }
+                
+                // check item names
+                if (Nexus.itemList.containsKey(args[0].toLowerCase()))
+                    args[0] = Nexus.itemList.get(args[0].toLowerCase()).toString();
                 
                 // check metadata
                 if (args[0].contains(":")) {
@@ -106,6 +117,10 @@ public class ItemCommand implements CommandExecutor{
             // item (player) (id) (qty)
             for (Player each : onlinePlayers) {
                 if (each.getName().toLowerCase().contains(playerName)) {
+                    
+                    // check item names
+                    if (Nexus.itemList.containsKey(args[1].toLowerCase()))
+                    args[1] = Nexus.itemList.get(args[1].toLowerCase()).toString();
                     
                     // check metadata
                     if (args[1].contains(":")) {

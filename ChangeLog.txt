@@ -5,6 +5,9 @@
 0.1.xx
     Implemented /home, teleports to home location
     Added /home [set], changes home location to current location
+0.1.1
+    /item (id) now supports item names
+    Fixed Issue: invalid command usage would return console error
 0.1.0
     Modularized code, all commands into separate classes
     Implemented /inv [clear], clears inventory
