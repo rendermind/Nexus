@@ -1,7 +1,7 @@
 author: VioVioCity
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.1.1
+version: 0.1.2
 commands:
   time:
     description: Displays or changes the current in-game time.

@@ -47,11 +47,16 @@ public class ItemCommand implements CommandExecutor{
                     args[0] = Nexus.itemList.get(args[0].toLowerCase()).toString();
                 
                 // check metadata
-                if (args[0].contains(":")) {
-                    item.setTypeId(Integer.parseInt(args[0].substring(0, args[0].indexOf(":"))));
-                    item.setDurability(Short.parseShort(args[0].substring(args[0].indexOf(":") + 1)));
-                } else {
-                    item.setTypeId(Integer.parseInt(args[0]));
+                try {
+                    if (args[0].contains(":")) {
+                        item.setTypeId(Integer.parseInt(args[0].substring(0, args[0].indexOf(":"))));
+                        item.setDurability(Short.parseShort(args[0].substring(args[0].indexOf(":") + 1)));
+                    } else {
+                        item.setTypeId(Integer.parseInt(args[0]));
+                    }
+                } catch (Exception e) {
+                    player.sendMessage("Item name or ID does not exist.");
+                    return true;
                 }
                 
                 // add item
@@ -75,11 +80,16 @@ public class ItemCommand implements CommandExecutor{
                         args[1] = Nexus.itemList.get(args[1].toLowerCase()).toString();
                         
                         // check metadata
-                        if (args[1].contains(":")) {
-                            item.setTypeId(Integer.parseInt(args[1].substring(0, args[1].indexOf(":"))));
-                            item.setDurability(Short.parseShort(args[1].substring(args[1].indexOf(":") + 1)));
-                        } else {
-                            item.setTypeId(Integer.parseInt(args[1]));
+                        try {
+                            if (args[1].contains(":")) {
+                                item.setTypeId(Integer.parseInt(args[1].substring(0, args[1].indexOf(":"))));
+                                item.setDurability(Short.parseShort(args[1].substring(args[1].indexOf(":") + 1)));
+                            } else {
+                                item.setTypeId(Integer.parseInt(args[1]));
+                            }
+                        } catch (Exception e) {
+                            player.sendMessage("Item name or ID does not exist.");
+                            return true;
                         }
                         
                         // add item
@@ -95,11 +105,16 @@ public class ItemCommand implements CommandExecutor{
                     args[0] = Nexus.itemList.get(args[0].toLowerCase()).toString();
                 
                 // check metadata
-                if (args[0].contains(":")) {
-                    item.setTypeId(Integer.parseInt(args[0].substring(0, args[0].indexOf(":"))));
-                    item.setDurability(Short.parseShort(args[0].substring(args[0].indexOf(":") + 1)));
-                } else {
-                    item.setTypeId(Integer.parseInt(args[0]));
+                try {
+                    if (args[0].contains(":")) {
+                        item.setTypeId(Integer.parseInt(args[0].substring(0, args[0].indexOf(":"))));
+                        item.setDurability(Short.parseShort(args[0].substring(args[0].indexOf(":") + 1)));
+                    } else {
+                        item.setTypeId(Integer.parseInt(args[0]));
+                    }
+                } catch (Exception e) {
+                    player.sendMessage("Item name or ID does not exist.");
+                    return true;
                 }
                 
                 // item (id) (qty)
@@ -123,11 +138,16 @@ public class ItemCommand implements CommandExecutor{
                     args[1] = Nexus.itemList.get(args[1].toLowerCase()).toString();
                     
                     // check metadata
-                    if (args[1].contains(":")) {
-                        item.setTypeId(Integer.parseInt(args[1].substring(0, args[1].indexOf(":"))));
-                        item.setDurability(Short.parseShort(args[1].substring(args[1].indexOf(":") + 1)));
-                    } else {
-                        item.setTypeId(Integer.parseInt(args[1]));
+                    try {
+                        if (args[1].contains(":")) {
+                            item.setTypeId(Integer.parseInt(args[1].substring(0, args[1].indexOf(":"))));
+                            item.setDurability(Short.parseShort(args[1].substring(args[1].indexOf(":") + 1)));
+                        } else {
+                            item.setTypeId(Integer.parseInt(args[1]));
+                        }
+                    } catch (Exception e) {
+                        player.sendMessage("Item name or ID does not exist.");
+                        return true;
                     }
                     
                     // add item

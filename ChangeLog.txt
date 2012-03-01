@@ -5,6 +5,8 @@
 0.1.xx
     Implemented /home, teleports to home location
     Added /home [set], changes home location to current location
+0.1.2
+    Updated to CraftBukkit 1.1-R6
 0.1.1
     /item (id) now supports item names
     Fixed Issue: invalid command usage would return console error
