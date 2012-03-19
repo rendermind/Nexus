@@ -27,7 +27,7 @@ public class Nexus extends JavaPlugin {
     static public FileConfiguration itemConfig = null;
     static File itemConfigFile = null;
     
-    static public Map<String,Integer> itemList = new HashMap<String,Integer>(500);
+    static public Map<String,String> itemList = new HashMap<String,String>(500);
     
     @Override
     public void onDisable() {
@@ -51,7 +51,7 @@ public class Nexus extends JavaPlugin {
         loadItemConfig();
         saveItemConfig();
         for (String each : itemConfig.getStringList("nexus.items")) {
-            int id = Integer.parseInt(each.substring(0, each.indexOf(",")));
+            String id = each.substring(0, each.indexOf(","));
             String item = each.substring(each.indexOf(",") + 1);
             itemList.put(item, id);
         }
