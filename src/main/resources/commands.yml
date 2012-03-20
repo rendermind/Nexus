@@ -1,5 +1,5 @@
 nexus:
-  version: c
+  version: d
   command:
     time: true
     weather: true
@@ -12,6 +12,7 @@ nexus:
     tpr: true
     tpc: true
     wp: true
+    home: true
     back: true
     heal: true
     kill: true

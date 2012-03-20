@@ -1,7 +1,7 @@
 author: Stephen Monroe (VioVioCity)
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.1.3
+version: 0.1.4
 commands:
   time:
     description: Displays or changes the current in-game time.
@@ -39,6 +39,9 @@ commands:
   wp:
     description: Changes or teleports player to specified waypoint, also displays list of waypoints.
     usage: /<command> (waypoint) [set|delete], /<command> [list]
+  home:
+    description: Changes or teleports player to home location.
+    usage: /<command> [set]
   back:
     description: Teleports to prior location.
     usage: /<command>
@@ -121,6 +124,12 @@ permissions:
   nexus.wp.set:
     description: Allows use of /wp [set]
     default: op
+  nexus.home:
+    description: Allows use of /home
+    default: true
+  nexus.home.set:
+    descripotion: Allows use of /home [set]
+    default: true
   nexus.back:
     description: Allows use of /back.
     default: true

@@ -52,7 +52,7 @@ public class SpawnCommand implements CommandExecutor{
             }
             
             // spawn [set]
-            if (args.length == 1) {
+            if (args.length == 1 && args[0].equalsIgnoreCase("set")) {
                 // permission check
                 if (!Nexus.checkPermission("nexus.spawn.set", player, true))
                     return true;
@@ -62,8 +62,9 @@ public class SpawnCommand implements CommandExecutor{
                 Nexus.spawnConfig.set("nexus.spawn.world", spawn.getWorld().getName());
                 Nexus.spawnConfig.set("nexus.spawn.x", spawn.getX());
                 Nexus.spawnConfig.set("nexus.spawn.y", spawn.getY());
+                Nexus.spawnConfig.set("nexus.spawn.z", spawn.getZ());
                 Nexus.spawnConfig.set("nexus.spawn.yaw", spawn.getYaw());
-                Nexus.spawnConfig.set("nexus.spawn.pitcher", spawn.getPitch());
+                Nexus.spawnConfig.set("nexus.spawn.pitch", spawn.getPitch());
                 Nexus.saveSpawnConfig();
                 player.sendMessage(ChatColor.GREEN + "Spawn location set.");
                 return true;

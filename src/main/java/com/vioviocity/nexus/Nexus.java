@@ -24,6 +24,8 @@ public class Nexus extends JavaPlugin {
     static File spawnConfigFile = null;
     static public FileConfiguration waypointConfig = null;
     static File waypointConfigFile = null;
+    static public FileConfiguration homeConfig = null;
+    static File homeConfigFile = null;
     static public FileConfiguration itemConfig = null;
     static File itemConfigFile = null;
     
@@ -46,6 +48,8 @@ public class Nexus extends JavaPlugin {
         saveSpawnConfig();
         loadWaypointConfig();
         saveWaypointConfig();
+        loadHomeConfig();
+        saveHomeConfig();
         
         // load item list
         loadItemConfig();
@@ -81,6 +85,8 @@ public class Nexus extends JavaPlugin {
             getCommand("tpc").setExecutor(new TpcCommand(this));
         if (commandConfig.getBoolean("nexus.command.wp"))
             getCommand("wp").setExecutor(new WpCommand(this));
+        if (commandConfig.getBoolean("nexus.command.home"))
+            getCommand("home").setExecutor(new HomeCommand(this));
         if (commandConfig.getBoolean("nexus.command.back"))
             getCommand("back").setExecutor(new BackCommand(this));
         if (commandConfig.getBoolean("nexus.command.heal"))
@@ -106,7 +112,7 @@ public class Nexus extends JavaPlugin {
         
         //check yaml versions
         try {
-            if (!commandConfig.getString("nexus.version").equals("c")) {
+            if (!commandConfig.getString("nexus.version").equals("d")) {
                 log.warning("Nexus\\commands.yml is out of date!.");
                 log.warning("- Backup file data, delete .yml file, then restart server.");
             }
@@ -200,6 +206,32 @@ public class Nexus extends JavaPlugin {
             waypointConfig.save(waypointConfigFile);
         } catch (IOException e) {
             log.severe("Unable to save waypoint config to " + waypointConfigFile + '.');
+        }
+    }
+    
+    //
+    public FileConfiguration loadHomeConfig() {
+        if (homeConfig == null) {
+            if (homeConfigFile == null)
+                homeConfigFile = new File(this.getDataFolder(), "homes.yml");
+            if (homeConfigFile.exists()) {
+                homeConfig = YamlConfiguration.loadConfiguration(homeConfigFile);
+            } else {
+                InputStream defConfigStream = getResource("homes.yml");
+                homeConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+            }
+        }
+        return homeConfig;
+    }
+    
+    //
+    static public void saveHomeConfig() {
+        if (homeConfig == null || homeConfigFile == null)
+            return;
+        try {
+            homeConfig.save(homeConfigFile);
+        } catch (IOException e) {
+            log.severe("Unable to save home config to " + homeConfigFile + '.');
         }
     }
     
