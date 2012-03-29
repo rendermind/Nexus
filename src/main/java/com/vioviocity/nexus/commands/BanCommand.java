@@ -32,7 +32,7 @@ public class BanCommand implements CommandExecutor{
             if (!Nexus.checkPermission("nexus.ban", player, true))
                 return true;
             // invalid args
-            if (args.length < 1 || args.length > 1)
+            if (args.length < 1)
                 return false;
             
             // ban (player)
@@ -50,6 +50,21 @@ public class BanCommand implements CommandExecutor{
                 // player not online
                 player.sendMessage(ChatColor.RED + playerName + " is not online.");
                 return true;
+            }
+            
+            // ban (player) (reason)
+            if (args.length > 1) {
+                String name = args[0].toLowerCase();
+                String reason = "";
+                for (int i = 1; i < args.length; i ++)
+                    reason += args[i] + ' ';
+                reason = reason.substring(0, reason.length() - 1);
+                for (Player each : onlinePlayers) {
+                    if (each.getName().toLowerCase().contains(name)) {
+                        each.setBanned(true);
+                        each.kickPlayer("You have been banned.  Reason: " + reason);
+                    }
+                }
             }
         }
         

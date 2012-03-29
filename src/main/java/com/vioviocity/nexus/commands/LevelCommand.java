@@ -53,7 +53,12 @@ public class LevelCommand implements CommandExecutor{
                     return true;
                 
                 // initialize variable
-                int level = Integer.parseInt(args[0]);
+                int level;
+                try {
+                    level = Integer.parseInt(args[0]);
+                } catch (Exception e) {
+                    return false;
+                }
                 
                 // check max level
                 if (level > 10000) {

@@ -78,7 +78,7 @@ public class HomeCommand implements CommandExecutor {
                         
                         // save home
                         homes.set(homes.indexOf(each), player.getName());
-                        Nexus.homeConfig.set("nexus.homes.list", homes);
+                        Nexus.homeConfig.set("nexus.players.list", homes);
                         Nexus.homeConfig.set(path + "world", player.getLocation().getWorld().getName());
                         Nexus.homeConfig.set(path + "x", player.getLocation().getX());
                         Nexus.homeConfig.set(path + "y", player.getLocation().getY());

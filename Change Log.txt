@@ -4,6 +4,14 @@
     "support multiple homes"
 0.1.xx
     "support multi-world spawns"
+0.1.6
+    Added /kick (player) (reason), allowing a reason to be specified
+    Added /ban (player) (reason), allowing a reason to be specified
+0.1.5
+    Fixed Issue: /level [set] without arguments caused error
+    Fixed Issue: /home [set] generated extra nodes in homes.yml
+    Now requires a permissions plugin
+    Updated to CraftBukkit 1.2.4-R1.0
 0.1.4
     Implemented /home, teleports to home location
     Added /home [set], changes home location to current location
@@ -44,7 +52,7 @@
 0.0.19
     Implemented /wp (waypoint), teleports to specified checkpoint location
     Added /wp (waypoint) [set|delete], creates, deletes, or changes specified checkpoint location
-    Added /wp [list], displays a list of checkpoints
+    Added /wp [list], displays a list of waypoints
     Fixed issue: /tp could not be enabled in commands.yml
     Fixed issue: /spawn not compatible with non-default world names
 0.0.18

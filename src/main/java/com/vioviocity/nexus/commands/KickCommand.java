@@ -32,7 +32,7 @@ public class KickCommand implements CommandExecutor{
             if (!Nexus.checkPermission("nexus.kick", player, true))
                 return true;
             // invalid args
-            if (args.length < 1 || args.length > 1)
+            if (args.length < 1)
                 return false;
             
             // kick (player)
@@ -49,6 +49,20 @@ public class KickCommand implements CommandExecutor{
                 // player not online
                 player.sendMessage(ChatColor.RED + name + " is not online.");
                 return true;
+            }
+            
+            // kick (player) (reason)
+            if (args.length > 1) {
+                String name = args[0].toLowerCase();
+                String reason = "";
+                for (int i = 1; i < args.length; i ++)
+                    reason += args[i] + ' ';
+                reason = reason.substring(0, reason.length() - 1);
+                for (Player each : onlinePlayers) {
+                    if (each.getName().toLowerCase().contains(name)) {
+                        each.kickPlayer("You have been kicked.  Reason: " + reason);
+                    }
+                }
             }
         }
         
