@@ -40,7 +40,7 @@ public class HomeCommand implements CommandExecutor {
             // home
             if (args.length == 0) {
                 // check permission
-                if (!Nexus.checkPermission("nexus.wp", player, true))
+                if (!Nexus.checkPermission("nexus.home", player, true))
                     return true;
                 
                 for (String each : homes) {

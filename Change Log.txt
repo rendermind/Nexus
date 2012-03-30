@@ -4,6 +4,10 @@
     "support multiple homes"
 0.1.xx
     "support multi-world spawns"
+0.1.7
+    Fixed Issue: /kick (player) (reason) would display usage after issuing command
+    Fixed Issue: /home used wrong permission
+    Fixed Issue: /home stating home not set after being set
 0.1.6
     Added /kick (player) (reason), allowing a reason to be specified
     Added /ban (player) (reason), allowing a reason to be specified

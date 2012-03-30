@@ -61,6 +61,7 @@ public class KickCommand implements CommandExecutor{
                 for (Player each : onlinePlayers) {
                     if (each.getName().toLowerCase().contains(name)) {
                         each.kickPlayer("You have been kicked.  Reason: " + reason);
+                        return true;
                     }
                 }
             }

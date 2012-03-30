@@ -63,6 +63,7 @@ public class BanCommand implements CommandExecutor{
                     if (each.getName().toLowerCase().contains(name)) {
                         each.setBanned(true);
                         each.kickPlayer("You have been banned.  Reason: " + reason);
+                        return true;
                     }
                 }
             }
