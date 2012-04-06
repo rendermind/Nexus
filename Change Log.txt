@@ -4,6 +4,8 @@
     "support multiple homes"
 0.1.xx
     "support multi-world spawns"
+0.1.8
+    Updated to CraftBukkit 1.2.5-R1.0
 0.1.7
     Fixed Issue: /kick (player) (reason) would display usage after issuing command
     Fixed Issue: /home used wrong permission
