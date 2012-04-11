@@ -52,10 +52,10 @@ public class InvCommand implements CommandExecutor{
             if (args.length == 2) {
                 
                 // initialize variables
-                String playerName = args[0];;
+                String playerName = args[1];
                 
                 // inv (player) [clear]
-                if (args[1].equalsIgnoreCase("clear")) {
+                if (args[0].equalsIgnoreCase("clear")) {
                     // check permission
                     if (!Nexus.checkPermission("nexus.inv.clear", player, true))
                         return true;

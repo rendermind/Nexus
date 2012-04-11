@@ -42,7 +42,7 @@ public class ItemCommand implements CommandExecutor{
             if (args.length == 1) {
                 
                 // initialize variables
-                ItemStack item = new ItemStack(0, 64);
+                ItemStack item = new ItemStack(0, 1);
                 
                 // check item names
                 if (Nexus.itemList.containsKey(args[0].toLowerCase()))
@@ -70,7 +70,7 @@ public class ItemCommand implements CommandExecutor{
             if (args.length == 2) {
                 
                 // initial variables
-                ItemStack item = new ItemStack(0, 64);
+                ItemStack item = new ItemStack(0, 1);
                 String playerName = args[0].toLowerCase();
                 
                 // item (player) (id)
@@ -129,7 +129,7 @@ public class ItemCommand implements CommandExecutor{
             
             // initialize variables
             String playerName = args[0].toLowerCase();
-            ItemStack item = new ItemStack(0, 64);
+            ItemStack item = new ItemStack(0, 1);
             
             // item (player) (id) (qty)
             for (Player each : onlinePlayers) {

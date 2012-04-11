@@ -97,17 +97,17 @@ public class WpCommand implements CommandExecutor {
                 return true;
             }
             
-            // wp (waypoint) [set|delete]
+            // wp [set|del] (waypoint)
             if (args.length == 2) {
                 // check permission
                 if (!Nexus.checkPermission("nexus.wp.set", player, true))
                     return true;
                 
                 // initialize variables
-                String waypointName = args[0];
+                String waypointName = args[1];
                 
-                // wp (waypoint) [set]
-                if (args[1].equalsIgnoreCase("set")) {
+                // wp [set] (waypoint)
+                if (args[0].equalsIgnoreCase("set")) {
                     
                     // initialize variables
                     String path = "nexus.waypoint." + waypointName.toLowerCase() + '.';
@@ -147,8 +147,8 @@ public class WpCommand implements CommandExecutor {
                     return true;
                 }
                 
-                // wp (waypoint) [delete]
-                if (args[1].equalsIgnoreCase("delete")) {
+                // wp [del] (waypoint)
+                if (args[0].equalsIgnoreCase("del")) {
                     
                     // load waypoints
                     if (Nexus.waypointConfig.isConfigurationSection("nexus.waypoint"))

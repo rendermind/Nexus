@@ -1,5 +1,8 @@
 0.2.0
     Restructure of homes.yml & waypoints.yml
+    Changed /wp (waypoint) [set|delete] to /wp [set|del] (waypoint)
+    Changed /inv (player) [clear] to /inv [clear] (player)
+    Changed default /item (player) (id:dmg) stack size from 64 to 1
     Changed all commands' default permissions to op
 0.1.8
     Added console notification when attempting to issue in-game commands from the console

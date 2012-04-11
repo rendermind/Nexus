@@ -38,7 +38,7 @@ commands:
     usage: /<command> (x) (z)
   wp:
     description: Changes or teleports player to specified waypoint, also displays list of waypoints.
-    usage: /<command> (waypoint) [set|delete], /<command> [list]
+    usage: /<command> [list], /<command> [set|del] (waypoint)
   home:
     description: Changes or teleports player to home location.
     usage: /<command> [set]
@@ -74,7 +74,7 @@ commands:
     usage: /<command> (player)
   inv:
     description: Access to player inventory.
-    usage: /<command (player) [clear]
+    usage: /<command [clear] (player)
 permissions:
   nexus.time:
     description: Allows use of /time.
