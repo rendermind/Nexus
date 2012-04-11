@@ -1,7 +1,9 @@
 package com.vioviocity.nexus.commands;
 
 import com.vioviocity.nexus.Nexus;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -24,6 +26,7 @@ public class HomeCommand implements CommandExecutor {
         
         // initialize core variables
         Player player = (Player) sender;
+        Set <String> homes = Collections.EMPTY_SET;
         
         // command handler
         String cmd = command.getName().toLowerCase();
@@ -36,8 +39,11 @@ public class HomeCommand implements CommandExecutor {
                 return false;
             
             // initialize variables
-            List <String> homes = Nexus.homeConfig.getStringList("nexus.players");
-            String path = "nexus." + player.getName() + '.';
+            String path = "nexus.player." + player.getName() + '.';
+            
+            // load homes
+            if (Nexus.homeConfig.isConfigurationSection("nexus.player"))
+                homes = Nexus.homeConfig.getConfigurationSection("nexus.player").getKeys(false);
             
             // home
             if (args.length == 0) {
@@ -52,12 +58,12 @@ public class HomeCommand implements CommandExecutor {
                         Location home = player.getLocation();
                     
                         // teleport to home
-                        home.setWorld(plugin.getServer().getWorld(Nexus.homeConfig.getString(path + "world")));
-                        home.setX(Nexus.homeConfig.getDouble(path + "x"));
-                        home.setY(Nexus.homeConfig.getDouble(path + "y"));
-                        home.setZ(Nexus.homeConfig.getDouble(path + "z"));
-                        home.setYaw((float) Nexus.homeConfig.getDouble(path + "yaw"));
-                        home.setPitch((float) Nexus.homeConfig.getDouble(path + "pitch"));
+                        home.setWorld(plugin.getServer().getWorld(Nexus.homeConfig.getString(path + "default.world")));
+                        home.setX(Nexus.homeConfig.getDouble(path + "default.x"));
+                        home.setY(Nexus.homeConfig.getDouble(path + "default.y"));
+                        home.setZ(Nexus.homeConfig.getDouble(path + "default.z"));
+                        home.setYaw((float) Nexus.homeConfig.getDouble(path + "default.yaw"));
+                        home.setPitch((float) Nexus.homeConfig.getDouble(path + "default.pitch"));
                         player.teleport(home);
                         return true;
                     }
@@ -79,14 +85,13 @@ public class HomeCommand implements CommandExecutor {
                     if (player.getName().equals(each)) {
                         
                         // save home
-                        homes.set(homes.indexOf(each), player.getName());
-                        Nexus.homeConfig.set("nexus.players", homes);
-                        Nexus.homeConfig.set(path + "world", player.getLocation().getWorld().getName());
-                        Nexus.homeConfig.set(path + "x", player.getLocation().getX());
-                        Nexus.homeConfig.set(path + "y", player.getLocation().getY());
-                        Nexus.homeConfig.set(path + "z", player.getLocation().getZ());
-                        Nexus.homeConfig.set(path + "yaw", player.getLocation().getYaw());
-                        Nexus.homeConfig.set(path + "pitch", player.getLocation().getPitch());
+                        //homes.set(homes.indexOf(each), player.getName());
+                        Nexus.homeConfig.set(path + "default.world", player.getLocation().getWorld().getName());
+                        Nexus.homeConfig.set(path + "default.x", player.getLocation().getX());
+                        Nexus.homeConfig.set(path + "default.y", player.getLocation().getY());
+                        Nexus.homeConfig.set(path + "default.z", player.getLocation().getZ());
+                        Nexus.homeConfig.set(path + "default.yaw", player.getLocation().getYaw());
+                        Nexus.homeConfig.set(path + "default.pitch", player.getLocation().getPitch());
                         Nexus.saveHomeConfig();
                         player.sendMessage(ChatColor.GREEN + "Home reset.");
                         return true;
@@ -94,14 +99,13 @@ public class HomeCommand implements CommandExecutor {
                 }
                 
                 // create home
-                homes.add(player.getName());
-                Nexus.homeConfig.set("nexus.players", homes);
-                Nexus.homeConfig.set(path + "world", player.getLocation().getWorld().getName());
-                Nexus.homeConfig.set(path + "x", player.getLocation().getX());
-                Nexus.homeConfig.set(path + "y", player.getLocation().getY());
-                Nexus.homeConfig.set(path + "z", player.getLocation().getZ());
-                Nexus.homeConfig.set(path + "yaw", player.getLocation().getYaw());
-                Nexus.homeConfig.set(path + "pitch", player.getLocation().getPitch());
+                //homes.add(player.getName());
+                Nexus.homeConfig.set(path + "default.world", player.getLocation().getWorld().getName());
+                Nexus.homeConfig.set(path + "default.x", player.getLocation().getX());
+                Nexus.homeConfig.set(path + "default.y", player.getLocation().getY());
+                Nexus.homeConfig.set(path + "default.z", player.getLocation().getZ());
+                Nexus.homeConfig.set(path + "default.yaw", player.getLocation().getYaw());
+                Nexus.homeConfig.set(path + "default.pitch", player.getLocation().getPitch());
                 Nexus.saveHomeConfig();
                 player.sendMessage(ChatColor.GREEN + "Home set.");
                 return true;
