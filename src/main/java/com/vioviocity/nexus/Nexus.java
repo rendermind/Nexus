@@ -16,7 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Nexus extends JavaPlugin {
     
-    static Logger log = Logger.getLogger("Nexus");
+    static public Logger log = Logger.getLogger("Nexus");
     
     static public FileConfiguration commandConfig = null;
     static File commandConfigFile = null;

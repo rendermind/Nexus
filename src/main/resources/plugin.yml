@@ -1,7 +1,7 @@
 author: Stephen Monroe (VioVioCity)
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.1.8
+version: 0.2.0
 commands:
   time:
     description: Displays or changes the current in-game time.
@@ -78,59 +78,88 @@ commands:
 permissions:
   nexus.time:
     description: Allows use of /time.
+    default: op
   nexus.time.set:
     description: Allows use of /time [dawn|day|dusk|night].
+    default: op
   nexus.weather:
     description: Allows use of /weather.
+    default: op
   nexus.weather.set:
     description: Allows use of /weather [clear|storm|thunder].
+    default: op
   nexus.spawn:
     description: Allows use of /spawn.
+    default: op
   nexus.spawn.set:
     description: Allows use of /spawn [set].
+    default: op
   nexus.mode:
     description: Allows use of /mode (player).
+    default: op
   nexus.online:
     description: Allows use of /online.
+    default: op
   nexus.kick:
     description: Allows use of /kick (player).
+    default: op
   nexus.ban:
     description: Allows use of /ban (player), also /unban (player).
+    default: op
   nexus.tp:
     description: Allows use of /tp (player) (player).
+    default: op
   nexus.tp.toggle:
     description: Allows use of /tp [toggle].
+    default: op
   nexus.tpr:
     description: Allows use of /tpr (player), also /tpr [accept|deny|cancel]
+    default: op
   nexus.tpc:
     description: Allows use of /tpc (x) (z)
+    default: op
   nexus.wp:
     description: Allows use of /wp (waypoint), also /wp [list]
+    default: op
   nexus.wp.set:
     description: Allows use of /wp [set]
+    default: op
   nexus.home:
     description: Allows use of /home
+    default: op
   nexus.home.set:
     description: Allows use of /home [set]
+    default: op
   nexus.back:
     description: Allows use of /back.
+    default: op
   nexus.back.death:
     description: Allows use of /back on death.
+    default: op
   nexus.heal:
     description: Allows use of /heal (player).
+    default: op
   nexus.kill:
     description: Allows use of /kill (player).
+    default: op
   nexus.level:
     description: Allows use of /xp.
+    default: op
   nexus.level.set:
     description: Allows use of /xp (player) (level).
+    default: op
   nexus.item:
     description: Allows use of /item (player) (id) (quantity).
+    default: op
   nexus.broadcast:
     description: Allows use of /broadcast (message).
+    default: op
   nexus.msg:
     description: Allows use of /msg (player) (message), also /reply (message).
+    default: op
   nexus.mute:
     description: Allows use of /mute (player), also /unmute (player)
+    default: op
   nexus.inv.clear:
     description: Allows use of /inv (player) [clear]
+    default: op

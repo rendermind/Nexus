@@ -1,10 +1,8 @@
-0.1.xx
-    "add kit integration"
-0.1.xx
-    "support multiple homes"
-0.1.xx
-    "support multi-world spawns"
+0.2.0
+    Restructure of homes.yml & waypoints.yml
+    Changed all commands' default permissions to op
 0.1.8
+    Added console notification when attempting to issue in-game commands from the console
     Updated to CraftBukkit 1.2.5-R1.0
 0.1.7
     Fixed Issue: /kick (player) (reason) would display usage after issuing command

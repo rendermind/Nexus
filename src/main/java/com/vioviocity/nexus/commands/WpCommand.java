@@ -1,7 +1,8 @@
 package com.vioviocity.nexus.commands;
 
 import com.vioviocity.nexus.Nexus;
-import java.util.List;
+import java.util.Collections;
+import java.util.Set;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -17,11 +18,14 @@ public class WpCommand implements CommandExecutor {
     }
     
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
-        if (!(sender instanceof Player))
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("Command must be issued within game.");
             return true;
+        }
         
         // initialize core variables
         Player player = (Player) sender;
+        Set <String> waypoints = Collections.EMPTY_SET;
         
         // command handler
         String cmd = command.getName().toLowerCase();
@@ -41,7 +45,10 @@ public class WpCommand implements CommandExecutor {
                 
                 // wp [list]
                 if (args[0].equalsIgnoreCase("list")) {
-                    List <String> waypoints = Nexus.waypointConfig.getStringList("nexus.waypoint.list");
+                    
+                    // load waypoints
+                    if (Nexus.waypointConfig.isConfigurationSection("nexus.waypoint"))
+                        waypoints = Nexus.waypointConfig.getConfigurationSection("nexus.waypoint").getKeys(false);
                     
                     // waypoints not set
                     if (waypoints.isEmpty()) {
@@ -60,8 +67,11 @@ public class WpCommand implements CommandExecutor {
                 
                 // initialize variables
                 String waypointName = args[0].toLowerCase();
-                List <String> waypoints = Nexus.waypointConfig.getStringList("nexus.waypoint.list");
                 String path = "nexus.waypoint." + waypointName + '.';
+                
+                // load waypoints
+                if (Nexus.waypointConfig.isConfigurationSection("nexus.waypoint"))
+                    waypoints = Nexus.waypointConfig.getConfigurationSection("nexus.waypoint").getKeys(false);
                 
                 // wp (waypoint)
                 for (String each : waypoints) {
@@ -100,16 +110,18 @@ public class WpCommand implements CommandExecutor {
                 if (args[1].equalsIgnoreCase("set")) {
                     
                     // initialize variables
-                    List <String> waypoints = Nexus.waypointConfig.getStringList("nexus.waypoint.list");
                     String path = "nexus.waypoint." + waypointName.toLowerCase() + '.';
+                    
+                    // load waypoints
+                    if (Nexus.waypointConfig.isConfigurationSection("nexus.waypoint"))
+                        waypoints = Nexus.waypointConfig.getConfigurationSection("nexus.waypoint").getKeys(false);
                     
                     // check waypoint
                     for (String each : waypoints) {
                         if (waypointName.equalsIgnoreCase(each)) {
                             
                             // save waypoint
-                            waypoints.set(waypoints.indexOf(each), waypointName);
-                            Nexus.waypointConfig.set("nexus.waypoint.list", waypoints);
+                            //waypoints.set(waypoints.indexOf(each), waypointName);
                             Nexus.waypointConfig.set(path + "world", player.getLocation().getWorld().getName());
                             Nexus.waypointConfig.set(path + "x", player.getLocation().getX());
                             Nexus.waypointConfig.set(path + "y", player.getLocation().getY());
@@ -123,8 +135,7 @@ public class WpCommand implements CommandExecutor {
                     }
                     
                     // create waypoint
-                    waypoints.add(waypointName);
-                    Nexus.waypointConfig.set("nexus.waypoint.list", waypoints);
+                    //waypoints.add(waypointName);
                     Nexus.waypointConfig.set(path + "world", player.getLocation().getWorld().getName());
                     Nexus.waypointConfig.set(path + "x", player.getLocation().getX());
                     Nexus.waypointConfig.set(path + "y", player.getLocation().getY());
@@ -139,16 +150,17 @@ public class WpCommand implements CommandExecutor {
                 // wp (waypoint) [delete]
                 if (args[1].equalsIgnoreCase("delete")) {
                     
-                    // initialize variables
-                    List <String> waypoints = Nexus.waypointConfig.getStringList("nexus.waypoint.list");
+                    // load waypoints
+                    if (Nexus.waypointConfig.isConfigurationSection("nexus.waypoint"))
+                        waypoints = Nexus.waypointConfig.getConfigurationSection("nexus.waypoint").getKeys(false);
                     
                     // check waypoint
                     for (String each : waypoints) {
                         if (waypointName.equalsIgnoreCase(each)) {
                             
                             // delete waypoint
-                            waypoints.remove(each);
-                            Nexus.waypointConfig.set("nexus.waypoint.list", waypoints);
+                            //waypoints.remove(each);
+                            Nexus.waypointConfig.set("nexus.waypoint." + waypointName, null);
                             Nexus.saveWaypointConfig();
                             player.sendMessage(ChatColor.RED + "Waypoint " + each + " deleted.");
                             return true;
