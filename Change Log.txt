@@ -7,7 +7,7 @@
     Changed /inv (player) [clear] to /inv [clear] (player)
     Changed default /item (player) (id:dmg) stack size from 64 to 1
     Restructure of homes.yml & waypoints.yml
-    Changed all commands' default permissions to op
+    Changed all command default permissions to op
 0.1.8
     Added console notification when attempting to issue in-game commands from the console
     Updated to CraftBukkit 1.2.5-R1.0
