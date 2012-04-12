@@ -92,6 +92,17 @@ public class HomeCommand implements CommandExecutor {
                 if (!Nexus.checkPermission("nexus.home.set", player, true))
                     return true;
                 
+                // initialize variables
+                int maxHomes = 0;
+                
+                // check max homes
+                if (Nexus.homeConfig.isConfigurationSection("nexus.player." + player.getName()))
+                    maxHomes = Nexus.homeConfig.getConfigurationSection("nexus.player." + player.getName()).getKeys(false).size();
+                if (maxHomes == Nexus.homeConfig.getInt("nexus.max_homes")) {
+                    player.sendMessage(ChatColor.RED + "You have reached the maximum home limit.");
+                    return true;
+                }
+                
                 /*
                 // check home
                 for (String each : homes) {
@@ -198,14 +209,31 @@ public class HomeCommand implements CommandExecutor {
                 
                 // initialize variables
                 String homeName = args[1];
+                int maxHomes = 0;
+                
+                // check max homes
+                if (Nexus.homeConfig.isConfigurationSection("nexus.player." + player.getName()))
+                    maxHomes = Nexus.homeConfig.getConfigurationSection("nexus.player." + player.getName()).getKeys(false).size();
+                if (maxHomes == Nexus.homeConfig.getInt("nexus.max_homes")) {
+                    player.sendMessage(ChatColor.RED + "You have reached the maximum home limit.");
+                    return true;
+                }
                 
                 // check player
                 for (String each : homes) {
                     if (player.getName().equals(each)) {
                         
                         // load multiple homes
-                        if (Nexus.homeConfig.isConfigurationSection("nexus.player." + each))
+                        if (Nexus.homeConfig.isConfigurationSection("nexus.player." + each)) {
                             multiHomes = Nexus.homeConfig.getConfigurationSection("nexus.player." + each).getKeys(false);
+                            //maxHomes = Nexus.homeConfig.getConfigurationSection("nexus.player." + player.getName()).getKeys(false).size();
+                        }
+                        
+                        // check max homes
+                        //if (maxHomes == Nexus.homeConfig.getInt("nexus.max_homes")) {
+                        //    player.sendMessage(ChatColor.RED + "You have reached the maximium home limit.");
+                        //    return true;
+                        //}
                         
                         // check home
                         for (String another : multiHomes) {
