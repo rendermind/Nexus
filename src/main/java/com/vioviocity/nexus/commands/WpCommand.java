@@ -121,7 +121,6 @@ public class WpCommand implements CommandExecutor {
                         if (waypointName.equalsIgnoreCase(each)) {
                             
                             // save waypoint
-                            //waypoints.set(waypoints.indexOf(each), waypointName);
                             Nexus.waypointConfig.set(path + "world", player.getLocation().getWorld().getName());
                             Nexus.waypointConfig.set(path + "x", player.getLocation().getX());
                             Nexus.waypointConfig.set(path + "y", player.getLocation().getY());
@@ -135,7 +134,6 @@ public class WpCommand implements CommandExecutor {
                     }
                     
                     // create waypoint
-                    //waypoints.add(waypointName);
                     Nexus.waypointConfig.set(path + "world", player.getLocation().getWorld().getName());
                     Nexus.waypointConfig.set(path + "x", player.getLocation().getX());
                     Nexus.waypointConfig.set(path + "y", player.getLocation().getY());
@@ -159,7 +157,6 @@ public class WpCommand implements CommandExecutor {
                         if (waypointName.equalsIgnoreCase(each)) {
                             
                             // delete waypoint
-                            //waypoints.remove(each);
                             Nexus.waypointConfig.set("nexus.waypoint." + waypointName, null);
                             Nexus.saveWaypointConfig();
                             player.sendMessage(ChatColor.RED + "Waypoint " + each + " deleted.");

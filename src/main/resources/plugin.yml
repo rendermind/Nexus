@@ -41,7 +41,7 @@ commands:
     usage: /<command> [list], /<command> [set|del] (waypoint)
   home:
     description: Changes or teleports player to home location.
-    usage: /<command> [set]
+    usage: /<command> [set], /<command> [set|del] (home)
   back:
     description: Teleports to prior location.
     usage: /<command>
@@ -129,6 +129,9 @@ permissions:
     default: op
   nexus.home.set:
     description: Allows use of /home [set]
+    default: op
+  nexus.home.multi:
+    description: Allows use of /home (home), also /home [set] (home)
     default: op
   nexus.back:
     description: Allows use of /back.
