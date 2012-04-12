@@ -1,661 +1,404 @@
 nexus:
+  version: c
   items:
   - 1,stone
   - 2,grass
   - 3,dirt
-  - 4,cobble
   - 4,cobblestone
-  - 5,plank
-  - 5,woodenplank
-  - 5,woodplank
+  - 5:0,woodplank
+  - 5:1,redplank
+  - 5:2,birchplank
+  - 5:3,jungleplank
   - 6:0,sapling
   - 6:1,pinesapling
-  - 6:1,pine_sapling
   - 6:2,birchsapling
-  - 6:2,birch_sapling
+  - 6:3,junglesapling
   - 7,bedrock
-  - 7,adminium
   - 8,water
   - 9,stillwater
-  - 9,still_water
   - 10,lava
   - 11,stilllava
-  - 11,still_lava
   - 12,sand
   - 13,gravel
   - 14,goldore
-  - 14,gold_ore
   - 15,ironore
-  - 15,iron_ore
   - 16,coalore
-  - 16,coal_ore
   - 17:0,log
   - 17:1,redwood
   - 17:2,birchwood
-  - 17:2,birch_wood
   - 17:3,junglewood
-  - 17:3,jungle_wood
   - 18:0,leaves
   - 18:1,pineleaves
-  - 18:1,pine_leaves
   - 18:2,birchleaves
-  - 18:2,birch_leaves
   - 18:3,jungleleaves
-  - 18:3,jungle_leaves
   - 19,sponge
   - 20,glass
   - 21,lapislazuliore
-  - 21,lapis_lazuli_ore
   - 21,lapisore
-  - 21,lapis_ore
   - 22,lapislazuliblock
-  - 22,lapis_lazuli_block
   - 22,lapisblock
-  - 22,lapis_block
   - 23,dispenser
-  - 24,sandstone
-  - 24,sand_stone
+  - 24:0,sandstone
+  - 24:1,hieroglyph
+  - 24:2,smoothsandstone
   - 25,noteblock
-  - 25,note_block
   - 27,poweredrail
-  - 27,powered_rail
   - 27,boosterrail
-  - 27,booster_rail
   - 28,detectorrail
-  - 28,detector_rail
   - 29,stickypiston
-  - 29,sticky_piston
   - 29,stickpiston
-  - 29,stick_piston
   - 30,web
   - 30,cobweb
+  - 31:0,deadgrass
   - 31:1,tallgrass
-  - 31:1,tall_grass
   - 31:2,fern
   - 32,deadshrub
-  - 32,dead_shrub
   - 33,piston
   - 35:0,wool
   - 35:1,orangewool
-  - 35:1,orange_wool
   - 35:2,magentawool
-  - 35:2,magenta_wool
   - 35:3,lightbluewool
-  - 35:3,light_blue_wool
   - 35:4,yellowwool
-  - 35:4,yellow_wool
   - 35:5,limewool
-  - 35:5,lime_wool
   - 35:6,pinkwool
-  - 35:6,pink_wool
   - 35:7,greywool
-  - 35:7,grey_wool
   - 35:8,lightgreywool
-  - 35:8,light_grey_wool
   - 35:9,cyanwool
-  - 35:9,cyan_wool
   - 35:10,purplewool
-  - 35:10,purple_wool
   - 35:11,bluewool
-  - 35:11,blue_wool
   - 35:12,brownwool
-  - 35:12,brown_wool
   - 35:13,greenwool
-  - 35:13,green_wool
   - 35:14,redwool
-  - 35:14,red_wool
   - 35:15,blackwool
-  - 35:15,black_wool
-  - 37,yellowflower
-  - 37,yellow_flower
   - 37,dandelion
   - 38,rose
-  - 38,redrose
-  - 38,red_rose
   - 39,brownmushroom
-  - 39,brown_mushroom
-  - 39,brownshroom
-  - 39,brown_shroom
   - 40,redmushroom
-  - 40,red_mushroom
-  - 40,redshroom
-  - 40,red_shroom
   - 41,goldblock
-  - 41,gold_block
   - 42,ironblock
-  - 42,iron_block
-  - 42,anvil
   - 43:0,doublestoneslab
-  - 43:0,double_stone_slab
   - 43:1,doublesandstoneslab
-  - 43:1,double_sandstone_slab
   - 43:2,doublewoodslab
-  - 43:2,double_wood_slab
   - 43:3,doublecobblestoneslab
-  - 43:3,doublecobbleslab
-  - 43:3,double_cobblestone_slab
-  - 43:3,double_cobble_slab
   - 43:4,doublebrickslab
-  - 43:4,double_brick_slab
   - 43:5,doublestonebrickslab
-  - 43:5,double_stone_brick_slab
-  - 43:5,double_stonebrick_slab
+  - 43:6,stoneslabblock
   - 44:0,stoneslab
-  - 44:0,stone_slab
   - 44:1,sandstoneslab
-  - 44:1,sandstone_slab
   - 44:2,woodslab
-  - 44:2,wood_slab
-  - 44:3,cobbleslab
   - 44:3,cobblestoneslab
-  - 44:3,cobble_slab
-  - 44:3,cobblestone_slab
   - 44:4,brickslab
-  - 44:4,brick_slab
   - 44:5,stonebrickslab
-  - 44:5,stone_brick_slab
-  - 44:5,stonebrick_slab
+  - 44:6,smoothstoneslab
+  - 44:8,topstoneslab
+  - 44:9,topsandstoneslab
+  - 44:10,topwoodslab
+  - 44:11,topcobblestoneslab
+  - 44:12,topbrickslab
+  - 44:13,topstonebrickslab
   - 45,brickblock
-  - 45,brick_block
   - 46,tnt
-  - 46,dynamite
   - 47,bookshelf
   - 48,mossstone
-  - 48,mossystone
-  - 48,mossycobblestone
-  - 48,moss_stone
-  - 48,mossy_stone
-  - 48,mossy_cobblestone
   - 49,obsidian
-  - 49,obby
   - 50,torch
-  - 50,flame_on_a_stick
   - 51,fire
   - 52,monsterspawner
-  - 52,mobspawner
-  - 52,monster_spawner
-  - 52,mob_spawner
   - 53,woodstairs
-  - 53,woodenstairs
-  - 53,wood_stairs
-  - 53,wooden_stairs
   - 54,chest
   - 56,diamondore
-  - 56,diamond_ore
   - 57,diamondblock
-  - 57,diamond_block
   - 58,craftingtable
-  - 58,craftingbench
-  - 58,workbench
-  - 58,crafting_table
-  - 58,crafting_bench
-  - 58,work_bench
-  - 59,crops
   - 60,farmland
   - 61,furnace
-  - 61,oven
   - 62,burningfurnace
-  - 62,burning_furnace
+  - 63,signpost
+  - 64,halfwooddoor
   - 65,ladder
-  - 66,rail
-  - 66,minecarttrack
-  - 66,minecart_track
-  - 67,cobblestairs
+  - 66,rails
   - 67,cobblestonestairs
-  - 67,cobble_stairs
-  - 67,cobblestone_stairs
   - 68,wallsign
-  - 68,wall_sign
   - 69,lever
   - 70,stonepressureplate
-  - 70,stone_pressure_plate
+  - 71,halfirondoor
   - 72,woodpressureplate
-  - 72,woodenpressureplate
-  - 72,wood_pressure_plate
-  - 72,wooden_pressure_plate
   - 73,redstoneore
-  - 73,redstone_ore
   - 74,glowingredstoneore
-  - 74,glowing_redstone_ore
+  - 75,inactiveredstonetorch
+  - 76,redstonetorch
   - 77,button
   - 77,stonebutton
-  - 77,stone_button
   - 78,snow
   - 79,ice
   - 80,snowblock
-  - 80,snow_block
   - 81,cactus
   - 82,clayblock
-  - 82,clay_block
   - 84,jukebox
   - 85,fence
   - 86,pumpkin
   - 87,netherrack
   - 88,soulsand
-  - 88,soul_sand
   - 89,glowstone
   - 90,portal
-  - 91,jack_o_lantern
   - 91,jackolantern
   - 95,lockedchest
-  - 95,locked_chest
   - 96,trapdoor
-  - 96,trap_door
-  - 96,hatch
-  - 97,silverfishblock
-  - 97,silverfish_block
+  - 97:0,silverfishstoneblock
+  - 97:1,silverfishcobblestonblock
+  - 97:2,silverfishstonebrickblock
   - 98:0,stonebrick
-  - 98:0,stone_brick
-  - 98:1,mossy_stonebrick
   - 98:1,mossystonebrick
-  - 98:1,mossy_stone_brick
   - 98:2,crackedstonebrick
-  - 98:2,cracked_stonebrick
-  - 98:2,cracked_stone_brick
+  - 98:3,circlestonebrick
   - 99,hugebrownmushroom
-  - 99,huge_brown_mushroom
   - 100,hugeredmushroom
-  - 100,huge_red_mushroom
   - 101,ironbars
-  - 101,iron_bars
   - 102,glasspane
-  - 102,glass_pane
   - 103,melon
   - 104,pumpkinstem
-  - 104,pumpkin_stem
   - 105,melonstem
-  - 105,melon_stem
   - 106,vines
   - 107,fencegate
-  - 107,fence_gate
   - 108,brickstairs
-  - 108,brick_stairs
   - 109,stonebrickstairs
-  - 109,stonebrick_stairs
-  - 109,stone_brick_stairs
   - 110,mycelium
-  - 110,mushroom_stuff
   - 111,lilypad
-  - 111,lily_pad
   - 112,netherbrick
   - 113,netherbrickfence
-  - 113,netherbrick_fence
   - 114,netherbrickstairs
-  - 114,netherbrick_stairs
   - 116,enchantingtable
-  - 116,enchanting_table
   - 119,endportal
-  - 119,end_portal
-  - 120,endportalblock
-  - 120,end_portal_block
+  - 120,endportalframe
   - 121,endstone
-  - 121,end_stone
   - 122,dragonegg
-  - 122,dragon_egg
+  - 123,redstonelamp
+  - 124,activeredstonelamp
   - 256,ironshovel
-  - 256,iron_shovel
-  - 256,ironspade
-  - 256,iron_spade
   - 257,ironpickaxe
-  - 257,iron_pickaxe
-  - 257,ironpick
-  - 257,iron_pick
   - 258,ironaxe
-  - 258,iron_axe
   - 259,flintandsteel
-  - 259,flint_and_steel
   - 260,apple
   - 261,bow
   - 262,arrow
   - 263,coal
+  - 263:1,charcoal
   - 264,diamond
   - 265,ironingot
-  - 265,iron_ingot
   - 266,goldingot
-  - 266,gold_ingot
   - 267,ironsword
-  - 267,iron_sword
-  - 268,woodsword
   - 268,woodensword
-  - 268,wood_sword
-  - 268,wooden_sword
-  - 269,woodshovel
   - 269,woodenshovel
-  - 269,woodspade
-  - 269,woodenspade
-  - 269,wood_shovel
-  - 269,wooden_shovel
-  - 269,wood_spade
-  - 269,wooden_spade
-  - 270,woodpickaxe
   - 270,woodenpickaxe
-  - 270,woodpick
-  - 270,woodenpick
-  - 270,wood_pickaxe
-  - 270,wooden_pickaxe
-  - 270,wood_pick
-  - 270,wooden_pick
-  - 271,woodaxe
   - 271,woodenaxe
-  - 271,wood_axe
-  - 271,wooden_axe
   - 272,stonesword
-  - 272,stone_sword
   - 273,stoneshovel
-  - 273,stone_shovel
-  - 273,stone_spade
-  - 273,stonespade
   - 274,stonepickaxe
-  - 274,stone_pickaxe
-  - 274,stone_pick
-  - 274,stonepick
   - 275,stoneaxe
-  - 275,stone_axe
   - 276,diamondsword
-  - 276,diamond_sword
   - 277,diamondshovel
-  - 277,diamond_shovel
-  - 277,diamond_spade
-  - 277,diamondspade
   - 278,diamondpickaxe
-  - 278,diamond_pickaxe
-  - 278,diamond_pick
-  - 278,diamondpick
   - 279,diamondaxe
-  - 279,diamond_axe
   - 280,stick
   - 281,bowl
-  - 282,mushroomsoup
-  - 282,mushroom_soup
-  - 282,mushroom_stew
   - 282,mushroomstew
   - 283,goldsword
-  - 283,goldensword
-  - 283,gold_sword
-  - 283,golden_sword
-  - 284,gold_shovel
-  - 284,golden_shovel
   - 284,goldshovel
-  - 284,goldenshovel
-  - 284,goldspade
-  - 284,goldenspade
-  - 284,gold_spade
-  - 284,golden_spade
   - 285,goldpickaxe
-  - 285,goldenpickaxe
-  - 285,gold_pickaxe 
-  - 285,golden_pickaxe
-  - 285,goldpick
-  - 285,goldenpick
-  - 285,golden_pick
-  - 285,gold_pick
   - 286,goldaxe
-  - 286,goldenaxe
-  - 286,golden_axe
-  - 286,gold_axe
   - 287,string
   - 288,feather
-  - 289,sulphur
   - 289,gunpowder
-  - 289,gun_powder
-  - 290,woodhoe
   - 290,woodenhoe
-  - 290,wood_hoe
-  - 290,wooden_hoe
   - 291,stonehoe
-  - 291,stone_hoe
   - 292,ironhoe
-  - 292,iron_hoe
   - 293,diamondhoe
-  - 293,diamond_hoe
   - 294,goldhoe
-  - 294,goldenhoe
-  - 294,gold_hoe
-  - 294,golden_hoe
   - 295,seeds
   - 296,wheat
   - 297,bread
   - 298,leatherhelmet
-  - 298,leathercap
-  - 298,leather_helmet
-  - 298,leather_cap
-  - 299,leatherchestplate
-  - 299,leathertunic
-  - 299,leather_chestplate
-  - 299,leather_tunic
-  - 300,leatherleggings
-  - 300,leatherpants
-  - 300,leather_leggings
-  - 300,leather_pants
+  - 299,leatherleggings
+  - 300,leatherchestplate
   - 301,leatherboots
-  - 301,leather_boots
-  - 301,leathershoes
-  - 301,leather_shoes
   - 302,chainmailhelmet
-  - 302,chainmail_helmet
   - 303,chainmailchestplate
-  - 303,chainmail_chestplate
   - 304,chainmailleggings
-  - 304,chainmail_leggings
   - 305,chainmailboots
-  - 305,chainmail_boots
   - 306,ironhelmet
-  - 306,iron_helmet
   - 307,ironchestplate
-  - 307,iron_chestplate
-  - 308,iron_leggings
   - 308,ironleggings
   - 309,ironboots
-  - 309,iron_boots
   - 310,diamondhelmet
-  - 310,diamond_helmet
   - 311,diamondchestplate
-  - 311,diamond_chestplate
   - 312,diamondleggings
-  - 312,diamond_leggings
   - 313,diamondboots
-  - 313,diamond_boots
   - 314,goldhelmet
-  - 314,goldenhelmet
-  - 314,gold_helmet
-  - 314,golden_helmet
   - 315,goldchestplate
-  - 315,goldenchestplate
-  - 315,gold_chestplate
-  - 315,golden_chestplate
   - 316,goldleggings
-  - 316,goldenleggings
-  - 316,golden_leggings
-  - 316,gold_leggings
   - 317,goldboots
-  - 317,goldenboots
-  - 317,gold_boots
-  - 317,golden_boots
   - 318,flint
-  - 319,rawpork
-  - 319,raw_pork
-  - 320,cooked_pork
-  - 320,cookedpork
+  - 319,rawporkchop
+  - 320,cookedporkchop
   - 321,painting
   - 322,goldenapple
-  - 322,golden_apple
   - 323,sign
-  - 324,wooddoor
   - 324,woodendoor
-  - 324,wood_door
-  - 324,wooden_door
   - 325,bucket
   - 326,waterbucket
-  - 326,water_bucket
   - 327,lavabucket
-  - 327,lava_bucket
   - 328,minecart
   - 329,saddle
   - 330,irondoor
-  - 330,iron_door
   - 331,redstone
   - 332,snowball
   - 333,boat
   - 334,leather
   - 335,milk
-  - 336,brick
+  - 336,claybrick
   - 337,clay
   - 338,sugarcane
-  - 338,bamboo
   - 339,paper
   - 340,book
   - 341,slimeball
-  - 341,slime
   - 342,storageminecart
-  - 342,storage_minecart
   - 343,poweredminecart
-  - 343,powered_minecart
-  - 344,egg
+  - 344,chickenegg
   - 345,compass
   - 346,fishingrod
-  - 346,fishing_rod
   - 347,clock
   - 348,glowstonedust
-  - 348,glowstone_dust
-  - 349,fish
+  - 349,rawfish
   - 350,cookedfish
-  - 350,cooked_fish
   - 351:0,inksac
-  - 351:0,ink_sac
   - 351:1,reddye
-  - 351:1,red_dye
   - 351:2,greendye
-  - 351:2,green_dye
-  - 351:3,browndye
-  - 351:3,brown_dye
   - 351:3,cocoabeans
-  - 351:3,cocoa_beans
-  - 351:4,bluedye
-  - 351:4,blue_dye
   - 351:4,lapis
   - 351:4,lapislazuli
-  - 351:4,lapis_lazuli
   - 351:5,purpledye
-  - 351:5,purple_dye
-  - 351:6,cyan_dye
   - 351:6,cyandye
   - 351:7,lightgreydye
-  - 351:7,light_grey_dye
   - 351:8,greydye
-  - 351:8,grey_dye
   - 351:9,pinkdye
-  - 351:9,pink_dye
   - 351:10,limedye
-  - 351:10,lime_dye
-  - 351:11,yellowdye
-  - 351:11,yellow_dye
+  - 351:11,dandelionyellow
   - 351:12,lightbluedye
-  - 351:12,light_blue_wool
   - 351:13,magentadye
-  - 351:13,magenta_dye
   - 351:14,orangedye
-  - 351:14,orange_dye
   - 351:15,bonemeal
-  - 351:15,bone_meal
   - 352,bone
   - 353,sugar
   - 354,cake
-  - 354,is_a_lie
   - 355,bed
-  - 356,redstone_repeater
   - 356,redstonerepeater
   - 357,cookie
   - 358,map
   - 359,shears
   - 360,melonslice
-  - 360,melon_slice
   - 361,pumpkinseeds
-  - 361,pumpkin_seeds
-  - 362,melon_seeds
   - 362,melonseeds
-  - 363,rawsteak
-  - 363,raw_steak
+  - 363,rawbeef
   - 364,steak
-  - 365,chicken
-  - 366,cooked_chicken
+  - 365,rawchicken
   - 366,cookedchicken
   - 367,rottenflesh
-  - 367,rotten_flesh
   - 368,enderpearl
-  - 368,ender_pearl
   - 369,blazerod
-  - 369,blaze_rod
   - 370,ghasttear
-  - 370,ghast_tear
   - 371,goldnugget
-  - 371,gold_nugget
-  - 371,goldennugget
-  - 371,golden_nugget
   - 372,netherwart
-  - 372,nether_wart
   - 373,waterbottle
-  - 373,water_bottle
+  - 373:16,awkwardpotion
+  - 373:32,thickpotion
+  - 373:63,mundanepotion
+  - 373:8193,regenerationpotion
+  - 373:8194,swiftnesspotion
+  - 373:8195,fireresistancepotion
+  - 373:8196,poisonpotion
+  - 373:8197,healingpotion
+  - 373:8200,weaknesspotion
+  - 373:8201,stengthpotion
+  - 373:8202,slownesspotion
+  - 373:8204,harmingpotion
+  - 373:8225,regeneration2potion
+  - 373:8226,swiftness2potion
+  - 373:8227,fireresistance2potion
+  - 373:8228,poison2potion
+  - 373:8232,weakness2potion
+  - 373:8229,healing2potion
+  - 373:8233,strength2potion
+  - 373:8234,slowness2potion
+  - 373:8236,harming2potion
+  - 373:8257,exregenerationpotion
+  - 373:8258,exswiftnesspotion
+  - 373:8259,exfireresistancepotion
+  - 373:8260,expoisonpotion
+  - 373:8261,exhealingpotion
+  - 373:8264,exweaknesspotion
+  - 373:8265,exstengthpotion
+  - 373:8266,exslownesspotion
+  - 373:8268,exharmingpotion
+  - 373:16385,splashregenerationpotion
+  - 373:16386,splashswiftnesspotion
+  - 373:16387,splashfireresistancepotion
+  - 373:16388,splashpoisonpotion
+  - 373:16389,splashhealingpotion
+  - 373:16392,splashweaknesspotion
+  - 373:16393,splashstengthpotion
+  - 373:16394,splashslownesspotion
+  - 373:16396,splashharmingpotion
+  - 373:16417,splashregeneration2potion
+  - 373:16418,splashswiftness2potion
+  - 373:16419,splashfireresistance2potion
+  - 373:16420,splashpoison2potion
+  - 373:16421,splashhealing2potion
+  - 373:16242,splashweakness2potion
+  - 373:16425,splashstrength2potion
+  - 373:16426,splashslowness2potion
+  - 373:16428,splashharming2potion
+  - 373:16449,splashexregenerationpotion
+  - 373:16450,splashexswiftnesspotion
+  - 373:16451,splashexfireresistancepotion
+  - 373:16452,splashexpoisonpotion
+  - 373:16453,splashexhealingpotion
+  - 373:16456,splashexweaknesspotion
+  - 373:16457,splashexstengthpotion
+  - 373:16458,splashexslownesspotion
+  - 373:16460,splashexharmingpotion
+  - 373:,waterbottle
+  - 374,glassbottle
   - 375,spidereye
-  - 375,spider_eye
   - 376,fermentedspidereye
-  - 376,fermented_spider_eye
   - 377,blazepowder
-  - 377,blaze_powder
-  - 379,magmacream
-  - 379,magma_cream
+  - 378,magmacream
   - 379,brewingstand
-  - 379,brewing_stand
   - 380,cauldron
-  - 381,endereye
   - 381,eyeofender
-  - 381,ender_eye
-  - 381,eye_of_ender
   - 382,glisteringmelon
-  - 382,glistering_melon
   - 383:50,creeperegg
-  - 383:50,creeper_egg
   - 383:51,skeletonegg
-  - 383:51,skeleton_egg
   - 383:52,spideregg
-  - 383:52,spider_egg
   - 383:53,giantegg
-  - 383:53,giant_egg
   - 383:54,zombieegg
-  - 383:54,zombie_egg
   - 383:55,slimeegg
-  - 383:55,slime_egg
   - 383:56,ghastegg
-  - 383:56,ghast_egg
   - 383:57,zombiepigmenegg
-  - 383:57,zombie_pigmen_egg
   - 383:58,endermanegg
-  - 383:58,enderman_egg
   - 383:59,cavespideregg
-  - 383:59, cave_spider_egg
   - 383:60,silverfishegg
-  - 383:60,silverfish_egg
   - 383:61,blazeegg
-  - 383:61,blaze_egg
   - 383:62,magmacubeegg
-  - 383:62,magma_cube_egg
   - 383:90,pigegg
-  - 383:90,pig_egg
   - 383:91,sheepegg
-  - 383:91,sheep_egg
   - 383:92,cowegg
-  - 383:92,cow_egg
   - 383:93,chickenegg
-  - 383:93,chicken_egg
   - 383:94,squidegg
-  - 383:94,squid_egg
   - 383:95,wolfegg
-  - 383:95,wolf_egg
   - 383:96,mooshroomegg
-  - 383:96,mooshroom_egg
   - 383:97,snowgolemegg
-  - 383:97,snow_golem_egg
-  - 383:98,ocelot_egg
   - 383:98,ocelotegg
+  - 384,bottleoenchanting
+  - 385,firecharge
   - 2256,13
   - 2257,cat
   - 2258,blocks
