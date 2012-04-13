@@ -1,4 +1,5 @@
 0.2.1
+    Now supports Metrics w/ mcstats.org
     Updated items.yml
 0.2.0
     Now supports multiple homes with a max_homes node in homes.yml config

@@ -121,6 +121,14 @@ public class Nexus extends JavaPlugin {
             log.warning("- Backup file data, delete .yml file, then restart server.");
         }
         
+        // metrics
+        try {
+            MetricsLite metrics = new MetricsLite(this);
+            metrics.start();
+        } catch (IOException e) {
+            log.warning("[Nexus] Failed to submit metrics.");
+        }
+        
         // plugin enabled
         log.info(this + " is now enabled.");
     }
