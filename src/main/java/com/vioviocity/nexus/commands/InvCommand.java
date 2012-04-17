@@ -48,32 +48,50 @@ public class InvCommand implements CommandExecutor{
                 }
             }
             
-            // inv (player) [clear]
-            if (args.length == 2) {
+            // inv [clear] (player)
+            if (args[0].equalsIgnoreCase("clear") && args.length == 2) {
+                // check permission
+                if (!Nexus.checkPermission("nexus.inv.clear", player, true))
+                    return true;
+                
+                // initialize variables
+                String playerName = args[1];
+                    
+                // clear inventory
+                for (Player each : onlinePlayers) {
+                    if (each.getName().toLowerCase().contains(playerName)) {
+                        each.getInventory().clear();
+                        each.sendMessage(ChatColor.RED + player.getName() + " cleared your inventory.");
+                        player.sendMessage(ChatColor.RED + each.getName() + "'s inventory has been cleared.");
+                        return true;
+                    }
+                }
+                    
+                // player not found
+                player.sendMessage(ChatColor.RED + playerName + " is not online.");
+                return true;
+            }
+            
+            // inv [see] (player)
+            if (args[0].equalsIgnoreCase("see") && args.length == 2) {
+                // check permission
+                if (!Nexus.checkPermission("nexus.inv.see", player, true))
+                    return true;
                 
                 // initialize variables
                 String playerName = args[1];
                 
-                // inv (player) [clear]
-                if (args[0].equalsIgnoreCase("clear")) {
-                    // check permission
-                    if (!Nexus.checkPermission("nexus.inv.clear", player, true))
+                // see inventory
+                for (Player each : onlinePlayers) {
+                    if (each.getName().toLowerCase().contains(playerName)) {
+                        player.openInventory(each.getInventory());
                         return true;
-                    
-                    // clear inventory
-                    for (Player each : onlinePlayers) {
-                        if (each.getName().toLowerCase().contains(playerName)) {
-                            each.getInventory().clear();
-                            each.sendMessage(ChatColor.RED + player.getName() + " cleared your inventory.");
-                            player.sendMessage(ChatColor.RED + each.getName() + "'s inventory has been cleared.");
-                            return true;
-                        }
                     }
-                    
-                    // player not found
-                    player.sendMessage(ChatColor.RED + playerName + " is not online.");
-                    return true;
                 }
+                
+                // player not found
+                player.sendMessage(ChatColor.RED + playerName + " is not online.");
+                return true;
             }
         }
         
