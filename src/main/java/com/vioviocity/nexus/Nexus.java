@@ -123,7 +123,7 @@ public class Nexus extends JavaPlugin {
         
         // metrics
         try {
-            MetricsLite metrics = new MetricsLite(this);
+            Metrics metrics = new Metrics(this);
             metrics.start();
         } catch (IOException e) {
             log.warning("[Nexus] Failed to submit metrics.");

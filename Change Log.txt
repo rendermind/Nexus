@@ -1,5 +1,6 @@
 0.2.2
     Added /inv [see] (player), switches inventory w/ specified player
+    Changed from MetricsLite to Metrics
 0.2.1
     Now supports Metrics w/ mcstats.org
     Updated items.yml
