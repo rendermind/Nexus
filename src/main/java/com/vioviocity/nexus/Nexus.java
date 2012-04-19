@@ -133,7 +133,7 @@ public class Nexus extends JavaPlugin {
         log.info(this + " is now enabled.");
     }
     
-    //
+    // load command configuratino
     public FileConfiguration loadCommandConfig() {
         if (commandConfig == null) {
             if (commandConfigFile == null)
@@ -148,7 +148,7 @@ public class Nexus extends JavaPlugin {
         return commandConfig;
     }
     
-    //
+    // save command configuration
     public void saveCommandConfig() {
         if (commandConfig == null || commandConfigFile == null)
             return;
@@ -159,7 +159,7 @@ public class Nexus extends JavaPlugin {
         }
     }
     
-    //
+    // load spawn configuration
     public FileConfiguration loadSpawnConfig() {
         if (spawnConfig == null) {
             if (spawnConfigFile == null)
@@ -180,7 +180,7 @@ public class Nexus extends JavaPlugin {
         return spawnConfig;
     }
     
-    //
+    // save spawn configuration
     static public void saveSpawnConfig() {
         if (spawnConfig == null || spawnConfigFile == null)
             return;
@@ -191,7 +191,7 @@ public class Nexus extends JavaPlugin {
         }
     }
     
-    //
+    // load waypoint configuration
     public FileConfiguration loadWaypointConfig() {
         if (waypointConfig == null) {
             if (waypointConfigFile == null)
@@ -206,7 +206,7 @@ public class Nexus extends JavaPlugin {
         return waypointConfig;
     }
     
-    //
+    // save waypoint configuration
     static public void saveWaypointConfig() {
         if (waypointConfig == null || waypointConfigFile == null)
             return;
@@ -217,7 +217,7 @@ public class Nexus extends JavaPlugin {
         }
     }
     
-    //
+    // load home configuration
     public FileConfiguration loadHomeConfig() {
         if (homeConfig == null) {
             if (homeConfigFile == null)
@@ -232,7 +232,7 @@ public class Nexus extends JavaPlugin {
         return homeConfig;
     }
     
-    //
+    // save home configuration
     static public void saveHomeConfig() {
         if (homeConfig == null || homeConfigFile == null)
             return;
@@ -243,7 +243,7 @@ public class Nexus extends JavaPlugin {
         }
     }
     
-    //
+    // load item configuration
     public FileConfiguration loadItemConfig() {
         if (itemConfig == null) {
             if (itemConfigFile == null)
@@ -258,7 +258,7 @@ public class Nexus extends JavaPlugin {
         return itemConfig;
     }
     
-    //
+    // save item configuration
     public void saveItemConfig() {
         if (itemConfig == null || itemConfigFile == null)
             return;
@@ -269,11 +269,13 @@ public class Nexus extends JavaPlugin {
         }
     }
     
-    //
+    // check permission node
     static public boolean checkPermission(String permission, Player player, Boolean notify) {
         if (!player.hasPermission(permission)) {
-            if (notify)
+            if (notify) {
                 player.sendMessage(ChatColor.RED + "You do not have permission.");
+                log.info("[Nexus] " + player.getName() + " was denied permission to " + permission + '.');
+            }
             return false;
         } else {
             return true;
