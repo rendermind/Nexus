@@ -64,14 +64,18 @@ public class TimeCommand implements CommandExecutor{
                 String time = args[0].toLowerCase();
                 if (time.equals("dawn")) {
                     world.setTime(22200);
+                    return true;
                 } else if (time.equals("day")) {
                     world.setTime(0);
+                    return true;
                 } else if (time.equals("dusk")) {
                     world.setTime(12000);
+                    return true;
                 } else if (time.equals("night")) {
                     world.setTime(13800);
+                    return true;
                 }
-                return true;
+                return false;
             }
         }
         

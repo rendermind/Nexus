@@ -1,7 +1,6 @@
 0.2.2
     Added /inv [see] (player), access to inventory of specified player
-    Allows use of non-in-game commands through console
-    Now displays player-issued commands to console
+    Fixed Issue: /time & /weather not displaying correct usage if typed incorrectly
     Changed from MetricsLite to Metrics
 0.2.1
     Now supports Metrics w/ mcstats.org

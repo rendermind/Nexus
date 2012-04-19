@@ -61,14 +61,17 @@ public class WeatherCommand implements CommandExecutor{
                 if (weather.equals("clear")) {
                     world.setStorm(false);
                     world.setThundering(false);
+                    return true;
                 } else if (weather.equals("storm")) {
                     world.setStorm(true);
                     world.setThundering(false);
+                    return true;
                 } else if (weather.equals("thunder")) {
                     world.setStorm(true);
                     world.setThundering(true);
+                    return true;
                 }
-                return true;
+                return false;
             }
         }
         
