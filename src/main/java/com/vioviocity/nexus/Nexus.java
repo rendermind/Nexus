@@ -28,6 +28,8 @@ public class Nexus extends JavaPlugin {
     static File homeConfigFile = null;
     static public FileConfiguration itemConfig = null;
     static File itemConfigFile = null;
+    static public FileConfiguration kitConfig = null;
+    static File kitConfigFile = null;
     
     static public Map<String,String> itemList = new HashMap<String,String>(500);
     
@@ -50,6 +52,8 @@ public class Nexus extends JavaPlugin {
         saveWaypointConfig();
         loadHomeConfig();
         saveHomeConfig();
+        loadKitConfig();
+        saveKitConfig();
         
         // load item list
         loadItemConfig();
@@ -109,10 +113,12 @@ public class Nexus extends JavaPlugin {
         }
         if (commandConfig.getBoolean("nexus.command.inv"))
             getCommand("inv").setExecutor(new InvCommand(this));
+        if (commandConfig.getBoolean("nexus.command.kit"))
+            getCommand("kit").setExecutor(new KitCommand(this));
         
         //check yaml versions
         try {
-            if (!commandConfig.getString("nexus.version").equals("d")) {
+            if (!commandConfig.getString("nexus.version").equals("e")) {
                 log.warning("Nexus\\commands.yml is out of date!.");
                 log.warning("- Backup file data, delete .yml file, then restart server.");
             }
@@ -266,6 +272,32 @@ public class Nexus extends JavaPlugin {
             itemConfig.save(itemConfigFile);
         } catch (IOException e) {
             log.severe("Unable to save item config to " + itemConfigFile + '.');
+        }
+    }
+    
+    // load kit configuration
+    public FileConfiguration loadKitConfig() {
+        if (kitConfig == null) {
+            if (kitConfigFile == null)
+                kitConfigFile = new File(this.getDataFolder(), "kits.yml");
+            if (kitConfigFile.exists()) {
+                kitConfig = YamlConfiguration.loadConfiguration(kitConfigFile);
+            } else {
+                InputStream defConfigStream = getResource("kits.yml");
+                kitConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+            }
+        }
+        return kitConfig;
+    }    
+    
+    // save kit configuration
+    public void saveKitConfig() {
+        if (kitConfig == null || kitConfigFile == null)
+            return;
+        try {
+            kitConfig.save(kitConfigFile);
+        } catch (IOException e) {
+            log.severe("Unable to save kit config to " + kitConfigFile + '.');
         }
     }
     

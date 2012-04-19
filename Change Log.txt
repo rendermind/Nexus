@@ -1,7 +1,10 @@
+1.0.0
+    Implemented /kit (kit)
+    Updated plugin version from beta to release
 0.2.2
     Added /inv [see] (player), access to inventory of specified player
     Fixed Issue: /time & /weather not displaying correct usage if typed incorrectly
-    Changed from MetricsLite to Metrics
+    Changed from MetricsLite.java to Metrics.java
 0.2.1
     Now supports Metrics w/ mcstats.org
     Updated items.yml

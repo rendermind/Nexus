@@ -1,5 +1,5 @@
 nexus:
-  version: d
+  version: e
   command:
     time: true
     weather: true
@@ -22,3 +22,4 @@ nexus:
     msg: true
     mute: true
     inv: true
+    kit: true

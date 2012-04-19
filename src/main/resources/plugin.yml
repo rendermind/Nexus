@@ -1,13 +1,13 @@
 author: Stephen Monroe (VioVioCity)
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.2.2
+version: 1.0.0
 commands:
   time:
-    description: Displays or changes the current in-game time.
+    description: Displays or changes the time.
     usage: /<command> [dawn|day|dusk|night]
   weather:
-    description: Displays or changes the current weather condition.
+    description: Displays or changes the weather.
     usage: /<command> [clear|storm|thunder]
   spawn:
     description: Teleports to or changes spawn location.
@@ -28,43 +28,43 @@ commands:
     description: Unbans specified player.
     usage: /<command> (player)
   tp:
-    description: Teleports player to player, also toggles incoming teleports.
+    description: Teleports player and toggles teleports.
     usage: /<command> (player) (player), /<command> [toggle]
   tpr:
-    description: Sends teleport request to specified player, also handles teleport requests.
+    description: Sends teleport request to specified player.
     usage: /<command> (player), /<command> [accept|deny|cancel]
   tpc:
     description: Teleports to specfied x and z coordinates
     usage: /<command> (x) (z)
   wp:
-    description: Changes or teleports player to specified waypoint, also displays list of waypoints.
+    description: Changes or teleports player to a waypoint.
     usage: /<command> [list], /<command> [set|del] (waypoint)
   home:
-    description: Changes or teleports player to home location.
+    description: Changes or teleports to home location.
     usage: /<command> [set], /<command> [set|del] (home)
   back:
     description: Teleports to prior location.
     usage: /<command>
   heal:
-    description: Changes specified player's health and food to max.
+    description: Sets player's health and food to max.
     usage: /<command> (player)
   kill:
     description: Kills specified player.
     usage: /<command> (player)
   level:
-    description: Displays and changes current level and experience.
+    description: Displays and changes current level.
     usage: /<command> (player) (level)
   item:
-    description: Gives specified player a quantity of an item.
+    description: Gives player a quantity of an item.
     usage: /<command> (player) (id:dmg) (quantity)
   broadcast:
-    description: Displays important message for all players.
+    description: Displays message for all players.
     usage: /<command> (message)
   msg:
     description: Sends private message to specified player.
     usage: /<command> (player) (message)
   reply:
-    description: Sends private message in response to last received private message.
+    description: Sends private message to last recieved.
     usage: /<command> (message)
   mute:
     description: Disables chat of specified player.
@@ -75,6 +75,9 @@ commands:
   inv:
     description: Access to player inventory.
     usage: /<command [clear] (player)
+  kit:
+    description:
+    usage: /<command [list], /<command> (kit)
 permissions:
   nexus.time:
     description: Allows use of /time.
@@ -104,7 +107,7 @@ permissions:
     description: Allows use of /kick (player).
     default: op
   nexus.ban:
-    description: Allows use of /ban (player), also /unban (player).
+    description: Allows use of /ban (player), /unban (player).
     default: op
   nexus.tp:
     description: Allows use of /tp (player) (player).
@@ -113,13 +116,13 @@ permissions:
     description: Allows use of /tp [toggle].
     default: op
   nexus.tpr:
-    description: Allows use of /tpr (player), also /tpr [accept|deny|cancel]
+    description: Allows use of /tpr (player), /tpr [accept|deny|cancel]
     default: op
   nexus.tpc:
     description: Allows use of /tpc (x) (z)
     default: op
   nexus.wp:
-    description: Allows use of /wp (waypoint), also /wp [list]
+    description: Allows use of /wp (waypoint), /wp [list]
     default: op
   nexus.wp.set:
     description: Allows use of /wp [set]
@@ -131,7 +134,7 @@ permissions:
     description: Allows use of /home [set]
     default: op
   nexus.home.multi:
-    description: Allows use of /home (home), also /home [set] (home)
+    description: Allows use of /home (home), /home [set] (home)
     default: op
   nexus.back:
     description: Allows use of /back.
@@ -158,11 +161,14 @@ permissions:
     description: Allows use of /broadcast (message).
     default: op
   nexus.msg:
-    description: Allows use of /msg (player) (message), also /reply (message).
+    description: Allows use of /msg (player) (message), /reply (message).
     default: op
   nexus.mute:
-    description: Allows use of /mute (player), also /unmute (player)
+    description: Allows use of /mute (player), /unmute (player)
     default: op
   nexus.inv.clear:
     description: Allows use of /inv (player) [clear]
+    default: op
+  nexus.kit:
+    description: Allows use of /kit [list], /kit (kit)
     default: op
