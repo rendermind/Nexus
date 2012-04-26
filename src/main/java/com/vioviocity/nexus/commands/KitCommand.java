@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class KitCommand implements CommandExecutor{
     
@@ -45,15 +46,15 @@ public class KitCommand implements CommandExecutor{
             if (Nexus.kitConfig.isConfigurationSection("nexus.kit"))
                 kits = Nexus.kitConfig.getConfigurationSection("nexus.kit").getKeys(false);
             
-            // kits not set
-            if (kits.isEmpty()) {
-                player.sendMessage(ChatColor.RED + "Kits have not been set.");
-                return true;
-            }
-            
             // kit [list], kit (kit)
             if (args.length == 1) {
-                
+		
+		// kits not set
+                if (kits.isEmpty()) {
+		    player.sendMessage(ChatColor.RED + "Kits have not been set.");
+		    return true;
+		}
+		
                 // kit [list]
                 if (args[0].equalsIgnoreCase("list")) {
                     String kitList = "";
@@ -64,8 +65,39 @@ public class KitCommand implements CommandExecutor{
                     return true;
                 }
                 
-                // kit (kit)
+                // initialize variables
+                String kitName = args[0].toLowerCase();
+		ItemStack item = new ItemStack(0, 1);
                 
+                // kit (kit)
+                for (String each : kits) {
+                    if (each.equalsIgnoreCase(kitName)) {
+                        items = Nexus.kitConfig.getStringList("nexus.kit." + each);
+			for (String another : items) {
+			    
+			    // parse item id & qty
+			    String id = another.substring(0, another.indexOf(','));
+			    int qty = Integer.parseInt(another.substring(another.indexOf(',') + 1));
+			    
+			    // check metadata
+			    if (each.contains(":")) {
+				item.setTypeId(Integer.parseInt(id.substring(0, id.indexOf(":"))));
+				item.setDurability(Short.parseShort(id.substring(id.indexOf(":") + 1)));
+			    } else {
+				item.setTypeId(Integer.parseInt(id));
+			    }
+			    
+			    // give item
+			    item.setAmount(qty);
+			    player.getInventory().addItem(item);
+			}
+			return true;
+                    }
+                }
+                
+                // kit not found
+                player.sendMessage(ChatColor.RED + "Kit does not exist.");
+                return true;
             }
         }
         

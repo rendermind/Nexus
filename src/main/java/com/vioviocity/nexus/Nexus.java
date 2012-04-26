@@ -31,7 +31,8 @@ public class Nexus extends JavaPlugin {
     static public FileConfiguration kitConfig = null;
     static File kitConfigFile = null;
     
-    static public Map<String,String> itemList = new HashMap<String,String>(500);
+    static public Map<String,String> itemList = new HashMap<String,String>(1000);
+    //static public Map<String,Integer> kitList = new HashMap<String,Integer>(100);
     
     @Override
     public void onDisable() {
@@ -63,6 +64,15 @@ public class Nexus extends JavaPlugin {
             String item = each.substring(each.indexOf(",") + 1);
             itemList.put(item, id);
         }
+	
+	// load kit list
+	//if (kitConfig.isConfigurationSection("nexus.kit")) {
+	//    for (String each : kitConfig.getStringList("nexus.kit")) {
+	//	String id = each.substring(0, each.indexOf(','));
+	//	int qty = Integer.parseInt(each.substring(each.indexOf(',') + 1));
+	//	kitList.put(id, qty);
+	//    }
+	//}
         
         // register commands based on config
         if (commandConfig.getBoolean("nexus.command.time"))
@@ -139,7 +149,7 @@ public class Nexus extends JavaPlugin {
         log.info(this + " is now enabled.");
     }
     
-    // load command configuratino
+    // load command configuration
     public FileConfiguration loadCommandConfig() {
         if (commandConfig == null) {
             if (commandConfigFile == null)

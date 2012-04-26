@@ -1,6 +1,8 @@
-1.0.0
-    Implemented /kit (kit)
-    Updated plugin version from beta to release
+0.2.3
+    Implemented /kit (kit), gives player items in specified kit
+    Added /kit [list], displays a list of kits
+    Fixed Issue: only up to 500 item names loaded, increased to 1000
+    Updated to CraftBukkit 1.2.5-R1.2
 0.2.2
     Added /inv [see] (player), access to inventory of specified player
     Fixed Issue: /time & /weather not displaying correct usage if typed incorrectly

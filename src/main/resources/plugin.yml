@@ -1,7 +1,7 @@
 author: Stephen Monroe (VioVioCity)
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 1.0.0
+version: 0.3.0
 commands:
   time:
     description: Displays or changes the time.
@@ -76,7 +76,7 @@ commands:
     description: Access to player inventory.
     usage: /<command [clear] (player)
   kit:
-    description:
+    description: Lists and gives player a kit.
     usage: /<command [list], /<command> (kit)
 permissions:
   nexus.time:

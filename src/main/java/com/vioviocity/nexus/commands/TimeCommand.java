@@ -16,6 +16,11 @@ public class TimeCommand implements CommandExecutor{
     }
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
+        // check if enabled
+        if (!Nexus.commandConfig.getBoolean("nexus.command.time"))
+            return true;
+        
+        // command issuer
         if (!(sender instanceof Player)) {
             sender.sendMessage("Command must be issued within game.");
             return true;
@@ -29,8 +34,8 @@ public class TimeCommand implements CommandExecutor{
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("time")) {
             // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.time"))
-                return true;
+            //if (!Nexus.commandConfig.getBoolean("nexus.command.time"))
+            //    return true;
             // invalid args
             if (args.length > 1)
                 return false;
