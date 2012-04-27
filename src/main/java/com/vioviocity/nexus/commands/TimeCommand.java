@@ -33,9 +33,6 @@ public class TimeCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("time")) {
-            // check if enabled
-            //if (!Nexus.commandConfig.getBoolean("nexus.command.time"))
-            //    return true;
             // invalid args
             if (args.length > 1)
                 return false;

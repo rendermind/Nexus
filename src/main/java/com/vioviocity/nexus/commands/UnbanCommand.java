@@ -28,9 +28,6 @@ public class UnbanCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("unban")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.ban"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.ban", player, true))
                 return true;

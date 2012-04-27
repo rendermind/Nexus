@@ -27,9 +27,6 @@ public class OnlineCommand implements CommandExecutor {
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("online")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.online"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.online", player, true))
                 return true;

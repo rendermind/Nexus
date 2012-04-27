@@ -26,9 +26,6 @@ public class TpcCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("tpc")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.tpc"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.tpc", player, true))
                 return true;

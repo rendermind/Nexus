@@ -27,9 +27,6 @@ public class BanCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("ban")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.ban"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.ban", player, true))
                 return true;

@@ -2,7 +2,6 @@ package com.vioviocity.nexus.commands;
 
 import com.vioviocity.nexus.Nexus;
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -26,15 +25,12 @@ public class HomeCommand implements CommandExecutor {
         
         // initialize core variables
         Player player = (Player) sender;
-        Set <String> homes = Collections.EMPTY_SET;
-        Set <String> multiHomes = Collections.EMPTY_SET;
+        Set<String> homes = Collections.EMPTY_SET;
+        Set<String> multiHomes = Collections.EMPTY_SET;
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("home")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.home"))
-                return true;
             // invalid args
             if (args.length < 0 || args.length > 2)
                 return false;
@@ -102,25 +98,6 @@ public class HomeCommand implements CommandExecutor {
                     player.sendMessage(ChatColor.RED + "You have reached the maximum home limit.");
                     return true;
                 }
-                
-                /*
-                // check home
-                for (String each : homes) {
-                    if (player.getName().equals(each)) {
-                        
-                        // save home
-                        Nexus.homeConfig.set(path + "default.world", player.getLocation().getWorld().getName());
-                        Nexus.homeConfig.set(path + "default.x", player.getLocation().getX());
-                        Nexus.homeConfig.set(path + "default.y", player.getLocation().getY());
-                        Nexus.homeConfig.set(path + "default.z", player.getLocation().getZ());
-                        Nexus.homeConfig.set(path + "default.yaw", player.getLocation().getYaw());
-                        Nexus.homeConfig.set(path + "default.pitch", player.getLocation().getPitch());
-                        Nexus.saveHomeConfig();
-                        player.sendMessage(ChatColor.GREEN + "Home reset.");
-                        return true;
-                    }
-                }
-                */
                 
                 // create home
                 Nexus.homeConfig.set(path + "default.world", player.getLocation().getWorld().getName());
@@ -228,12 +205,6 @@ public class HomeCommand implements CommandExecutor {
                             multiHomes = Nexus.homeConfig.getConfigurationSection("nexus.player." + each).getKeys(false);
                             //maxHomes = Nexus.homeConfig.getConfigurationSection("nexus.player." + player.getName()).getKeys(false).size();
                         }
-                        
-                        // check max homes
-                        //if (maxHomes == Nexus.homeConfig.getInt("nexus.max_homes")) {
-                        //    player.sendMessage(ChatColor.RED + "You have reached the maximium home limit.");
-                        //    return true;
-                        //}
                         
                         // check home
                         for (String another : multiHomes) {

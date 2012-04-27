@@ -28,9 +28,7 @@ public class ModeCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("mode")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.mode"))
-                return true;
+	    // check permission
             if (!Nexus.checkPermission("nexus.mode", player, true))
                 return true;
             // invalid args

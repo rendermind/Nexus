@@ -1,25 +1,27 @@
 nexus:
-  version: e
+  version: f
   command:
-    time: true
-    weather: true
-    spawn: true
-    mode: true
-    online: true
-    kick: true
-    ban: true
-    tp: true
-    tpr: true
-    tpc: true
-    wp: true
-    home: true
     back: true
-    heal: true
-    kill: true
-    level: true
-    item: true
+    ban: true
     broadcast: true
+    heal: true
+    inv: true
+    item: true
+    kick: true
+    kill: true
+    kit: true
+    level: true
+    mode: true
     msg: true
     mute: true
-    inv: true
-    kit: true
+    online: true
+    reply: true
+    spawn: true
+    time: true
+    tp: true
+    tpc: true
+    tpr: true
+    unban: true
+    unmute: true
+    weather: true
+    wp: true

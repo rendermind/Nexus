@@ -27,9 +27,6 @@ public class KickCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("kick")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.kick"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.kick", player, true))
                 return true;

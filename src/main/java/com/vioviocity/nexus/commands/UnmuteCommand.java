@@ -1,8 +1,6 @@
 package com.vioviocity.nexus.commands;
 
 import com.vioviocity.nexus.Nexus;
-import java.util.HashMap;
-import java.util.Map;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -29,9 +27,6 @@ public class UnmuteCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("unmute")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.mute"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.mute", player, true))
                 return true;

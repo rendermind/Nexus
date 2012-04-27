@@ -29,9 +29,6 @@ public class SpawnCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("spawn")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.spawn"))
-                return true;
             // invalid args
             if (args.length > 1)
                 return false;

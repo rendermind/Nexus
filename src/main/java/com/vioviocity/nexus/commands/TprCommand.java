@@ -31,9 +31,6 @@ public class TprCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("tpr")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.tpr"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.tpr", player, true))
                 return true;

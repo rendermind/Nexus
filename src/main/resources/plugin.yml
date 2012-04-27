@@ -1,7 +1,7 @@
 author: Stephen Monroe (VioVioCity)
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.3.0
+version: 0.3.1
 commands:
   time:
     description: Displays or changes the time.

@@ -4,11 +4,17 @@ import com.vioviocity.nexus.commands.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.command.Command;
+import org.bukkit.command.PluginCommand;
+import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -32,7 +38,21 @@ public class Nexus extends JavaPlugin {
     static File kitConfigFile = null;
     
     static public Map<String,String> itemList = new HashMap<String,String>(1000);
-    //static public Map<String,Integer> kitList = new HashMap<String,Integer>(100);
+    
+    /*
+     * Special thanks to Dark_Balor for "getPrivateField()"
+     */
+    
+    // get private field of another class
+    private Object getPrivateField(Object object, String field) throws SecurityException,
+            NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+        Class<?> clazz = object.getClass();
+        Field objectField = clazz.getDeclaredField(field);
+        objectField.setAccessible(true);
+        Object result = objectField.get(object);
+        objectField.setAccessible(false);
+        return result;
+    }
     
     @Override
     public void onDisable() {
@@ -55,7 +75,7 @@ public class Nexus extends JavaPlugin {
         saveHomeConfig();
         loadKitConfig();
         saveKitConfig();
-        
+	
         // load item list
         loadItemConfig();
         saveItemConfig();
@@ -65,70 +85,45 @@ public class Nexus extends JavaPlugin {
             itemList.put(item, id);
         }
 	
-	// load kit list
-	//if (kitConfig.isConfigurationSection("nexus.kit")) {
-	//    for (String each : kitConfig.getStringList("nexus.kit")) {
-	//	String id = each.substring(0, each.indexOf(','));
-	//	int qty = Integer.parseInt(each.substring(each.indexOf(',') + 1));
-	//	kitList.put(id, qty);
-	//    }
-	//}
-        
         // register commands based on config
-        if (commandConfig.getBoolean("nexus.command.time"))
-            getCommand("time").setExecutor(new TimeCommand(this));
-        if (commandConfig.getBoolean("nexus.command.weather"))
-            getCommand("weather").setExecutor(new WeatherCommand(this));
-        if (commandConfig.getBoolean("nexus.command.spawn"))
-            getCommand("spawn").setExecutor(new SpawnCommand(this));
-        if (commandConfig.getBoolean("nexus.command.mode"))
-            getCommand("mode").setExecutor(new ModeCommand(this));
-        if (commandConfig.getBoolean("nexus.command.online"))
-            getCommand("online").setExecutor(new OnlineCommand(this));
-        if (commandConfig.getBoolean("nexus.command.kick"))
-            getCommand("kick").setExecutor(new KickCommand(this));
-        if (commandConfig.getBoolean("nexus.command.ban")) {
-            getCommand("ban").setExecutor(new BanCommand(this));
-            getCommand("unban").setExecutor(new UnbanCommand(this));
-        }
-        if (commandConfig.getBoolean("nexus.command.tp"))
-            getCommand("tp").setExecutor(new TpCommand(this));
-        if (commandConfig.getBoolean("nexus.command.tpr"))
-            getCommand("tpr").setExecutor(new TprCommand(this));
-        if (commandConfig.getBoolean("nexus.command.tpc"))
-            getCommand("tpc").setExecutor(new TpcCommand(this));
-        if (commandConfig.getBoolean("nexus.command.wp"))
-            getCommand("wp").setExecutor(new WpCommand(this));
-        if (commandConfig.getBoolean("nexus.command.home"))
-            getCommand("home").setExecutor(new HomeCommand(this));
-        if (commandConfig.getBoolean("nexus.command.back"))
-            getCommand("back").setExecutor(new BackCommand(this));
-        if (commandConfig.getBoolean("nexus.command.heal"))
-            getCommand("heal").setExecutor(new HealCommand(this));
-        if (commandConfig.getBoolean("nexus.command.kill"))
-            getCommand("kill").setExecutor(new KillCommand(this));
-        if (commandConfig.getBoolean("nexus.command.level"))
-            getCommand("level").setExecutor(new LevelCommand(this));
-        if (commandConfig.getBoolean("nexus.command.item"))
-            getCommand("item").setExecutor(new ItemCommand(this));
-        if (commandConfig.getBoolean("nexus.command.broadcast"))
-            getCommand("broadcast").setExecutor(new BroadcastCommand(this));
-        if (commandConfig.getBoolean("nexus.command.msg")) {
-            getCommand("msg").setExecutor(new MsgCommand(this));
-            getCommand("reply").setExecutor(new ReplyCommand(this));
-        }
-        if (commandConfig.getBoolean("nexus.command.mute")) {
-            getCommand("mute").setExecutor(new MuteCommand(this));
-            getCommand("unmute").setExecutor(new UnmuteCommand(this));
-        }
-        if (commandConfig.getBoolean("nexus.command.inv"))
-            getCommand("inv").setExecutor(new InvCommand(this));
-        if (commandConfig.getBoolean("nexus.command.kit"))
-            getCommand("kit").setExecutor(new KitCommand(this));
-        
-        //check yaml versions
+	getCommand("back").setExecutor(new BackCommand(this));
+	getCommand("ban").setExecutor(new BanCommand(this));
+	getCommand("broadcast").setExecutor(new BroadcastCommand(this));
+	getCommand("heal").setExecutor(new HealCommand(this));
+	getCommand("home").setExecutor(new HomeCommand(this));
+	getCommand("inv").setExecutor(new InvCommand(this));
+	getCommand("item").setExecutor(new ItemCommand(this));
+	getCommand("kick").setExecutor(new KickCommand(this));
+	getCommand("kill").setExecutor(new KillCommand(this));
+	getCommand("kit").setExecutor(new KitCommand(this));
+	getCommand("level").setExecutor(new LevelCommand(this));
+	getCommand("mode").setExecutor(new ModeCommand(this));
+	getCommand("msg").setExecutor(new MsgCommand(this));
+	getCommand("mute").setExecutor(new MuteCommand(this));
+	getCommand("online").setExecutor(new OnlineCommand(this));
+	getCommand("reply").setExecutor(new ReplyCommand(this));
+	getCommand("spawn").setExecutor(new SpawnCommand(this));
+        getCommand("time").setExecutor(new TimeCommand(this));
+	getCommand("tp").setExecutor(new TpCommand(this));
+	getCommand("tpc").setExecutor(new TpcCommand(this));
+	getCommand("tpr").setExecutor(new TprCommand(this));
+	getCommand("unban").setExecutor(new UnbanCommand(this));
+	getCommand("unmute").setExecutor(new UnmuteCommand(this));
+        getCommand("weather").setExecutor(new WeatherCommand(this));
+        getCommand("wp").setExecutor(new WpCommand(this));
+
+	// unregister commands based on config
+	Set<String> commandList = Collections.EMPTY_SET;
+	if (commandConfig.isConfigurationSection("nexus.command"))
+	    commandList = commandConfig.getConfigurationSection("nexus.commands").getKeys(false);
+	for (String each : commandList) {
+	    if (!commandConfig.getBoolean("nexus.command." + each))
+		unRegisterCommand(getServer().getPluginCommand(each));
+	}
+	
+        // check yaml versions
         try {
-            if (!commandConfig.getString("nexus.version").equals("e")) {
+            if (!commandConfig.getString("nexus.version").equals("f")) {
                 log.warning("Nexus\\commands.yml is out of date!.");
                 log.warning("- Backup file data, delete .yml file, then restart server.");
             }
@@ -321,6 +316,32 @@ public class Nexus extends JavaPlugin {
             return false;
         } else {
             return true;
+        }
+    }
+    
+    /*
+     * special thanks to Dark_Balor for "unRegisterCommand()"
+     */
+    
+    // disable command
+    private void unRegisterCommand(PluginCommand cmd) {
+        try {
+            Object result = getPrivateField(getServer().getPluginManager(), "commandMap");
+            SimpleCommandMap commandMap = (SimpleCommandMap) result;
+            Object map = getPrivateField(commandMap, "knownCommands");
+            @SuppressWarnings("unchecked")
+            HashMap<String, Command> knownCommands = (HashMap<String, Command>) map;
+            knownCommands.remove(cmd.getName());
+            for (String alias : cmd.getAliases())
+                knownCommands.remove(alias);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 }

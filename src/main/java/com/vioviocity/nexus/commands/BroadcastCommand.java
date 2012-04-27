@@ -26,9 +26,6 @@ public class BroadcastCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("broadcast")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.broadcast"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.broadcast", player, true))
                 return true;

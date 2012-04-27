@@ -30,9 +30,6 @@ public class ReplyCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("reply")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.msg"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.msg", player, true))
                 return true;

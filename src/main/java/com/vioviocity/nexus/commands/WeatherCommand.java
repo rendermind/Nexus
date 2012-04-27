@@ -28,9 +28,6 @@ public class WeatherCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("weather")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.weather"))
-                return true;
             // invalid args
             if (args.length > 1)
                 return false;

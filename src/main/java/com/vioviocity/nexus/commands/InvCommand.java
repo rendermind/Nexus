@@ -27,9 +27,6 @@ public class InvCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("inv")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.inv"))
-                return true;
             // invalid args
             if (args.length < 1 || args.length > 2)
                 return false;

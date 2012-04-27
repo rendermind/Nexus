@@ -31,9 +31,6 @@ public class MuteCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("mute")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.mute"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.mute", player, true))
                 return true;

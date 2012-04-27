@@ -31,9 +31,6 @@ public class BackCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("back")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.back"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.back", player, true))
                 return true;

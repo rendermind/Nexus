@@ -28,9 +28,6 @@ public class KillCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("kill")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.kill"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.kill", player, true))
                 return true;

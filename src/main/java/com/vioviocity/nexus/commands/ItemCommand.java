@@ -28,9 +28,6 @@ public class ItemCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("item")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.item"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.item", player, true))
                 return true;

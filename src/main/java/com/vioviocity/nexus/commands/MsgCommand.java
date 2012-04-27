@@ -27,9 +27,6 @@ public class MsgCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("msg")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.msg"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.msg", player, true))
                 return true;

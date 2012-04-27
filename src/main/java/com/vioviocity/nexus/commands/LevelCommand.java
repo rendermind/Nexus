@@ -27,9 +27,6 @@ public class LevelCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("level")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.level"))
-                return true;
             // invalid args
             if (args.length > 2)
                 return false;

@@ -26,15 +26,12 @@ public class KitCommand implements CommandExecutor{
         
         // initialize core variables
         Player player = (Player) sender;
-        Set <String> kits = Collections.EMPTY_SET;
-        List <String> items = Collections.EMPTY_LIST;
+        Set<String> kits = Collections.EMPTY_SET;
+        List<String> items = Collections.EMPTY_LIST;
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("kit")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.kit"))
-                return true;
             // check permission
             if (!Nexus.checkPermission("nexus.kit", player, true))
                 return true;

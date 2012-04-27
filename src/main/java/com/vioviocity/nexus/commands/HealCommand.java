@@ -27,9 +27,7 @@ public class HealCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("heal")) {
-            // check if enabled
-            if (!Nexus.commandConfig.getBoolean("nexus.command.heal"))
-                return true;
+	    // check permission
             if (!Nexus.checkPermission("nexus.heal", player, true))
                 return true;
             // invalid args

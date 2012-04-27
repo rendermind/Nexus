@@ -1,4 +1,8 @@
-0.2.3
+0.3.1
+    Updated commands.yml with complete command list
+    Fixed Issue: disabling commands did not unregister causing plugin conflicts
+    Cleaned up unnecessary & commented code
+0.3.0
     Implemented /kit (kit), gives player items in specified kit
     Added /kit [list], displays a list of kits
     Fixed Issue: only up to 500 item names loaded, increased to 1000
