@@ -115,7 +115,7 @@ public class Nexus extends JavaPlugin {
 	// unregister commands based on config
 	Set<String> commandList = Collections.EMPTY_SET;
 	if (commandConfig.isConfigurationSection("nexus.command"))
-	    commandList = commandConfig.getConfigurationSection("nexus.commands").getKeys(false);
+	    commandList = commandConfig.getConfigurationSection("nexus.command").getKeys(false);
 	for (String each : commandList) {
 	    if (!commandConfig.getBoolean("nexus.command." + each))
 		unRegisterCommand(getServer().getPluginCommand(each));
