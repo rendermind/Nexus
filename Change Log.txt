@@ -1,5 +1,5 @@
 0.3.2
-    
+    /ban, /unban, & /kick commands now accessible via the console
 0.3.1
     Updated commands.yml with complete command list
     Fixed Issue: disabling commands did not unregister causing plugin conflicts

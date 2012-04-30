@@ -35,9 +35,8 @@ public class OnlineCommand implements CommandExecutor {
                 return false;
             
             String playerList = "";
-            for (Player each : onlinePlayers) {
+            for (Player each : onlinePlayers)
                 playerList += each.getName() + ", ";
-            }
             playerList = playerList.substring(0, playerList.length() - 2);
             player.sendMessage(ChatColor.GREEN + "Online Players [" + onlinePlayers.length + '/' +
                     plugin.getServer().getMaxPlayers() + "]: " + ChatColor.WHITE + playerList);

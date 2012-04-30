@@ -16,21 +16,24 @@ public class UnbanCommand implements CommandExecutor{
     }
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("Command must be issued within game.");
-            return true;
-        }
+	// check if player
+	Boolean isPlayer = true;
+	if (!(sender instanceof Player))
+	    isPlayer = false;
         
         // initialize core variables
-        Player player = (Player) sender;
+	Player player = null;
+        if (isPlayer)
+	    player = (Player) sender;
         OfflinePlayer offlinePlayers[] = plugin.getServer().getOfflinePlayers();
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("unban")) {
             // check permission
-            if (!Nexus.checkPermission("nexus.ban", player, true))
-                return true;
+	    if (isPlayer)
+		if (!Nexus.checkPermission("nexus.ban", player, true))
+		    return true;
             // invalid args
             if (args.length < 1 || args.length > 1)
                 return false;
