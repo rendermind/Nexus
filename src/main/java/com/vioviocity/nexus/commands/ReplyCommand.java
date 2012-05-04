@@ -20,7 +20,7 @@ public class ReplyCommand implements CommandExecutor{
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Command must be issued within game.");
+            sender.sendMessage("[Nexus] Command must be issued within game.");
             return true;
         }
         
@@ -53,7 +53,7 @@ public class ReplyCommand implements CommandExecutor{
                     
                     // check online
                     if (entry.getKey().isOnline() == false) {
-                        player.sendMessage(ChatColor.RED + entry.getKey().getName() + " is not online.");
+                        player.sendMessage(ChatColor.RED + "Player is not online.");
                         return true;
                     }
                     

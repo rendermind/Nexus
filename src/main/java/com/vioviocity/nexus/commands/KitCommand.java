@@ -20,7 +20,7 @@ public class KitCommand implements CommandExecutor{
     
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Command must be issued within game.");
+            sender.sendMessage("[Nexus] Command must be issued within game.");
             return true;
         }
         
@@ -48,7 +48,7 @@ public class KitCommand implements CommandExecutor{
 		
 		// kits not set
                 if (kits.isEmpty()) {
-		    player.sendMessage(ChatColor.RED + "Kits have not been set.");
+		    player.sendMessage(ChatColor.RED + "Kits are not set.");
 		    return true;
 		}
 		

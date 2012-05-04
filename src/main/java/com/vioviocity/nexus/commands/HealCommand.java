@@ -16,7 +16,7 @@ public class HealCommand implements CommandExecutor{
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Command must be issued within game.");
+            sender.sendMessage("[Nexus] Command must be issued within game.");
             return true;
         }
         
@@ -48,14 +48,14 @@ public class HealCommand implements CommandExecutor{
                     if (each.getName().toLowerCase().contains(playerName)) {
                         each.setHealth(each.getMaxHealth());
                         each.setFoodLevel(20);
-                        each.sendMessage(ChatColor.GREEN + player.getName() + " has healed you.");
-                        player.sendMessage(ChatColor.GREEN + "You have healed " + each.getName() + '.');
+                        each.sendMessage(ChatColor.GREEN + player.getName() + " healed you.");
+                        player.sendMessage(ChatColor.GREEN + "You healed " + each.getName() + '.');
                         return true;
                     }
                 }
                 
                 // player not found
-                player.sendMessage(ChatColor.RED + playerName + " is not online.");
+                player.sendMessage(ChatColor.RED + "Player is not online.");
                 return true;
             }
         }

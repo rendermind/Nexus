@@ -18,7 +18,7 @@ public class SpawnCommand implements CommandExecutor{
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Command must be issued within game.");
+            sender.sendMessage("[Nexus] Command must be issued within game.");
             return true;
         }
         

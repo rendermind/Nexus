@@ -17,7 +17,7 @@ public class KillCommand implements CommandExecutor{
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Command must be issued within game.");
+            sender.sendMessage("[Nexus] Command must be issued within game.");
             return true;
         }
         
@@ -47,13 +47,13 @@ public class KillCommand implements CommandExecutor{
                 for (Player each : onlinePlayers) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         each.setHealth(0);
-                        each.sendMessage(ChatColor.RED + player.getName() + " has killed you.");
+                        each.sendMessage(ChatColor.RED + player.getName() + " killed you.");
                         return true;
                     }
                 }
                 
                 // player not found
-                player.sendMessage(ChatColor.RED + playerName + " is not online.");
+                player.sendMessage(ChatColor.RED + "Player is not online.");
                 return true;
             }
         }

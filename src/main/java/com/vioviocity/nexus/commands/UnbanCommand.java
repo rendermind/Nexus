@@ -51,13 +51,13 @@ public class UnbanCommand implements CommandExecutor{
                     
                     // unban player
                     each.setBanned(false);
-                    plugin.getServer().broadcastMessage(ChatColor.GREEN + each.getName() + " has been unbanned.");
+                    plugin.getServer().broadcastMessage(ChatColor.GREEN + each.getName() + " is now unbanned.");
                     return true;
                 }
             }
             
             // player not found
-            player.sendMessage(ChatColor.RED + playerName + " is not banned.");
+            player.sendMessage(ChatColor.RED + "Player is not found.");
             return true;
         }
         

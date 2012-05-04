@@ -19,7 +19,7 @@ public class WpCommand implements CommandExecutor {
     
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Command must be issued within game.");
+            sender.sendMessage("[Nexus] Command must be issued within game.");
             return true;
         }
         
@@ -49,7 +49,7 @@ public class WpCommand implements CommandExecutor {
                     
                     // waypoints not set
                     if (waypoints.isEmpty()) {
-                        player.sendMessage(ChatColor.RED + "Waypoints have not been set.");
+                        player.sendMessage(ChatColor.RED + "Waypoints are not set.");
                         return true;
                     }
                     

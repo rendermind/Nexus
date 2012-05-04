@@ -46,8 +46,8 @@ public class BanCommand implements CommandExecutor{
 		for (Player each : onlinePlayers) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         each.setBanned(true);
-                        each.kickPlayer("You have been banned.");
-                        plugin.getServer().broadcastMessage(ChatColor.RED + each.getName() + " has been banned.");
+                        each.kickPlayer("You are now banned.");
+                        plugin.getServer().broadcastMessage(ChatColor.RED + each.getName() + " is now banned.");
                         return true;
                     }
                 }
@@ -56,13 +56,13 @@ public class BanCommand implements CommandExecutor{
 		for (OfflinePlayer each : plugin.getServer().getOfflinePlayers()) {
 		    if (each.getName().toLowerCase().contains(playerName)) {
 			each.setBanned(true);
-			plugin.getServer().broadcastMessage(ChatColor.RED + each.getName() + " offline player has been banned.");
+			plugin.getServer().broadcastMessage(ChatColor.RED + each.getName() + " is now banned.");
 			return true;
 		    }
 		}
                 
                 // player not online
-                player.sendMessage(ChatColor.RED + playerName + " is not found.");
+                player.sendMessage(ChatColor.RED + "Player is not found.");
                 return true;
             }
             
@@ -76,7 +76,7 @@ public class BanCommand implements CommandExecutor{
                 for (Player each : onlinePlayers) {
                     if (each.getName().toLowerCase().contains(name)) {
                         each.setBanned(true);
-                        each.kickPlayer("You have been banned.  Reason: " + reason);
+                        each.kickPlayer("You are now banned.  Reason: " + reason);
                         return true;
                     }
                 }

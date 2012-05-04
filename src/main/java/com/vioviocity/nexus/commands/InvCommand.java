@@ -16,7 +16,7 @@ public class InvCommand implements CommandExecutor{
     
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Command must be issued within game.");
+            sender.sendMessage("[Nexus] Command must be issued within game.");
             return true;
         }
         
@@ -59,13 +59,13 @@ public class InvCommand implements CommandExecutor{
                     if (each.getName().toLowerCase().contains(playerName)) {
                         each.getInventory().clear();
                         each.sendMessage(ChatColor.RED + player.getName() + " cleared your inventory.");
-                        player.sendMessage(ChatColor.RED + each.getName() + "'s inventory has been cleared.");
+                        player.sendMessage(ChatColor.RED + each.getName() + "'s inventory is now cleared.");
                         return true;
                     }
                 }
                     
                 // player not found
-                player.sendMessage(ChatColor.RED + playerName + " is not online.");
+                player.sendMessage(ChatColor.RED + "Player is not online.");
                 return true;
             }
             
@@ -87,7 +87,7 @@ public class InvCommand implements CommandExecutor{
                 }
                 
                 // player not found
-                player.sendMessage(ChatColor.RED + playerName + " is not online.");
+                player.sendMessage(ChatColor.RED + "Player is not online.");
                 return true;
             }
         }

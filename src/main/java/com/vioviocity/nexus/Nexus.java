@@ -125,11 +125,11 @@ public class Nexus extends JavaPlugin {
         // check yaml versions
         try {
             if (!commandConfig.getString("nexus.version").equals("g")) {
-                log.warning("Nexus\\commands.yml is out of date!.");
+                log.warning("[Nexus] \\commands.yml is out of date!.");
                 log.warning("- Backup file data, delete .yml file, then restart server.");
             }
         } catch (NullPointerException e) {
-            log.warning("Nexus\\commands.yml is out of date!");
+            log.warning("[Nexus] \\commands.yml is out of date!");
             log.warning("- Backup file data, delete .yml file, then restart server.");
         }
         
@@ -167,7 +167,7 @@ public class Nexus extends JavaPlugin {
         try {
             commandConfig.save(commandConfigFile);
         } catch (IOException e) {
-            log.severe("Unable to save command config to " + commandConfigFile + '.');
+            log.severe("[Nexus] Unable to save command config to " + commandConfigFile + '.');
         }
     }
     
@@ -199,7 +199,7 @@ public class Nexus extends JavaPlugin {
         try {
             spawnConfig.save(spawnConfigFile);
         } catch (IOException e) {
-            log.severe("Unable to save spawn config to " + spawnConfigFile + '.');
+            log.severe("[Nexus] Unable to save spawn config to " + spawnConfigFile + '.');
         }
     }
     
@@ -225,7 +225,7 @@ public class Nexus extends JavaPlugin {
         try {
             waypointConfig.save(waypointConfigFile);
         } catch (IOException e) {
-            log.severe("Unable to save waypoint config to " + waypointConfigFile + '.');
+            log.severe("[Nexus] Unable to save waypoint config to " + waypointConfigFile + '.');
         }
     }
     
@@ -251,7 +251,7 @@ public class Nexus extends JavaPlugin {
         try {
             homeConfig.save(homeConfigFile);
         } catch (IOException e) {
-            log.severe("Unable to save home config to " + homeConfigFile + '.');
+            log.severe("[Nexus] Unable to save home config to " + homeConfigFile + '.');
         }
     }
     
@@ -277,7 +277,7 @@ public class Nexus extends JavaPlugin {
         try {
             itemConfig.save(itemConfigFile);
         } catch (IOException e) {
-            log.severe("Unable to save item config to " + itemConfigFile + '.');
+            log.severe("[Nexus] Unable to save item config to " + itemConfigFile + '.');
         }
     }
     
@@ -303,7 +303,7 @@ public class Nexus extends JavaPlugin {
         try {
             kitConfig.save(kitConfigFile);
         } catch (IOException e) {
-            log.severe("Unable to save kit config to " + kitConfigFile + '.');
+            log.severe("[Nexus] Unable to save kit config to " + kitConfigFile + '.');
         }
     }
     

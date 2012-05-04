@@ -20,7 +20,7 @@ public class TpCommand implements CommandExecutor{
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Command must be issued within game.");
+            sender.sendMessage("[Nexus] Command must be issued within game.");
             return true;
         }
         
@@ -48,14 +48,14 @@ public class TpCommand implements CommandExecutor{
                     if (tpToggle.containsKey(player)) {
                         if (!tpToggle.get(player)) {
                             tpToggle.put(player, Boolean.TRUE);
-                            player.sendMessage(ChatColor.GREEN + "Teleporting has been enabled.");
+                            player.sendMessage(ChatColor.GREEN + "Teleporting is now enabled.");
                             return true;
                         }
                     }
                     
                     // toggle false
                     tpToggle.put(player, Boolean.FALSE);
-                    player.sendMessage(ChatColor.RED + "Teleporting has been disabled.");
+                    player.sendMessage(ChatColor.RED + "Teleporting is now disabled.");
                     return true;
                 }
                 
@@ -83,7 +83,7 @@ public class TpCommand implements CommandExecutor{
                 }
                 
                 // player not found
-                player.sendMessage(ChatColor.RED + playerName + " is not online.");
+                player.sendMessage(ChatColor.RED + "Player is not online.");
                 return true;
             }
             
@@ -110,7 +110,7 @@ public class TpCommand implements CommandExecutor{
                                 
                                 // teleport player
                                 eachFrom.teleport(eachTo);
-                                player.sendMessage(ChatColor.GREEN + eachFrom.getName() + " was teleported to " +
+                                player.sendMessage(ChatColor.GREEN + eachFrom.getName() + " teleported to " +
                                         eachTo.getName() + '.');
                                 return true;
                             }
@@ -119,7 +119,7 @@ public class TpCommand implements CommandExecutor{
                 }
                 
                 // player not found
-                player.sendMessage(ChatColor.RED + playerNameFrom + " or " + playerNameTo + " is not online.");
+                player.sendMessage(ChatColor.RED + "Player(s) is not online.");
                 return true;
             }
         }

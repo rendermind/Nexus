@@ -1,6 +1,7 @@
 0.3.3
     Implemented /ip (player), displays specified player's IP address
     Now supports banning of offline players
+    Cleaned up console & in-game texts
     Updated to CraftBukkit 1.2.5-R1.3
 0.3.2
     /ban, /unban, & /kick commands now accessible via the console

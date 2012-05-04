@@ -16,7 +16,7 @@ public class IpCommand implements CommandExecutor {
     
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
 	if (!(sender instanceof Player)) {
-	    sender.sendMessage("Command must be issued within game.");
+	    sender.sendMessage("[Nexus] Command must be issued within game.");
 	    return true;
 	}
 	
@@ -48,13 +48,13 @@ public class IpCommand implements CommandExecutor {
 		    if (each.getName().toLowerCase().contains(playerName)) {
 			String ip = each.getAddress().toString();
 			ip = ip.substring(1, ip.indexOf(':'));
-			player.sendMessage(ChatColor.GREEN + "IP address of " + each.getName() + "is" + ip + '.');
+			player.sendMessage(ChatColor.GREEN + each.getName() + "'s IP address is" + ip + '.');
 			return true;
 		    }
 		}
 		
 		// player not online
-		player.sendMessage(ChatColor.RED + playerName + " is not online.");
+		player.sendMessage(ChatColor.RED + "Player is not online.");
 		return true;
 	    }
 	}

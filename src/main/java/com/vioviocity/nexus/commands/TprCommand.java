@@ -20,7 +20,7 @@ public class TprCommand implements CommandExecutor{
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Command must be issued within game.");
+            sender.sendMessage("[Nexus] Command must be issued within game.");
             return true;
         }
         
@@ -66,7 +66,7 @@ public class TprCommand implements CommandExecutor{
                 for (Map.Entry<Player,Player> entry : tpRequest.entrySet()) {
                     if (entry.getValue().equals(player)) {
                         player.sendMessage(ChatColor.RED + "Denied teleport request.");
-                        entry.getKey().sendMessage(ChatColor.RED + "Your teleport request has been denied.");
+                        entry.getKey().sendMessage(ChatColor.RED + "Your teleport request is denied.");
                         tpRequest.remove(entry.getKey());
                         return true;
                     }
@@ -82,13 +82,13 @@ public class TprCommand implements CommandExecutor{
                 
                 // check request
                 if (tpRequest.containsKey(player)) {
-                    player.sendMessage(ChatColor.RED + "Cancelled teleport request.");
+                    player.sendMessage(ChatColor.RED + "Cancelled Teleport request.");
                     tpRequest.remove(player);
                     return true;
                 }
                 
                 // request not found
-                player.sendMessage(ChatColor.RED + "You have not send a teleport request.");
+                player.sendMessage(ChatColor.RED + "You have not sent a teleport request.");
                 return true;
             }
             
@@ -113,7 +113,7 @@ public class TprCommand implements CommandExecutor{
             }
             
             // player not found
-            player.sendMessage(ChatColor.RED + tpr + " is not online.");
+            player.sendMessage(ChatColor.RED + "Player is not online.");
             return true;
         }
         

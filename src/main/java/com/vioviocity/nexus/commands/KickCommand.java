@@ -44,13 +44,13 @@ public class KickCommand implements CommandExecutor{
                 for (Player each : onlinePlayers) {
                     if (each.getName().toLowerCase().contains(name)) {
                         each.kickPlayer("You have been kicked.");
-                        plugin.getServer().broadcastMessage(ChatColor.RED + each.getName() + " has been kicked.");
+                        plugin.getServer().broadcastMessage(ChatColor.RED + each.getName() + " is now kicked.");
                         return true;
                     }
                 }
                 
                 // player not online
-                player.sendMessage(ChatColor.RED + name + " is not online.");
+                player.sendMessage(ChatColor.RED + "Player is not online.");
                 return true;
             }
             
@@ -63,7 +63,7 @@ public class KickCommand implements CommandExecutor{
                 reason = reason.substring(0, reason.length() - 1);
                 for (Player each : onlinePlayers) {
                     if (each.getName().toLowerCase().contains(name)) {
-                        each.kickPlayer("You have been kicked.  Reason: " + reason);
+                        each.kickPlayer("You are now kicked.  Reason: " + reason);
                         return true;
                     }
                 }

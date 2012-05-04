@@ -19,7 +19,7 @@ public class HomeCommand implements CommandExecutor {
     
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Command must be issued within game.");
+            sender.sendMessage("[Nexus] Command must be issued within game.");
             return true;
         }
         
@@ -95,7 +95,7 @@ public class HomeCommand implements CommandExecutor {
                 if (Nexus.homeConfig.isConfigurationSection("nexus.player." + player.getName()))
                     maxHomes = Nexus.homeConfig.getConfigurationSection("nexus.player." + player.getName()).getKeys(false).size();
                 if (maxHomes == Nexus.homeConfig.getInt("nexus.max_homes")) {
-                    player.sendMessage(ChatColor.RED + "You have reached the maximum home limit.");
+                    player.sendMessage(ChatColor.RED + "You reached the maximum home limit.");
                     return true;
                 }
                 
@@ -122,7 +122,7 @@ public class HomeCommand implements CommandExecutor {
                 
                 // homes not set
                 if (multiHomes.isEmpty()) {
-                    player.sendMessage(ChatColor.RED + "Homes have not been set.");
+                    player.sendMessage(ChatColor.RED + "Homes are not set.");
                     return true;
                 }
                 
