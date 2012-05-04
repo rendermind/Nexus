@@ -2,6 +2,7 @@ package com.vioviocity.nexus.commands;
 
 import com.vioviocity.nexus.Nexus;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -40,7 +41,9 @@ public class BanCommand implements CommandExecutor{
             // ban (player)
             if (args.length == 1) {
                 String playerName = args[0].toLowerCase();
-                for (Player each : onlinePlayers) {
+                
+		// search online players
+		for (Player each : onlinePlayers) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         each.setBanned(true);
                         each.kickPlayer("You have been banned.");
@@ -48,9 +51,18 @@ public class BanCommand implements CommandExecutor{
                         return true;
                     }
                 }
+		
+		// search offline players
+		for (OfflinePlayer each : plugin.getServer().getOfflinePlayers()) {
+		    if (each.getName().toLowerCase().contains(playerName)) {
+			each.setBanned(true);
+			plugin.getServer().broadcastMessage(ChatColor.RED + each.getName() + " offline player has been banned.");
+			return true;
+		    }
+		}
                 
                 // player not online
-                player.sendMessage(ChatColor.RED + playerName + " is not online.");
+                player.sendMessage(ChatColor.RED + playerName + " is not found.");
                 return true;
             }
             
