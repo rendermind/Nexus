@@ -1,11 +1,12 @@
 nexus:
-  version: f
+  version: g
   command:
     back: true
     ban: true
     broadcast: true
     heal: true
     inv: true
+    ip: true
     item: true
     kick: true
     kill: true

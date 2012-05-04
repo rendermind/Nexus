@@ -92,6 +92,7 @@ public class Nexus extends JavaPlugin {
 	getCommand("heal").setExecutor(new HealCommand(this));
 	getCommand("home").setExecutor(new HomeCommand(this));
 	getCommand("inv").setExecutor(new InvCommand(this));
+	getCommand("ip").setExecutor(new IpCommand(this));
 	getCommand("item").setExecutor(new ItemCommand(this));
 	getCommand("kick").setExecutor(new KickCommand(this));
 	getCommand("kill").setExecutor(new KillCommand(this));
@@ -123,7 +124,7 @@ public class Nexus extends JavaPlugin {
 	
         // check yaml versions
         try {
-            if (!commandConfig.getString("nexus.version").equals("f")) {
+            if (!commandConfig.getString("nexus.version").equals("g")) {
                 log.warning("Nexus\\commands.yml is out of date!.");
                 log.warning("- Backup file data, delete .yml file, then restart server.");
             }

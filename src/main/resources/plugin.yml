@@ -1,7 +1,7 @@
 author: Stephen Monroe (VioVioCity)
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.3.2
+version: 0.3.3
 commands:
   time:
     description: Displays or changes the time.
@@ -78,6 +78,9 @@ commands:
   kit:
     description: Lists and gives player a kit.
     usage: /<command [list], /<command> (kit)
+  ip:
+    description: Displays a player's IP address.
+    usage: /<command> (player)
 permissions:
   nexus.time:
     description: Allows use of /time.
@@ -164,11 +167,14 @@ permissions:
     description: Allows use of /msg (player) (message), /reply (message).
     default: op
   nexus.mute:
-    description: Allows use of /mute (player), /unmute (player)
+    description: Allows use of /mute (player), /unmute (player).
     default: op
   nexus.inv.clear:
-    description: Allows use of /inv (player) [clear]
+    description: Allows use of /inv (player) [clear].
     default: op
   nexus.kit:
-    description: Allows use of /kit [list], /kit (kit)
+    description: Allows use of /kit [list], /kit (kit).
+    default: op
+  nexus.ip:
+    description: Allows use of /ip (player).
     default: op
