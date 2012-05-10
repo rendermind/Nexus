@@ -25,7 +25,6 @@ public class UnbanCommand implements CommandExecutor{
 	Player player = null;
         if (isPlayer)
 	    player = (Player) sender;
-        OfflinePlayer offlinePlayers[] = plugin.getServer().getOfflinePlayers();
         
         // command handler
         String cmd = command.getName().toLowerCase();
@@ -40,7 +39,7 @@ public class UnbanCommand implements CommandExecutor{
             
             // unban (player)
             String playerName = args[0].toLowerCase();
-            for (OfflinePlayer each : offlinePlayers) {
+            for (OfflinePlayer each : plugin.getServer().getBannedPlayers()) {
                 if (each.getName().contains(playerName)) {
                     
                     // player not banned

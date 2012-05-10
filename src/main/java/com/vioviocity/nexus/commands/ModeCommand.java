@@ -37,6 +37,10 @@ public class ModeCommand implements CommandExecutor{
             
             // mode (no args)
             if (args.length == 0) {
+		// check permission
+		if (!Nexus.checkPermission("nexus.mode", player, true) || !Nexus.checkPermission("nexus.mode.others", player, true))
+		    return true;
+		
                 if (player.getGameMode() == GameMode.SURVIVAL) {
                     player.setGameMode(GameMode.CREATIVE);
                 } else {
@@ -47,6 +51,10 @@ public class ModeCommand implements CommandExecutor{
             
             // mode (player)
             if (args.length == 1) {
+		// check permission
+		if (!Nexus.checkPermission("nexus.mode.others", player, true))
+		    return true;
+		
                 String playerName = args[0].toLowerCase();
                 for (Player each : onlinePlayers) {
                     if (each.getName().toLowerCase().contains(playerName)) {

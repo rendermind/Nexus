@@ -1,3 +1,7 @@
+0.3.4
+    Fixed Issue: /unban not unbanning players
+    Added new permission nexus.mode.others, allows command usage on other players
+    Added new permission nexus.inv.clear.others, allows command usage on other players
 0.3.3
     Implemented /ip (player), displays specified player's IP address
     Now supports banning of offline players

@@ -1,7 +1,7 @@
 author: Stephen Monroe (VioVioCity)
 main: com.vioviocity.nexus.Nexus
 name: Nexus
-version: 0.3.3
+version: 0.3.4
 commands:
   time:
     description: Displays or changes the time.
@@ -101,6 +101,9 @@ permissions:
     description: Allows use of /spawn [set].
     default: op
   nexus.mode:
+    description: Allows use of /mode.
+    default: op
+  nexus.mode.others:
     description: Allows use of /mode (player).
     default: op
   nexus.online:
@@ -170,7 +173,10 @@ permissions:
     description: Allows use of /mute (player), /unmute (player).
     default: op
   nexus.inv.clear:
-    description: Allows use of /inv (player) [clear].
+    description: Allows use of /inv [clear].
+    default: op
+  nexus.inv.clear.others:
+    description: Allows use of /inv [clear] (player).
     default: op
   nexus.kit:
     description: Allows use of /kit [list], /kit (kit).
