@@ -20,7 +20,7 @@ public class OnlineCommand implements CommandExecutor {
 	if (!(sender instanceof Player))
 	    isPlayer = false;
         
-        // initialize core variables
+        // initialize variables
 	Player player = null;
 	if (isPlayer)
 	    player = (Player) sender;
@@ -28,14 +28,17 @@ public class OnlineCommand implements CommandExecutor {
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("online")) {
+	    
             // check permission
 	    if (isPlayer)
 		if (!Nexus.checkPermission("nexus.online", player, true))
 		    return true;
+	    
             // invalid args
             if (args.length > 0)
                 return false;
             
+	    // display online players
             String playerList = "";
             for (Player each : plugin.getServer().getOnlinePlayers())
                 playerList += each.getName() + ", ";

@@ -24,16 +24,17 @@ public class TprCommand implements CommandExecutor{
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
-        Player onlinePlayers[] = plugin.getServer().getOnlinePlayers();
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("tpr")) {
+	    
             // check permission
             if (!Nexus.checkPermission("nexus.tpr", player, true))
                 return true;
+	    
             // invalid args
             if (args.length != 1)
                 return false;
@@ -41,7 +42,7 @@ public class TprCommand implements CommandExecutor{
             // initialize variable
             String tpr = args[0].toLowerCase();
                 
-            // tpr [accept]
+            // <command> [accept]
             if (tpr.equals("accept")) {
                 
                 // check request
@@ -59,7 +60,7 @@ public class TprCommand implements CommandExecutor{
                 return true;
             }
            
-            // tpr [deny]
+            // <command> [deny]
             if (tpr.equals("deny")) {
                 
                 // check request
@@ -77,7 +78,7 @@ public class TprCommand implements CommandExecutor{
                 return true;
             }
             
-            // tpr [cancel]
+            // <commmand> [cancel]
             if (tpr.equals("cancel")) {
                 
                 // check request
@@ -92,8 +93,8 @@ public class TprCommand implements CommandExecutor{
                 return true;
             }
             
-            // tpr (player)
-            for (Player each : onlinePlayers) {
+            // <command> (player)
+            for (Player each : plugin.getServer().getOnlinePlayers()) {
                 if (each.getName().toLowerCase().contains(tpr)) {
                     
                     // check toggle

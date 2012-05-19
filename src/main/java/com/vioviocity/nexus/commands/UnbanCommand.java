@@ -21,7 +21,7 @@ public class UnbanCommand implements CommandExecutor{
 	if (!(sender instanceof Player))
 	    isPlayer = false;
         
-        // initialize core variables
+        // initialize variables
 	Player player = null;
         if (isPlayer)
 	    player = (Player) sender;
@@ -29,15 +29,17 @@ public class UnbanCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("unban")) {
+	    
             // check permission
 	    if (isPlayer)
 		if (!Nexus.checkPermission("nexus.ban", player, true))
 		    return true;
+	    
             // invalid args
             if (args.length < 1 || args.length > 1)
                 return false;
             
-            // unban (player)
+            // <command> (player)
             String playerName = args[0].toLowerCase();
             for (OfflinePlayer each : plugin.getServer().getBannedPlayers()) {
                 if (each.getName().contains(playerName)) {

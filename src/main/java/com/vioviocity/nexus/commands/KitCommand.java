@@ -24,7 +24,7 @@ public class KitCommand implements CommandExecutor{
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
         Set<String> kits = Collections.EMPTY_SET;
         List<String> items = Collections.EMPTY_LIST;
@@ -32,9 +32,11 @@ public class KitCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("kit")) {
+	    
             // check permission
             if (!Nexus.checkPermission("nexus.kit", player, true))
                 return true;
+	    
             // invalid args
             if (args.length > 1)
                 return false;
@@ -43,7 +45,7 @@ public class KitCommand implements CommandExecutor{
             if (Nexus.kitConfig.isConfigurationSection("nexus.kit"))
                 kits = Nexus.kitConfig.getConfigurationSection("nexus.kit").getKeys(false);
             
-            // kit [list], kit (kit)
+            // <command> [list], <command> (kit)
             if (args.length == 1) {
 		
 		// kits not set
@@ -52,7 +54,7 @@ public class KitCommand implements CommandExecutor{
 		    return true;
 		}
 		
-                // kit [list]
+                // <command> [list]
                 if (args[0].equalsIgnoreCase("list")) {
                     String kitList = "";
                     for (String each : kits)
@@ -66,7 +68,7 @@ public class KitCommand implements CommandExecutor{
                 String kitName = args[0].toLowerCase();
 		ItemStack item = new ItemStack(0, 1);
                 
-                // kit (kit)
+                // <command> (kit)
                 for (String each : kits) {
                     if (each.equalsIgnoreCase(kitName)) {
                         items = Nexus.kitConfig.getStringList("nexus.kit." + each);

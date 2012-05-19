@@ -22,19 +22,21 @@ public class SpawnCommand implements CommandExecutor{
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
         World world = player.getWorld();
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("spawn")) {
+	    
             // invalid args
             if (args.length > 1)
                 return false;
             
-            // spawn (no args)
+            // <command>
             if (args.length == 0) {
+		
                 // permission check
                 if (!Nexus.checkPermission("nexus.spawn", player, true))
                     return true;
@@ -50,8 +52,9 @@ public class SpawnCommand implements CommandExecutor{
                 return true;
             }
             
-            // spawn [set]
+            // <command> [set]
             if (args.length == 1 && args[0].equalsIgnoreCase("set")) {
+		
                 // permission check
                 if (!Nexus.checkPermission("nexus.spawn.set", player, true))
                     return true;

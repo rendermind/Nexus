@@ -20,18 +20,18 @@ public class LevelCommand implements CommandExecutor{
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
-        Player onlinePlayers[] = plugin.getServer().getOnlinePlayers();
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("level")) {
+	    
             // invalid args
             if (args.length > 2)
                 return false;
             
-            // level (no args)
+            // <command>
             if (args.length == 0) {
                 // check permission
                 if (!Nexus.checkPermission("nexus.level", player, true))
@@ -45,8 +45,9 @@ public class LevelCommand implements CommandExecutor{
                 return true;
             }
             
-            // level (level)
+            // <command> (level)
             if (args.length == 1) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.level.set", player, true))
                     return true;
@@ -76,8 +77,9 @@ public class LevelCommand implements CommandExecutor{
                 return true;
             }
             
-            // level (player) (level)
+            // <command> (player) (level)
             if (args.length == 2) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.level.set", player, true))
                     return true;
@@ -93,7 +95,7 @@ public class LevelCommand implements CommandExecutor{
                 }
                 
                 // set player level
-                for (Player each : onlinePlayers) {
+                for (Player each : plugin.getServer().getOnlinePlayers()) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         each.setLevel(0);
                         each.setExp(0);

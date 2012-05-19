@@ -20,7 +20,7 @@ public class BroadcastCommand implements CommandExecutor{
 	if (!(sender instanceof Player))
 	    isPlayer = false;
         
-        // initialize core variables
+        // initialize variables
 	Player player = null;
         if (isPlayer)
 	    player = (Player) sender;
@@ -28,10 +28,12 @@ public class BroadcastCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("broadcast")) {
+	    
             // check permission
 	    if (isPlayer)
 		if (!Nexus.checkPermission("nexus.broadcast", player, true))
 		    return true;
+	    
             // invalid args
             if (args.length == 0)
                 return false;
@@ -44,7 +46,7 @@ public class BroadcastCommand implements CommandExecutor{
 		}
 	    }
             
-            //broadcast (message)
+            // <command> (message)
             String message = "";
             for (String each : args)
                 message += each + " ";

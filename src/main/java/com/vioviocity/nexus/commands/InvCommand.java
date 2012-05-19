@@ -20,33 +20,31 @@ public class InvCommand implements CommandExecutor{
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
-        Player onlinePlayers[] = plugin.getServer().getOnlinePlayers();
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("inv")) {
+	    
             // invalid args
             if (args.length < 1 || args.length > 2)
                 return false;
             
-            // inv [clear]
-            if (args.length == 1) {
-                
-                // inv [clear]
-                if (args[0].equalsIgnoreCase("clear")) {
-                    // check permission
-                    if (!Nexus.checkPermission("nexus.inv.clear", player, true))
-                        return true;
-                
-                    player.getInventory().clear();
+            // <command> [clear]
+            if (args.length == 1 && args[0].equalsIgnoreCase("clear")) {
+		
+		// check permission
+                if (!Nexus.checkPermission("nexus.inv.clear", player, true))
                     return true;
-                }
+                
+                player.getInventory().clear();
+                return true;
             }
             
-            // inv [clear] (player)
-            if (args[0].equalsIgnoreCase("clear") && args.length == 2) {
+            // <command> [clear] (player)
+            if (args.length == 2 && args[0].equalsIgnoreCase("clear")) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.inv.clear.others", player, true))
                     return true;
@@ -55,7 +53,7 @@ public class InvCommand implements CommandExecutor{
                 String playerName = args[1];
                     
                 // clear inventory
-                for (Player each : onlinePlayers) {
+                for (Player each : plugin.getServer().getOnlinePlayers()) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         each.getInventory().clear();
                         each.sendMessage(ChatColor.RED + player.getName() + " cleared your inventory.");
@@ -69,8 +67,9 @@ public class InvCommand implements CommandExecutor{
                 return true;
             }
             
-            // inv [see] (player)
+            // <command> [see] (player)
             if (args[0].equalsIgnoreCase("see") && args.length == 2) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.inv.see", player, true))
                     return true;
@@ -79,7 +78,7 @@ public class InvCommand implements CommandExecutor{
                 String playerName = args[1];
                 
                 // see inventory
-                for (Player each : onlinePlayers) {
+                for (Player each : plugin.getServer().getOnlinePlayers()) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         player.openInventory(each.getInventory());
                         return true;

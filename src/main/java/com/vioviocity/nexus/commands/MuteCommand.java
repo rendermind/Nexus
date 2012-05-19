@@ -32,15 +32,17 @@ public class MuteCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("mute")) {
+	    
             // check permission
 	    if (isPlayer)
 		if (!Nexus.checkPermission("nexus.mute", player, true))
 		    return true;
+	    
             // invalid args
             if (args.length < 1 || args.length > 1)
                 return false;
             
-            //mute (player)
+            // <command> (player)
             if (args.length == 1) {
                 String playerName = args[0];
                 for (Player each : plugin.getServer().getOnlinePlayers()) {

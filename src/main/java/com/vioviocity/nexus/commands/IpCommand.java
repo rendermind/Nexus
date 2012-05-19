@@ -20,7 +20,7 @@ public class IpCommand implements CommandExecutor {
 	if (!(sender instanceof Player))
 	    isPlayer = false;
 	
-	// initialize core variables
+	// initialize variables
 	Player player = null;
 	if (isPlayer)
 	    player = (Player) sender;
@@ -28,6 +28,7 @@ public class IpCommand implements CommandExecutor {
 	// command handler
 	String cmd = command.getName().toLowerCase();
 	if (cmd.equals("ip")) {
+	    
 	    // check permission
 	    if (isPlayer)
 		if (!Nexus.checkPermission("nexus.back", player, true))
@@ -36,7 +37,7 @@ public class IpCommand implements CommandExecutor {
 	    if (args.length > 1)
 		return false;
 	    
-	    // ip (no args)
+	    // <command>
 	    if (isPlayer) {
 		if (args.length == 0) {
 		    String ip = player.getAddress().toString();
@@ -46,7 +47,7 @@ public class IpCommand implements CommandExecutor {
 		}
 	    }
 	    
-	    // ip (player)
+	    // <command> (player)
 	    if (args.length == 1) {
 		String playerName = args[0].toLowerCase();
 		for (Player each : plugin.getServer().getOnlinePlayers()) {

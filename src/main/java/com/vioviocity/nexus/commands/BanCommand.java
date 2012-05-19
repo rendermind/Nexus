@@ -21,7 +21,7 @@ public class BanCommand implements CommandExecutor{
 	if (!(sender instanceof Player))
             isPlayer = false;
         
-        // initialize core variables
+        // initialize variables
 	Player player = null;
 	if (isPlayer)
 	    player = (Player) sender;
@@ -29,15 +29,17 @@ public class BanCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("ban")) {
+	    
             // check permission
 	    if (isPlayer)
 		if (!Nexus.checkPermission("nexus.ban", player, true))
 		    return true;
+	    
             // invalid args
             if (args.length < 1)
                 return false;
             
-            // ban (player)
+            // <command> (player)
             if (args.length == 1) {
                 String playerName = args[0].toLowerCase();
                 
@@ -65,7 +67,7 @@ public class BanCommand implements CommandExecutor{
                 return true;
             }
             
-            // ban (player) (reason)
+            // <command> (player) (reason)
             if (args.length > 1) {
                 String name = args[0].toLowerCase();
                 String reason = "";

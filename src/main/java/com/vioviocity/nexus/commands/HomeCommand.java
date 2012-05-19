@@ -23,7 +23,7 @@ public class HomeCommand implements CommandExecutor {
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
         Set<String> homes = Collections.EMPTY_SET;
         Set<String> multiHomes = Collections.EMPTY_SET;
@@ -31,6 +31,7 @@ public class HomeCommand implements CommandExecutor {
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("home")) {
+	    
             // invalid args
             if (args.length < 0 || args.length > 2)
                 return false;
@@ -42,8 +43,9 @@ public class HomeCommand implements CommandExecutor {
             if (Nexus.homeConfig.isConfigurationSection("nexus.player"))
                 homes = Nexus.homeConfig.getConfigurationSection("nexus.player").getKeys(false);
             
-            // home
+            // <command>
             if (args.length == 0) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.home", player, true))
                     return true;
@@ -82,8 +84,9 @@ public class HomeCommand implements CommandExecutor {
                 return true;
             }
             
-            // home [set]
+            // <command [set]
             if (args.length == 1 && args[0].equalsIgnoreCase("set")) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.home.set", player, true))
                     return true;
@@ -111,7 +114,9 @@ public class HomeCommand implements CommandExecutor {
                 return true;
             }
             
+	    // <command> [list]
             if (args.length == 1 && args[0].equalsIgnoreCase("list")) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.home.multi", player, true))
                     return true;
@@ -135,8 +140,9 @@ public class HomeCommand implements CommandExecutor {
                 return true;
             }
             
-            // home (home)
+            // <command> (home)
             if (args.length == 1) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.home.multi", player, true))
                     return true;
@@ -178,8 +184,9 @@ public class HomeCommand implements CommandExecutor {
                 return true;
             }
             
-            // home [set] (home)
+            // <command> [set] (home)
             if (args.length == 2 & args[0].equalsIgnoreCase("set")) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.home.multi", player, true))
                     return true;
@@ -249,8 +256,9 @@ public class HomeCommand implements CommandExecutor {
             }
             
             
-            // home [del] (home)
+            // <command> [del] (home)
             if (args.length == 2 & args[0].equalsIgnoreCase("del")) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.home.multi", player, true))
                     return true;

@@ -25,15 +25,17 @@ public class BackCommand implements CommandExecutor{
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("back")) {
+	    
             // check permission
             if (!Nexus.checkPermission("nexus.back", player, true))
                 return true;
+	    
             // invalid args
             if (args.length > 0)
                 return false;
@@ -44,7 +46,7 @@ public class BackCommand implements CommandExecutor{
                 return true;
             }
             
-            // back (no args)
+            // <command>
             player.teleport(tpBack.get(player));
             return true;
         }

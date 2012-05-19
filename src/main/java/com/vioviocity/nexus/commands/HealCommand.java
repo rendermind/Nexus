@@ -20,7 +20,7 @@ public class HealCommand implements CommandExecutor{
 	if (!(sender instanceof Player))
 	    isPlayer = false;
         
-        // initialize core variables
+        // initialize variables
 	Player player = null;
         if (isPlayer)
 	    player = (Player) sender;
@@ -28,15 +28,17 @@ public class HealCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("heal")) {
+	    
 	    // check permission
 	    if (isPlayer)
 		if (!Nexus.checkPermission("nexus.heal", player, true))
 		    return true;
+	    
             // invalid args
             if (args.length > 1)
                 return false;
             
-            // heal (no args)
+            // <command>
 	    if (isPlayer) {
 		if (args.length == 0) {
 		    player.setHealth(player.getMaxHealth());
@@ -45,7 +47,7 @@ public class HealCommand implements CommandExecutor{
 		}
 	    }
             
-            // heal (player)
+            // <command> (player)
             if (args.length == 1) {
                 String playerName = args[0].toLowerCase();
                 for (Player each : plugin.getServer().getOnlinePlayers()) {

@@ -21,20 +21,22 @@ public class ItemCommand implements CommandExecutor{
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("item")) {
+	    
             // check permission
             if (!Nexus.checkPermission("nexus.item", player, true))
                 return true;
+	    
             // invalid args
             if (args.length < 1 || args.length > 3)
                 return false;
             
-            // item (id)
+            // <command> (id)
             if (args.length == 1) {
                 
                 // initialize variables
@@ -62,7 +64,7 @@ public class ItemCommand implements CommandExecutor{
                 return true;
             }
             
-            // item (id) (qty) -or- item (player) (id)
+            // <command> (id) (qty), <command> (player) (id)
             if (args.length == 2) {
                 
                 // initial variables
@@ -115,19 +117,17 @@ public class ItemCommand implements CommandExecutor{
                     return true;
                 }
                 
-                // item (id) (qty)
+                // <command> (id) (qty)
                 item.setAmount(Integer.parseInt(args[1]));
                 player.getInventory().addItem(item);
                 return true;
             }
             
-            // item (player) (id) (qty)
-            
             // initialize variables
             String playerName = args[0].toLowerCase();
             ItemStack item = new ItemStack(0, 1);
             
-            // item (player) (id) (qty)
+            // <command> (player) (id) (qty)
             for (Player each : plugin.getServer().getOnlinePlayers()) {
                 if (each.getName().toLowerCase().contains(playerName)) {
                     

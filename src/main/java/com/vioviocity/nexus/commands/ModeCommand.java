@@ -21,7 +21,7 @@ public class ModeCommand implements CommandExecutor{
 	if (!(sender instanceof Player))
 	    isPlayer = false;
         
-        // initialize core variables
+        // initialize variables
         Player player = null;
 	if (isPlayer)
 	    player = (Player) sender;
@@ -29,17 +29,20 @@ public class ModeCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("mode")) {
+	    
             // invalid args
             if (args.length > 1)
                 return false;
             
-            // mode (no args)
+            // <command>
 	    if (isPlayer) {
 		if (args.length == 0) {
+		    
 		    // check permission
 		    if (!Nexus.checkPermission("nexus.mode", player, true))
 			return true;
 		
+		    // change mode
 		    if (player.getGameMode() == GameMode.SURVIVAL) {
 			player.setGameMode(GameMode.CREATIVE);
 		    } else {
@@ -49,13 +52,15 @@ public class ModeCommand implements CommandExecutor{
 		}
             }
             
-            // mode (player)
+            // <command> (player)
             if (args.length == 1) {
+		
 		// check permission
 		if (isPlayer)
 		    if (!Nexus.checkPermission("nexus.mode.others", player, true))
 			return true;
 		
+		// change mode
                 String playerName = args[0].toLowerCase();
                 for (Player each : plugin.getServer().getOnlinePlayers()) {
                     if (each.getName().toLowerCase().contains(playerName)) {

@@ -20,20 +20,22 @@ public class TpcCommand implements CommandExecutor{
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("tpc")) {
+	    
             // check permission
             if (!Nexus.checkPermission("nexus.tpc", player, true))
                 return true;
+	    
             // invalid args
             if (args.length < 2 || args.length > 2)
                 return false;
             
-            // tpc (x) (z)
+            // <command> (x) (z)
             Location teleport = player.getLocation();
             double x = Double.parseDouble(args[0]);
             double z = Double.parseDouble(args[1]);

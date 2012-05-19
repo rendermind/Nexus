@@ -21,19 +21,21 @@ public class WeatherCommand implements CommandExecutor{
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
         World world = player.getWorld();
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("weather")) {
+	    
             // invalid args
             if (args.length > 1)
                 return false;
             
-            // weather (no args)
+            // <command>
             if (args.length == 0) {
+		
                 //permission check
                 if (!Nexus.checkPermission("nexus.weather", player, true))
                     return true;
@@ -48,8 +50,9 @@ public class WeatherCommand implements CommandExecutor{
                 return true;
             }
             
-            // weather [clear|storm|thunder]
+            // <command> [clear|storm|thunder]
             if (args.length == 1) {
+		
                 // permission check
                 if (!Nexus.checkPermission("nexus.weather.set", player, true))
                     return true;

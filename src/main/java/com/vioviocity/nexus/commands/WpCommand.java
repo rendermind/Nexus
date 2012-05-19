@@ -23,24 +23,26 @@ public class WpCommand implements CommandExecutor {
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
         Set <String> waypoints = Collections.EMPTY_SET;
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("wp")) {
+	    
             // invalid args
             if (args.length < 1 || args.length > 2)
                 return false;
             
-            // wp [list], wp (player)
+            // <command> [list], wp (player)
             if (args.length == 1) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.wp", player, true))
                     return true;
                 
-                // wp [list]
+                // <command> [list]
                 if (args[0].equalsIgnoreCase("list")) {
                     
                     // load waypoints
@@ -94,8 +96,9 @@ public class WpCommand implements CommandExecutor {
                 return true;
             }
             
-            // wp [set|del] (waypoint)
+            // <command> [set|del] (waypoint)
             if (args.length == 2) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.wp.set", player, true))
                     return true;
@@ -142,7 +145,7 @@ public class WpCommand implements CommandExecutor {
                     return true;
                 }
                 
-                // wp [del] (waypoint)
+                // <command> [del] (waypoint)
                 if (args[0].equalsIgnoreCase("del")) {
                     
                     // load waypoints

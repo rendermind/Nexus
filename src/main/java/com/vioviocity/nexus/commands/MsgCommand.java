@@ -20,15 +20,17 @@ public class MsgCommand implements CommandExecutor{
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("msg")) {
+	    
             // check permission
             if (!Nexus.checkPermission("nexus.msg", player, true))
                 return true;
+	    
             // invalid args
             if (args.length < 2)
                 return false;

@@ -21,7 +21,7 @@ public class KickCommand implements CommandExecutor{
 	if (!(sender instanceof Player))
 	    isPlayer = false;
         
-        // initialize core variables
+        // initialize variables
 	Player player = null;
 	if (isPlayer)
 	    player = (Player) sender;
@@ -30,15 +30,17 @@ public class KickCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("kick")) {
+	    
             // check permission
 	    if (isPlayer)
 		if (!Nexus.checkPermission("nexus.kick", player, true))
 		    return true;
+	    
             // invalid args
             if (args.length < 1)
                 return false;
             
-            // kick (player)
+            // <command> (player)
             if (args.length == 1) {
                 String name = args[0].toLowerCase();
                 for (Player each : onlinePlayers) {
@@ -54,7 +56,7 @@ public class KickCommand implements CommandExecutor{
                 return true;
             }
             
-            // kick (player) (reason)
+            // <command> (player) (reason)
             if (args.length > 1) {
                 String name = args[0].toLowerCase();
                 String reason = "";

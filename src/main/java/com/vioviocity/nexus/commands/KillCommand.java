@@ -19,7 +19,7 @@ public class KillCommand implements CommandExecutor{
 	if (!(sender instanceof Player))
 	    isPlayer = false;
         
-        // initialize core variables
+        // initialize variables
 	Player player = null;
         if (isPlayer)
 	    player = (Player) sender;
@@ -27,15 +27,17 @@ public class KillCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("kill")) {
+	    
             // check permission
 	    if (isPlayer)
 		if (!Nexus.checkPermission("nexus.kill", player, true))
 		    return true;
+	    
             // invalid args
             if (args.length > 1)
                 return false;
             
-            // kill (no args)
+            // <command>
 	    if (isPlayer) {
 		if (args.length == 0) {
 		    player.setHealth(0);
@@ -43,7 +45,7 @@ public class KillCommand implements CommandExecutor{
 		}
             }
             
-            // kill (player)
+            // <command> (player)
             if (args.length == 1) {
                 String playerName = args[0].toLowerCase();
                 for (Player each : plugin.getServer().getOnlinePlayers()) {

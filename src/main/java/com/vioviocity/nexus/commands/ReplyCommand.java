@@ -24,12 +24,13 @@ public class ReplyCommand implements CommandExecutor{
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("reply")) {
+	    
             // check permission
             if (!Nexus.checkPermission("nexus.msg", player, true))
                 return true;
@@ -40,7 +41,7 @@ public class ReplyCommand implements CommandExecutor{
                 return true;
             }
             
-            // reply (no args)
+            // <comamnd>
             String message = "";
 	    for (String each : args)
                 message += each + " ";

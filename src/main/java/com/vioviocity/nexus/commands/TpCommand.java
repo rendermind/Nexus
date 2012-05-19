@@ -24,22 +24,23 @@ public class TpCommand implements CommandExecutor{
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
-        Player onlinePlayers[] = plugin.getServer().getOnlinePlayers();
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("tp")) {
+	    
             // invalid args
             if (args.length < 1 || args.length > 2)
                 return false;
             
-            // tp [toggle] -or- tp (player)
+            // <command [toggle], <command> (player)
             if (args.length == 1) {
                 
-                // tp [toggle]
+                // <command> [toggle]
                 if (args[0].equalsIgnoreCase("toggle")) {
+		    
                     // check permission
                     if (!Nexus.checkPermission("nexus.tp.toggle", player, true))
                         return true;
@@ -63,9 +64,9 @@ public class TpCommand implements CommandExecutor{
                 if (!Nexus.checkPermission("nexus.tp", player, true))
                     return true;
                 
-                // tp (player)
+                // <command> (player)
                 String playerName = args[0].toLowerCase();
-                for (Player each : onlinePlayers) {
+                for (Player each : plugin.getServer().getOnlinePlayers()) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         
                         // check toggle
@@ -91,13 +92,13 @@ public class TpCommand implements CommandExecutor{
             if (!Nexus.checkPermission("nexus.tp", player, true))
                 return true;
             
-            // tp (player) (player)
+            // <command> (player) (player)
             if (args.length == 2) {
                 String playerNameFrom = args[0].toLowerCase();
                 String playerNameTo = args[1].toLowerCase();
-                for (Player eachFrom : onlinePlayers) {
+                for (Player eachFrom : plugin.getServer().getOnlinePlayers()) {
                     if (eachFrom.getName().toLowerCase().contains(playerNameFrom)) {
-                        for (Player eachTo : onlinePlayers) {
+                        for (Player eachTo : plugin.getServer().getOnlinePlayers()) {
                             if (eachTo.getName().toLowerCase().contains(playerNameTo)) {
                                 
                                 // check toggle

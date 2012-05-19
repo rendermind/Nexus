@@ -16,25 +16,26 @@ public class TimeCommand implements CommandExecutor{
     }
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
-        // command issuer
         if (!(sender instanceof Player)) {
             sender.sendMessage("[Nexus] Command must be issued within game.");
             return true;
         }
         
-        // initialize core variables
+        // initialize variables
         Player player = (Player) sender;
         World world = player.getWorld();
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("time")) {
+	    
             // invalid args
             if (args.length > 1)
                 return false;
             
-            // time (no args)
+            // <command>
             if (args.length == 0) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.time", player, true))
                     return true;
@@ -53,8 +54,9 @@ public class TimeCommand implements CommandExecutor{
                 return true;
             }
             
-            // time [dawn|day|dusk|night]
+            // <command> [dawn|day|dusk|night]
             if (args.length == 1) {
+		
                 // check permission
                 if (!Nexus.checkPermission("nexus.time.set", player, true))
                     return true;
