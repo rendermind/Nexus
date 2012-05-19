@@ -42,7 +42,7 @@ public class BroadcastCommand implements CommandExecutor{
             //broadcast (message)
             String message = "";
             for (String each : args)
-                message += each + ' ';
+                message += each + " ";
             message = message.substring(0, message.length() - 1);
             plugin.getServer().broadcastMessage(ChatColor.RED + "[Broadcast] " + ChatColor.WHITE + message);
             return true;

@@ -37,7 +37,7 @@ public class InvCommand implements CommandExecutor{
                 // inv [clear]
                 if (args[0].equalsIgnoreCase("clear")) {
                     // check permission
-                    if (!Nexus.checkPermission("nexus.inv.clear", player, true) || !Nexus.checkPermission("nexus.inv.clear.others", player, true))
+                    if (!Nexus.checkPermission("nexus.inv.clear", player, true))
                         return true;
                 
                     player.getInventory().clear();

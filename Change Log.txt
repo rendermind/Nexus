@@ -1,3 +1,6 @@
+0.3.5
+    Fixed Issue: /mode & /inv [clear] not allowing permission
+    Updated to CraftBukkit 1.2.5-R2.0
 0.3.4
     Fixed Issue: /unban not unbanning players
     Added new permission nexus.mode.others, allows command usage on other players

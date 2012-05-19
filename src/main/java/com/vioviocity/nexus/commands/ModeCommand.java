@@ -28,9 +28,6 @@ public class ModeCommand implements CommandExecutor{
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("mode")) {
-	    // check permission
-            if (!Nexus.checkPermission("nexus.mode", player, true))
-                return true;
             // invalid args
             if (args.length > 1)
                 return false;
@@ -38,7 +35,7 @@ public class ModeCommand implements CommandExecutor{
             // mode (no args)
             if (args.length == 0) {
 		// check permission
-		if (!Nexus.checkPermission("nexus.mode", player, true) || !Nexus.checkPermission("nexus.mode.others", player, true))
+		if (!Nexus.checkPermission("nexus.mode", player, true))
 		    return true;
 		
                 if (player.getGameMode() == GameMode.SURVIVAL) {
