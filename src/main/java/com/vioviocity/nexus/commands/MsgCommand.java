@@ -22,7 +22,6 @@ public class MsgCommand implements CommandExecutor{
         
         // initialize core variables
         Player player = (Player) sender;
-        Player onlinePlayers[] = plugin.getServer().getOnlinePlayers();
         
         // command handler
         String cmd = command.getName().toLowerCase();
@@ -43,10 +42,10 @@ public class MsgCommand implements CommandExecutor{
             // msg (player) (message)
             String playerName = args[0];
             String message = "";
-            for (int i = 1; i < args.length; i ++)
-                message += args[i] + ' ';
+	    for (String each : args)
+                message += each + " ";
             message = message.substring(0, message.length() - 1);
-            for (Player each : onlinePlayers) {
+            for (Player each : plugin.getServer().getOnlinePlayers()) {
                 if (each.getName().toLowerCase().contains(playerName)) {
                     each.sendMessage(ChatColor.GREEN + "[" + player.getName() + " -> me] " + ChatColor.WHITE + message);
                     player.sendMessage(ChatColor.GREEN + "[me -> " + each.getName() + "] " + ChatColor.WHITE + message);

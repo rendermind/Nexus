@@ -15,30 +15,35 @@ public class IpCommand implements CommandExecutor {
     }
     
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
-	if (!(sender instanceof Player)) {
-	    sender.sendMessage("[Nexus] Command must be issued within game.");
-	    return true;
-	}
+	// check if player
+	Boolean isPlayer = true;
+	if (!(sender instanceof Player))
+	    isPlayer = false;
 	
 	// initialize core variables
-	Player player = (Player) sender;
+	Player player = null;
+	if (isPlayer)
+	    player = (Player) sender;
 	
 	// command handler
 	String cmd = command.getName().toLowerCase();
 	if (cmd.equals("ip")) {
 	    // check permission
-	    if (!Nexus.checkPermission("nexus.back", player, true))
-		return true;
+	    if (isPlayer)
+		if (!Nexus.checkPermission("nexus.back", player, true))
+		    return true;
 	    // invalid args
 	    if (args.length > 1)
 		return false;
 	    
 	    // ip (no args)
-	    if (args.length == 0) {
-		String ip = player.getAddress().toString();
-		ip = ip.substring(1, ip.indexOf(':'));
-		player.sendMessage(ChatColor.GREEN + "Your IP address is " + ip + '.');
-		return true;
+	    if (isPlayer) {
+		if (args.length == 0) {
+		    String ip = player.getAddress().toString();
+		    ip = ip.substring(1, ip.indexOf(':'));
+		    player.sendMessage(ChatColor.GREEN + "Your IP address is " + ip + ".");
+		    return true;
+		}
 	    }
 	    
 	    // ip (player)
@@ -48,13 +53,13 @@ public class IpCommand implements CommandExecutor {
 		    if (each.getName().toLowerCase().contains(playerName)) {
 			String ip = each.getAddress().toString();
 			ip = ip.substring(1, ip.indexOf(':'));
-			player.sendMessage(ChatColor.GREEN + each.getName() + "'s IP address is" + ip + '.');
+			sender.sendMessage(ChatColor.GREEN + each.getName() + "'s IP address is " + ip + ".");
 			return true;
 		    }
 		}
 		
 		// player not online
-		player.sendMessage(ChatColor.RED + "Player is not online.");
+		sender.sendMessage(ChatColor.RED + "Player is not online.");
 		return true;
 	    }
 	}

@@ -25,7 +25,6 @@ public class BanCommand implements CommandExecutor{
 	Player player = null;
 	if (isPlayer)
 	    player = (Player) sender;
-        Player onlinePlayers[] = plugin.getServer().getOnlinePlayers();
         
         // command handler
         String cmd = command.getName().toLowerCase();
@@ -43,7 +42,7 @@ public class BanCommand implements CommandExecutor{
                 String playerName = args[0].toLowerCase();
                 
 		// search online players
-		for (Player each : onlinePlayers) {
+		for (Player each : plugin.getServer().getOnlinePlayers()) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         each.setBanned(true);
                         each.kickPlayer("You are now banned.");
@@ -73,7 +72,7 @@ public class BanCommand implements CommandExecutor{
                 for (int i = 1; i < args.length; i ++)
                     reason += args[i] + ' ';
                 reason = reason.substring(0, reason.length() - 1);
-                for (Player each : onlinePlayers) {
+                for (Player each : plugin.getServer().getOnlinePlayers()) {
                     if (each.getName().toLowerCase().contains(name)) {
                         each.setBanned(true);
                         each.kickPlayer("You are now banned.  Reason: " + reason);

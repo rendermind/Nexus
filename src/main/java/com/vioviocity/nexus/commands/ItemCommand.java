@@ -23,7 +23,6 @@ public class ItemCommand implements CommandExecutor{
         
         // initialize core variables
         Player player = (Player) sender;
-        Player onlinePlayers[] = plugin.getServer().getOnlinePlayers();
         
         // command handler
         String cmd = command.getName().toLowerCase();
@@ -71,7 +70,7 @@ public class ItemCommand implements CommandExecutor{
                 String playerName = args[0].toLowerCase();
                 
                 // item (player) (id)
-                for (Player each : onlinePlayers) {
+                for (Player each : plugin.getServer().getOnlinePlayers()) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         
                         // check item names
@@ -129,7 +128,7 @@ public class ItemCommand implements CommandExecutor{
             ItemStack item = new ItemStack(0, 1);
             
             // item (player) (id) (qty)
-            for (Player each : onlinePlayers) {
+            for (Player each : plugin.getServer().getOnlinePlayers()) {
                 if (each.getName().toLowerCase().contains(playerName)) {
                     
                     // check item names

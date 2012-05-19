@@ -2,7 +2,6 @@ package com.vioviocity.nexus.commands;
 
 import com.vioviocity.nexus.Nexus;
 import org.bukkit.ChatColor;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,44 +15,48 @@ public class KillCommand implements CommandExecutor{
     }
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("[Nexus] Command must be issued within game.");
-            return true;
-        }
+	Boolean isPlayer = true;
+	if (!(sender instanceof Player))
+	    isPlayer = false;
         
         // initialize core variables
-        Player player = (Player) sender;
-        Player onlinePlayers[] = plugin.getServer().getOnlinePlayers();
+	Player player = null;
+        if (isPlayer)
+	    player = (Player) sender;
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("kill")) {
             // check permission
-            if (!Nexus.checkPermission("nexus.kill", player, true))
-                return true;
+	    if (isPlayer)
+		if (!Nexus.checkPermission("nexus.kill", player, true))
+		    return true;
             // invalid args
             if (args.length > 1)
                 return false;
             
             // kill (no args)
-            if (args.length == 0) {
-                player.setHealth(0);
-                return true;
+	    if (isPlayer) {
+		if (args.length == 0) {
+		    player.setHealth(0);
+		    return true;
+		}
             }
             
             // kill (player)
             if (args.length == 1) {
                 String playerName = args[0].toLowerCase();
-                for (Player each : onlinePlayers) {
+                for (Player each : plugin.getServer().getOnlinePlayers()) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         each.setHealth(0);
-                        each.sendMessage(ChatColor.RED + player.getName() + " killed you.");
+                        each.sendMessage(ChatColor.RED + sender.getName() + " killed you.");
+			sender.sendMessage(ChatColor.RED + "You killed " + each.getName() + ".");
                         return true;
                     }
                 }
                 
                 // player not found
-                player.sendMessage(ChatColor.RED + "Player is not online.");
+                sender.sendMessage(ChatColor.RED + "Player is not online.");
                 return true;
             }
         }

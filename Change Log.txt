@@ -1,3 +1,5 @@
+0.3.6
+    /broadcast, /heal, /kill, /ip, /mode, /online, /mute, & /unmute commands now accessible via the console
 0.3.5
     Fixed Issue: /mode & /inv [clear] not allowing permission
     Updated to CraftBukkit 1.2.5-R2.0

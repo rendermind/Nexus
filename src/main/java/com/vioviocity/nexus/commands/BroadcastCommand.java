@@ -15,29 +15,34 @@ public class BroadcastCommand implements CommandExecutor{
     }
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("[Nexus] Command must be issued within game.");
-            return true;
-        }
+	// check if player
+	Boolean isPlayer = true;
+	if (!(sender instanceof Player))
+	    isPlayer = false;
         
         // initialize core variables
-        Player player = (Player) sender;
+	Player player = null;
+        if (isPlayer)
+	    player = (Player) sender;
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("broadcast")) {
             // check permission
-            if (!Nexus.checkPermission("nexus.broadcast", player, true))
-                return true;
+	    if (isPlayer)
+		if (!Nexus.checkPermission("nexus.broadcast", player, true))
+		    return true;
             // invalid args
             if (args.length == 0)
                 return false;
             
             // check mute
-            if (MuteCommand.msgMute.contains(player)) {
-                player.sendMessage(ChatColor.RED + "You are muted.");
-                return true;
-            }
+	    if (isPlayer) {
+		if (MuteCommand.msgMute.contains(player)) {
+		    player.sendMessage(ChatColor.RED + "You are muted.");
+		    return true;
+		}
+	    }
             
             //broadcast (message)
             String message = "";

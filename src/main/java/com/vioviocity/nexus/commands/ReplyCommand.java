@@ -42,9 +42,8 @@ public class ReplyCommand implements CommandExecutor{
             
             // reply (no args)
             String message = "";
-            for (int i = 0; i < args.length; i ++) {
-                message += args[i] + " ";
-            }
+	    for (String each : args)
+                message += each + " ";
             message = message.substring(0, message.length() - 1);
             
             // check request
@@ -52,7 +51,7 @@ public class ReplyCommand implements CommandExecutor{
                 if (entry.getValue().equals(player)) {
                     
                     // check online
-                    if (entry.getKey().isOnline() == false) {
+                    if (!entry.getKey().isOnline()) {
                         player.sendMessage(ChatColor.RED + "Player is not online.");
                         return true;
                     }

@@ -15,21 +15,23 @@ public class UnmuteCommand implements CommandExecutor{
     }
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("[Nexus] Command must be issued within game.");
-            return true;
-        }
+	// check if player
+	Boolean isPlayer = true;
+	if (!(sender instanceof Player))
+	    isPlayer = false;
         
         // initialize core variables
-        Player player = (Player) sender;
-        Player onlinePlayers[] = plugin.getServer().getOnlinePlayers();
+	Player player = null;
+	if (isPlayer)
+	    player = (Player) sender;
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("unmute")) {
             // check permission
-            if (!Nexus.checkPermission("nexus.mute", player, true))
-                return true;
+	    if (isPlayer)
+		if (!Nexus.checkPermission("nexus.mute", player, true))
+		    return true;
             // invalid args
             if (args.length < 1 || args.length > 1)
                 return false;
@@ -37,19 +39,19 @@ public class UnmuteCommand implements CommandExecutor{
             // unmute (player)
             if (args.length == 1) {
                 String playerName = args[0];
-                for (Player each : onlinePlayers) {
+                for (Player each : plugin.getServer().getOnlinePlayers()) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         
                         // check mute
                         if (!MuteCommand.msgMute.contains(each)) {
-                            player.sendMessage(ChatColor.RED + each.getName() + " is not muted.");
+                            sender.sendMessage(ChatColor.RED + each.getName() + " is not muted.");
                             return true;
                         }
                         
                         // unmute player
                         if (MuteCommand.msgMute.contains(each)) {
                             each.sendMessage(ChatColor.GREEN + "You are now unmuted.");
-                            player.sendMessage(ChatColor.GREEN + each.getName() + " is now unmuted.");
+                            sender.sendMessage(ChatColor.GREEN + each.getName() + " is now unmuted.");
                             MuteCommand.msgMute.remove(each);
                             return true;
                         }
@@ -57,7 +59,7 @@ public class UnmuteCommand implements CommandExecutor{
                 }
                 
                 // player not found
-                player.sendMessage(ChatColor.RED + "Player is not online.");
+                sender.sendMessage(ChatColor.RED + "Player is not online.");
             }
         }
         

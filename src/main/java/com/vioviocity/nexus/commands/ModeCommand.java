@@ -16,14 +16,15 @@ public class ModeCommand implements CommandExecutor{
     }
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("[Nexus] Command must be issued within game.");
-            return true;
-        }
+	// check if player
+	Boolean isPlayer = true;
+	if (!(sender instanceof Player))
+	    isPlayer = false;
         
         // initialize core variables
-        Player player = (Player) sender;
-        Player onlinePlayers[] = plugin.getServer().getOnlinePlayers();
+        Player player = null;
+	if (isPlayer)
+	    player = (Player) sender;
         
         // command handler
         String cmd = command.getName().toLowerCase();
@@ -33,41 +34,44 @@ public class ModeCommand implements CommandExecutor{
                 return false;
             
             // mode (no args)
-            if (args.length == 0) {
-		// check permission
-		if (!Nexus.checkPermission("nexus.mode", player, true))
-		    return true;
+	    if (isPlayer) {
+		if (args.length == 0) {
+		    // check permission
+		    if (!Nexus.checkPermission("nexus.mode", player, true))
+			return true;
 		
-                if (player.getGameMode() == GameMode.SURVIVAL) {
-                    player.setGameMode(GameMode.CREATIVE);
-                } else {
-                    player.setGameMode(GameMode.SURVIVAL);
-                }
-                return true;
+		    if (player.getGameMode() == GameMode.SURVIVAL) {
+			player.setGameMode(GameMode.CREATIVE);
+		    } else {
+			player.setGameMode(GameMode.SURVIVAL);
+		    }
+		    return true;
+		}
             }
             
             // mode (player)
             if (args.length == 1) {
 		// check permission
-		if (!Nexus.checkPermission("nexus.mode.others", player, true))
-		    return true;
+		if (isPlayer)
+		    if (!Nexus.checkPermission("nexus.mode.others", player, true))
+			return true;
 		
                 String playerName = args[0].toLowerCase();
-                for (Player each : onlinePlayers) {
+                for (Player each : plugin.getServer().getOnlinePlayers()) {
                     if (each.getName().toLowerCase().contains(playerName)) {
                         if (each.getGameMode() == GameMode.SURVIVAL) {
                             each.setGameMode(GameMode.CREATIVE);
-                            player.sendMessage(ChatColor.GREEN + each.getName() + " game mode set to creative.");
+                            sender.sendMessage(ChatColor.GREEN + each.getName() + " game mode set to creative.");
                         } else {
                             each.setGameMode(GameMode.SURVIVAL);
-                            player.sendMessage(ChatColor.GREEN + each.getName() + " game mode set to survival.");
+                            sender.sendMessage(ChatColor.GREEN + each.getName() + " game mode set to survival.");
                         }
                         return true;
                     }
                 }
                 
                 // player not online
-                player.sendMessage(ChatColor.RED + "Player is not online.");
+                sender.sendMessage(ChatColor.RED + "Player is not online.");
                 return true;
             }
         }

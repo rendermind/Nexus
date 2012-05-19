@@ -15,30 +15,32 @@ public class OnlineCommand implements CommandExecutor {
     }
     
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("[Nexus] Command must be issued within game.");
-            return true;
-        }
+	// check if player
+	Boolean isPlayer = true;
+	if (!(sender instanceof Player))
+	    isPlayer = false;
         
         // initialize core variables
-        Player player = (Player) sender;
-        Player onlinePlayers[] = plugin.getServer().getOnlinePlayers();
+	Player player = null;
+	if (isPlayer)
+	    player = (Player) sender;
         
         // command handler
         String cmd = command.getName().toLowerCase();
         if (cmd.equals("online")) {
             // check permission
-            if (!Nexus.checkPermission("nexus.online", player, true))
-                return true;
+	    if (isPlayer)
+		if (!Nexus.checkPermission("nexus.online", player, true))
+		    return true;
             // invalid args
             if (args.length > 0)
                 return false;
             
             String playerList = "";
-            for (Player each : onlinePlayers)
+            for (Player each : plugin.getServer().getOnlinePlayers())
                 playerList += each.getName() + ", ";
             playerList = playerList.substring(0, playerList.length() - 2);
-            player.sendMessage(ChatColor.GREEN + "Online Players [" + onlinePlayers.length + '/' +
+            sender.sendMessage(ChatColor.GREEN + "Online Players [" + plugin.getServer().getOnlinePlayers().length + '/' +
                     plugin.getServer().getMaxPlayers() + "]: " + ChatColor.WHITE + playerList);
             return true;
         }
