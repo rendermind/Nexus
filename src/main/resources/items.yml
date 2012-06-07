@@ -1,5 +1,5 @@
 nexus:
-  version: c
+  version: d
   items:
   - 1,stone
   - 2,grass
@@ -365,7 +365,6 @@ nexus:
   - 373:16457,splashexstengthpotion
   - 373:16458,splashexslownesspotion
   - 373:16460,splashexharmingpotion
-  - 373:,waterbottle
   - 374,glassbottle
   - 375,spidereye
   - 376,fermentedspidereye

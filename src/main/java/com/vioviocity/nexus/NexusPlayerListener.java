@@ -53,7 +53,7 @@ public class NexusPlayerListener implements Listener{
         
         // check teleport cause
         if (!event.getCause().toString().equals("UNKNOWN"))
-            BackCommand.tpBack.put(player, event.getFrom());
+            BackCommand.tpBack.put(player, event.getFrom().add(0, 0.1, 0));
     }
     
     @EventHandler

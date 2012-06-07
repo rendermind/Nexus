@@ -1,3 +1,8 @@
+0.3.7
+    Updated items.yml file
+    Changed /back y-axis to +0.1
+    Fixed Issue: /online from console when no players online gave error
+    Fixed Issue: /item default qty was giving 1 instead of 64
 0.3.6
     /broadcast, /heal, /kill, /ip, /mode, /online, /mute, & /unmute commands now accessible via the console
     Cleaned up unnecessary & commented code
