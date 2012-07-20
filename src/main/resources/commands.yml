@@ -7,5 +7,6 @@ nexus:
     level: true
     mode: true
     online: true
+    spawn: true
     time: true
     weather: true

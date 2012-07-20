@@ -17,6 +17,8 @@ commands:
     usage: /<command> (player)
   online:
     usage: /<command>
+  spawn:
+    usage: /<command> [set]
   time:
     usage: /<command> [dawn|day|dusk|night|lock]
   weather:

@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.SimpleCommandMap;
@@ -26,6 +27,8 @@ public class Nexus extends JavaPlugin implements Listener {
 
     public static FileConfiguration commandConfig = null;
     static File commandConfigFile = null;
+    public static FileConfiguration spawnConfig = null;
+    static File spawnConfigFile = null;
 
     /*
      * Special thanks to Dark_Balor for "getPrivateField()"
@@ -55,6 +58,8 @@ public class Nexus extends JavaPlugin implements Listener {
 		// setup config files
 		loadCommandConfig();
 		saveCommandConfig();
+		loadSpawnConfig();
+		saveSpawnConfig();
 
         // register events
         getServer().getPluginManager().registerEvents(new EventListener(), this);
@@ -76,7 +81,7 @@ public class Nexus extends JavaPlugin implements Listener {
 		//getCommand("mute").setExecutor(new Mute(this));
 		getCommand("online").setExecutor(new Online(this));
 		//getCommand("r").setExecutor(new Reply(this));
-		//getCommand("spawn").setExecutor(new Spawn(this));
+		getCommand("spawn").setExecutor(new Spawn(this));
 		getCommand("time").setExecutor(new Time(this));
 		//getCommand("tp").setExecutor(new Teleport(this));
 		//getCommand("unban").setExecutor(new Unban(this));
@@ -138,6 +143,37 @@ public class Nexus extends JavaPlugin implements Listener {
 			commandConfig.save(commandConfigFile);
 		} catch (IOException e) {
 			log.severe("[Nexus] Unable to save command config to " + commandConfigFile);
+		}
+	}
+
+	// load spawn config
+	public FileConfiguration loadSpawnConfig() {
+		if (spawnConfig == null) {
+			if (spawnConfigFile == null)
+				spawnConfigFile = new File(this.getDataFolder(), "spawn.yml");
+			if (spawnConfigFile.exists()) {
+				spawnConfig = YamlConfiguration.loadConfiguration(spawnConfigFile);
+			} else {
+				InputStream defaultStream = getResource("spawn.yml");
+				spawnConfig = YamlConfiguration.loadConfiguration(defaultStream);
+
+				Location spawn = getServer().getWorlds().get(0).getSpawnLocation();
+				spawnConfig.set(spawn.getWorld().getName() + ".x", spawn.getX());
+				spawnConfig.set(spawn.getWorld().getName() + ".y", spawn.getY());
+				spawnConfig.set(spawn.getWorld().getName() + ".z", spawn.getZ());
+			}
+		}
+		return spawnConfig;
+	}
+
+	// save spawn config
+	static public void saveSpawnConfig() {
+		if (spawnConfig == null || spawnConfigFile == null)
+			return;
+		try {
+			spawnConfig.save(spawnConfigFile);
+		} catch (IOException e) {
+			log.severe("[Nexus] Unable to save spawn config to " + spawnConfigFile);
 		}
 	}
 
