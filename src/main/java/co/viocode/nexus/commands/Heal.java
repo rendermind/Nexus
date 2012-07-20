@@ -29,7 +29,6 @@ public class Heal implements CommandExecutor {
 		Player player = null;
 		if (isPlayer)
 			player = (Player) sender;
-		Player target = null;
 
 		// check permission
 		if (isPlayer)
@@ -52,9 +51,9 @@ public class Heal implements CommandExecutor {
 		if (args.length == 1) {
 
 			// init vars
-			target = Nexus.findPlayer(args[0].toLowerCase());
+			Player target = Nexus.findPlayer(args[0].toLowerCase());
 
-			// player not online
+			// check if player is online
 			if (target == null) {
 				sender.sendMessage(ChatColor.RED + "Player is not online.");
 				return true;

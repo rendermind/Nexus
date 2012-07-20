@@ -11,6 +11,8 @@ commands:
     usage: /<command> (player)
   kill:
     usage: /<command> (player)
+  level:
+    usage: /<command> (player) (level)
   mode:
     usage: /<command> (player)
   online:

@@ -4,6 +4,7 @@ nexus:
     broadcast: true
     heal: true
     kill: true
+    level: true
     mode: true
     online: true
     time: true

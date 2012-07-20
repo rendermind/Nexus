@@ -30,7 +30,6 @@ public class Mode implements CommandExecutor {
 		Player player = null;
 		if (isPlayer)
 			player = (Player) sender;
-		Player target = null;
 
 		// <command>
 		if (args.length == 0) {
@@ -60,9 +59,9 @@ public class Mode implements CommandExecutor {
 					return true;
 
 			// init vars
-			target = Nexus.findPlayer(args[0].toLowerCase());
+			Player target = Nexus.findPlayer(args[0].toLowerCase());
 
-			// player not online
+			// check if player is online
 			if (target == null) {
 				sender.sendMessage(ChatColor.RED + "Player is not online.");
 				return true;
