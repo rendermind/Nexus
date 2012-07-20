@@ -1,9 +1,6 @@
 package co.viocode.nexus;
 
-import co.viocode.nexus.commands.Mode;
-import co.viocode.nexus.commands.Online;
-import co.viocode.nexus.commands.Time;
-import co.viocode.nexus.commands.Weather;
+import co.viocode.nexus.commands.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -65,7 +62,7 @@ public class Nexus extends JavaPlugin implements Listener {
 		// register commands
 		//getCommand("back").setExecutor(new Back(this));
 		//getCommand("ban").setExecutor(new Ban(this));
-		//getCommand("broadcast").setExecutor(new Broadcast(this));
+		getCommand("broadcast").setExecutor(new Broadcast(this));
 		//getCommand("heal").setExecutor(new Heal(this));
 		//getCommand("home").setExecutor(new Home(this));
 		//getCommand("inv").setExecutor(new Inventory(this));

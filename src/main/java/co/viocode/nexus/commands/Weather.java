@@ -38,9 +38,11 @@ public class Weather implements CommandExecutor {
 			if (!Nexus.checkPermission("nexus.weather", player))
 				return true;
 
+			// format weather
 			int tick = (int) world.getWeatherDuration();
 			int min = (tick / 20) / 60;
 
+			// display weather
 			if (world.hasStorm())
 				player.sendMessage(ChatColor.GREEN + "Weather: " + ChatColor.WHITE + "Raining for another " + min + " minute(s)");
 			else

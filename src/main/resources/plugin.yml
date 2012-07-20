@@ -5,6 +5,8 @@ name: Nexus
 url: http://viocode.co/
 version: 0.4.0
 commands:
+  broadcast:
+    usage: /<command> (message)
   mode:
     usage: /<command> (player)
   online:
