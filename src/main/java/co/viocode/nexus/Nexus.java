@@ -49,7 +49,7 @@ public class Nexus extends JavaPlugin implements Listener {
     public void onDisable() {
 
 		// plugin disabled
-        log.warning("[Nexus] Disabled!");
+        log.warning("[Nexus] Now disabled!");
     }
 
     @Override
@@ -91,15 +91,15 @@ public class Nexus extends JavaPlugin implements Listener {
 
 		// unregister commands based on config
 		Set <String> commandList = Collections.EMPTY_SET;
-		if (commandConfig.isConfigurationSection("nexus.command"))
-			commandList = commandConfig.getConfigurationSection("nexus.command").getKeys(false);
+		if (commandConfig.isConfigurationSection("command"))
+			commandList = commandConfig.getConfigurationSection("command").getKeys(false);
 		for (String each : commandList)
-			if (!commandConfig.getBoolean("nexus.command." + each))
+			if (!commandConfig.getBoolean("command." + each))
 				unRegisterCommand(getServer().getPluginCommand(each));
 
 		// check commands.yml version
 		try {
-			if (!commandConfig.getString("nexus.version").equals("0.4.0")) {
+			if (!commandConfig.getString("version").equals("0.4.0")) {
 				log.warning("[Nexus] \\commands.yml is out of date!");
 				log.warning("[Nexus] Delete the file and restart server!");
 			}
@@ -117,7 +117,7 @@ public class Nexus extends JavaPlugin implements Listener {
 		}
 
 		// plugin enabled
-        log.info("[Nexus] Enabled!");
+        log.info("[Nexus] Now enabled!");
     }
 
 	// load command config

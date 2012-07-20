@@ -1,6 +1,8 @@
 package co.viocode.nexus.commands;
 
 import co.viocode.nexus.Nexus;
+import java.util.Collections;
+import java.util.Set;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -31,6 +33,7 @@ public class Spawn implements CommandExecutor {
 		// init vars
 		Player player = (Player) sender;
 		World world = player.getWorld();
+		Set <String> spawns = Collections.EMPTY_SET;
 
 		// <command>
 		if (args.length == 0) {
@@ -54,6 +57,32 @@ public class Spawn implements CommandExecutor {
 			return true;
 		}
 
+		// <command> [list]
+		if (args.length == 1 && args[0].equalsIgnoreCase("list")) {
+
+			// check permission
+			if (!Nexus.checkPermission("nexus.spawn", player))
+				return true;
+
+			// get spawns
+			if (Nexus.spawnConfig.isConfigurationSection("")) {
+				spawns = Nexus.spawnConfig.getConfigurationSection("").getKeys(false);
+			} else {
+				player.sendMessage(ChatColor.RED + "Spawn is not set.");
+				return true;
+			}
+
+			// format spawns
+			String spawnList = "";
+			for (String each : spawns)
+				spawnList += each + ", ";
+			spawnList = spawnList.substring(0, spawnList.length() - 2);
+
+			// display spawn list
+			player.sendMessage(ChatColor.GREEN + "Spawns: " + ChatColor.WHITE + spawnList);
+			return true;
+		}
+
 		// <command> [set]
 		if (args.length == 1 && args[0].equalsIgnoreCase("set")) {
 
@@ -73,6 +102,45 @@ public class Spawn implements CommandExecutor {
 
 			// display spawn set
 			player.sendMessage(ChatColor.GREEN + "Spawn location set.");
+			return true;
+		}
+
+		// <command> (world)
+		if (args.length == 1) {
+
+			// check permission
+			if (!Nexus.checkPermission("nexus.spawn", player))
+				return true;
+
+			// get spawns
+			if (Nexus.spawnConfig.isConfigurationSection("")) {
+				spawns = Nexus.spawnConfig.getConfigurationSection("").getKeys(false);
+			} else {
+				player.sendMessage(ChatColor.RED + "Spawn is not set.");
+				return true;
+			}
+
+			// find spawn
+			for (String each : spawns) {
+				if (each.toLowerCase().contains(args[0].toLowerCase())) {
+
+					// get spawn location
+					Location spawn = player.getLocation();
+					spawn.setWorld(plugin.getServer().getWorld(each));
+					spawn.setX(Nexus.spawnConfig.getDouble(each + ".x"));
+					spawn.setY(Nexus.spawnConfig.getDouble(each + ".y"));
+					spawn.setZ(Nexus.spawnConfig.getDouble(each + ".z"));
+					spawn.setYaw((float) Nexus.spawnConfig.getDouble(each + ".yaw"));
+					spawn.setPitch((float) Nexus.spawnConfig.getDouble(each + ".pitch"));
+
+					// teleport to spawn
+					player.teleport(spawn);
+					return true;
+				}
+			}
+
+			// spawn not found
+			player.sendMessage(ChatColor.RED + "Spawn does not exist.");
 			return true;
 		}
 

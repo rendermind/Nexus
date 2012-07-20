@@ -1,0 +1,171 @@
+0.4.0
+	Recoded every line of code for optimization
+	Added /time [lock], freezes the current time
+	Added /weather [lock], freezes the current weather
+	Added /spawn [list], displays list of spawn locations
+	Added /spawn (world), teleports player to specified spawn location
+	/spawn now supports multiple worlds
+	Restructure of spawn.yml
+	Updated to CraftBukkit 1.2.5-R4.0
+0.3.7
+    Updated items.yml file
+    Changed /back y-axis to +0.1
+    Fixed Issue: /online from console when no players online gave error
+    Fixed Issue: /item default qty was giving 1 instead of 64
+0.3.6
+    /broadcast, /heal, /kill, /ip, /mode, /online, /mute, & /unmute commands now accessible via the console
+    Cleaned up unnecessary & commented code
+    Updated to CraftBukkit 1.2.5-R3.0
+0.3.5
+    Fixed Issue: /mode & /inv [clear] not allowing permission
+    Updated to CraftBukkit 1.2.5-R2.0
+0.3.4
+    Fixed Issue: /unban not unbanning players
+    Added new permission nexus.mode.others, allows command usage on other players
+    Added new permission nexus.inv.clear.others, allows command usage on other players
+0.3.3
+    Implemented /ip (player), displays specified player's IP address
+    Now supports banning of offline players
+    Cleaned up console & in-game texts
+    Updated to CraftBukkit 1.2.5-R1.3
+0.3.2
+    /ban, /unban, & /kick commands now accessible via the console
+0.3.1
+    Updated commands.yml with complete command list
+    Fixed Issue: disabling commands did not unregister causing plugin conflicts
+    Cleaned up unnecessary & commented code
+0.3.0
+    Implemented /kit (kit), gives player items in specified kit
+    Added /kit [list], displays a list of kits
+    Fixed Issue: only up to 500 item names loaded, increased to 1000
+    Updated to CraftBukkit 1.2.5-R1.2
+0.2.2
+    Added /inv [see] (player), access to inventory of specified player
+    Fixed Issue: /time & /weather not displaying correct usage if typed incorrectly
+    Changed from MetricsLite.java to Metrics.java
+0.2.1
+    Now supports Metrics w/ mcstats.org
+    Updated items.yml
+0.2.0
+    Now supports multiple homes with a max_homes node in homes.yml config
+    Added /home [set] (home), changes specified home location
+    Added /home (home), teleports to specified home location
+    Added /home [list], displays list of homes
+    Changed /wp (waypoint) [set|delete] to /wp [set|del] (waypoint)
+    Changed /inv (player) [clear] to /inv [clear] (player)
+    Changed default /item (player) (id:dmg) stack size from 64 to 1
+    Restructure of homes.yml & waypoints.yml
+    Changed all command default permissions to op
+0.1.8
+    Added console notification when attempting to issue in-game commands from the console
+    Updated to CraftBukkit 1.2.5-R1.0
+0.1.7
+    Fixed Issue: /kick (player) (reason) would display usage after issuing command
+    Fixed Issue: /home used wrong permission
+    Fixed Issue: /home stating home not set after being set
+0.1.6
+    Added /kick (player) (reason), allowing a reason to be specified
+    Added /ban (player) (reason), allowing a reason to be specified
+0.1.5
+    Fixed Issue: /level [set] without arguments caused error
+    Fixed Issue: /home [set] generated extra nodes in homes.yml
+    Now requires a permissions plugin
+    Updated to CraftBukkit 1.2.4-R1.0
+0.1.4
+    Implemented /home, teleports to home location
+    Added /home [set], changes home location to current location
+    Fixed Issue: /spawn command attempted to set spawn with any argument
+    Fixed Issue: /spawn command set not setting spawn location
+0.1.3
+    Fixed Issue: parsing item metadata crashed plugin
+    Updated to CraftBukkit 1.2.3-R0.2
+0.1.2
+    Updated to CraftBukkit 1.1-R6
+0.1.1
+    /item (id) now supports item names
+    Fixed Issue: invalid command usage would return console error
+0.1.0
+    Modularized code, all commands into separate classes
+    Implemented /inv [clear], clears inventory
+    Added /inv (player) [clear], clears specified player's inventory
+    Fixed Issue: /item supports metadata
+    Fixed Issue: /tpc (x) (z) displays usage even after proper use
+    Updated plugin version from alpha to beta
+    Updated to CraftBukkit 1.1-R4
+0.0.22
+    Implemented /mute (player), disables chat for specified player
+    Implemented /unmute (player), enables chat for specified player
+    Fixed Issue: /kick not being accessible
+    Fixed Issue: most commands displayed usage without valid permission
+    Fixed Issue: /time, /weather, and /spawn allowed usage without valid permission
+    Fixed Issue: /level (player) (level) will level up issuer instead of specified player
+    Fixed Issue: /back on death defaulted to all players
+0.0.21
+    Implemented /broadcast (message), displays important message for all players
+    Implemented /msg (player) (message), sends private message to specified player
+    Implemented /reply (message), sends private message in response to last received private message.
+    Changed /time and /weather permission nodes
+0.0.20
+    Implemented /tpc (x) (z), teleports to specified x and z coordinates
+    Implemented /item (player) (id) (quantity), gives specified player a quantity of an item.
+0.0.19
+    Implemented /wp (waypoint), teleports to specified checkpoint location
+    Added /wp (waypoint) [set|delete], creates, deletes, or changes specified checkpoint location
+    Added /wp [list], displays a list of waypoints
+    Fixed issue: /tp could not be enabled in commands.yml
+    Fixed issue: /spawn not compatible with non-default world names
+0.0.18
+    Implemented command config to toggle available commands
+    Fixed /spawn issue causing players to spawn inside blocks and suffocate
+    Known issue: /spawn only works with default world titled 'world'
+0.0.17
+    Implemented /spawn, teleports to spawn location
+    Added /spawn [set], changes spawn location to current location
+0.0.16
+    Implemented /level, displays current level and experience
+    Added /level (player) (level), changes specified player's level
+    Implemented /heal (player), changes specified player's health and food to max
+    Implemented /kill (player), kills specified player
+    Changed /unban permissions to match /ban
+    Fixed /back on death issue causing severe warnings upon mob death
+    Cleaned up command descriptions
+0.0.15
+    Added /back on death when player has nexus.back.death permission
+0.0.14
+    Implemented /back command, teleports to prior location
+    Updated to CraftBukkit 1.1-R3
+0.0.13
+    Fixed /tpr [accept|deny] not accepting or denying teleport requests
+0.0.12
+    Implemented /tpr (player), sends teleport request to specified player
+    Added /tpr [accept|deny|cancel], handles teleport requests
+    Added /tp [toggle], toggles incoming teleports
+    Removed several redundant player notifications
+0.0.11
+    Modularized code, command permission check
+    Fixed permission issue not notifying player upon not passing arguments to /tp
+0.0.10
+    Commands now support partial names of players
+0.0.9
+    Implemented /tp (player) (player), teleports player to player
+0.0.8
+    Changed /mode arguments from [survival|creative] to (player) and functioning as a toggle
+    Changed /weather duration showing ticks to minutes
+0.0.7
+    Implemented /kick (player) command, kicks specified player
+    Implemented /ban (player) command, bans specified player
+    Implemented /unban (player) command, unbans specified player
+0.0.6
+    Implemented /online command, displays a list of online players
+0.0.5
+    Implemented /mode [survival|creative] command, sets game mode
+    Fixed permission issue not allowing players with permission to issue associated commands
+0.0.4
+    Implemented permissions support
+0.0.3
+    Implemented /weather command, displays the current weather condition
+    Added /weather [clear|storm|thunder], changes the current weather condition
+0.0.2
+    Added /time [dawn|day|dusk|night] command arguments, changes the current in-game time.
+0.0.1
+    Implemented /time command, displays the current in-game time.
