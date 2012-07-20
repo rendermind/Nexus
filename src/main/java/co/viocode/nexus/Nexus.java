@@ -63,12 +63,12 @@ public class Nexus extends JavaPlugin implements Listener {
 		//getCommand("back").setExecutor(new Back(this));
 		//getCommand("ban").setExecutor(new Ban(this));
 		getCommand("broadcast").setExecutor(new Broadcast(this));
-		//getCommand("heal").setExecutor(new Heal(this));
+		getCommand("heal").setExecutor(new Heal(this));
 		//getCommand("home").setExecutor(new Home(this));
 		//getCommand("inv").setExecutor(new Inventory(this));
 		//getCommand("item").setExecutor(new Item(this));
 		//getCommand("kick").setExecutor(new Kick(this));
-		//getCommand("kill").setExecutor(new Kill(this));
+		getCommand("kill").setExecutor(new Kill(this));
 		//getCommand("kit").setExecutor(new Kit(this));
 		//getCommand("level").setExecutor(new Level(this));
 		getCommand("mode").setExecutor(new Mode(this));

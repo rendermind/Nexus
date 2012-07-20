@@ -7,6 +7,10 @@ version: 0.4.0
 commands:
   broadcast:
     usage: /<command> (message)
+  heal:
+    usage: /<command> (player)
+  kill:
+    usage: /<command> (player)
   mode:
     usage: /<command> (player)
   online:
