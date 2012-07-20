@@ -1,0 +1,15 @@
+author: vioCode
+description: Vital commands for every server owner.
+main: co.viocode.nexus.Nexus
+name: Nexus
+url: http://viocode.co/
+version: 0.4.0
+commands:
+  mode:
+    usage: /<command> (player)
+  online:
+    usage: /<command>
+  time:
+    usage: /<command> [dawn|day|dusk|night|lock]
+  weather:
+    usage: /<command> [clear|rain|storm|lock]
