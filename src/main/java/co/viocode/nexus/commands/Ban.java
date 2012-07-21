@@ -18,7 +18,7 @@ public class Ban implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
 
 		// invalid args
-		if (args.length > 2)
+		if (args.length < 1 || args.length > 2)
 			return false;
 
 		// check if player
@@ -104,7 +104,7 @@ public class Ban implements CommandExecutor {
 
 			// ban offline player
 			if (offlineTarget != null) {
-				
+
 				// check if banned
 				if (offlineTarget.isBanned()) {
 					sender.sendMessage(ChatColor.RED + "Player already banned.");

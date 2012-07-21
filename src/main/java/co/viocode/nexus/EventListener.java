@@ -36,9 +36,9 @@ public class EventListener implements Listener {
 		Location spawn = player.getLocation();
 
 		// check for prior death location
-		if (Nexus.deathLocation.containsKey(player)) {
-			spawn.setWorld(Nexus.deathLocation.get(player));
-			Nexus.deathLocation.remove(player);
+		if (Nexus.deathWorld.containsKey(player)) {
+			spawn.setWorld(Nexus.deathWorld.get(player));
+			Nexus.deathWorld.remove(player);
 		}
 
 		// teleport player to spawn
@@ -56,7 +56,7 @@ public class EventListener implements Listener {
 		// init vars
 		Player player = event.getEntity();
 
-		// store death location
-		Nexus.deathLocation.put(player, player.getLocation().getWorld());
+		// store death world
+		Nexus.deathWorld.put(player, player.getLocation().getWorld());
 	}
 }

@@ -2,10 +2,13 @@
 	Recoded every line of code for optimization
 	Added /time [lock], freezes the current time
 	Added /weather [lock], freezes the current weather
+	Restructure of spawn.yml
+	/spawn now supports multiple worlds
 	Added /spawn [list], displays list of spawn locations
 	Added /spawn (world), teleports player to specified spawn location
-	/spawn now supports multiple worlds
-	Restructure of spawn.yml
+	Changed command /msg to /w
+	Changed command /reply to /r
+	Fixed Issue: /reply not responding to correct player
 	Updated to CraftBukkit 1.2.5-R4.0
 0.3.7
     Updated items.yml file

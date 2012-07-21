@@ -19,7 +19,7 @@ public class Weather implements CommandExecutor {
 
 		// check if player
 		if (!(sender instanceof Player)) {
-			sender.sendMessage("[Nexus] Command must be issued within game.");
+			sender.sendMessage(ChatColor.RED + "[Nexus] Command must be issued within game.");
 			return true;
 		}
 

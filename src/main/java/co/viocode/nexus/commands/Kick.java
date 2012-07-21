@@ -17,7 +17,7 @@ public class Kick implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
 
 		// invalid args
-		if (args.length > 2)
+		if (args.length < 1 || args.length > 2)
 			return false;
 
 		// check if player
@@ -29,7 +29,7 @@ public class Kick implements CommandExecutor {
 		Player player = null;
 		if (isPlayer)
 			player = (Player) sender;
-		Player target = null;
+		Player target = Nexus.findOnlinePlayer(args[0]);
 
 		// check permission
 		if (isPlayer)
@@ -38,9 +38,6 @@ public class Kick implements CommandExecutor {
 
 		// <command> (player)
 		if (args.length == 1) {
-
-			// get player
-			target = Nexus.findOnlinePlayer(args[0]);
 
 			// check if player is offline
 			if (target == null) {
@@ -56,9 +53,6 @@ public class Kick implements CommandExecutor {
 
 		// <command> (player) (reason)
 		if (args.length == 2) {
-
-			// get player
-			target = Nexus.findOnlinePlayer(args[0]);
 
 			// check if player is offline
 			if (target == null) {

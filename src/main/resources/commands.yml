@@ -8,7 +8,9 @@ command:
   level: true
   mode: true
   online: true
+  r: true
   spawn: true
   time: true
   unban: true
+  w: true
   weather: true
