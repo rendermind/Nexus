@@ -17,10 +17,8 @@ public class Inventory implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
 
 		// check if player
-		if (!(sender instanceof Player)) {
-			sender.sendMessage(ChatColor.RED + "[Nexus] Command must be issued within game.");
+		if (!Nexus.checkPlayer(sender))
 			return true;
-		}
 
 		// invalid args
 		if (args.length < 1 || args.length > 2)

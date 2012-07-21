@@ -4,13 +4,15 @@
 	Added /weather [lock], freezes the current weather
 	Added /spawn [list], displays list of spawn locations
 	Added /spawn (world), teleports player to specified spawn location
+	Changed /level (player) (level) max level 10000 to 50
 	Changed /msg to /w
 	Changed /reply to /r
 	Changed /inv [see] (player) to /inv [edit] (player)
-	Removed /ip
 	Changed permission nexus.msg to nexus.whisper
 	Changed permission nexus.tp to nexus.teleport
 	Changed permission nexus.tp.toggle to nexus.teleport.toggle
+	Changed permission nexus.tpc to nexus.teleport.coords
+	Removed /ip
 	Removed permission nexus.inventory.clear.others
 	Restructure of spawn.yml
 	/spawn now supports multiple worlds

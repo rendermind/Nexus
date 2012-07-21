@@ -40,8 +40,8 @@ public class Teleport implements CommandExecutor {
 		if (args.length == 1 && args[0].equalsIgnoreCase("toggle")) {
 
 			// check if player
-			if (!isPlayer)
-				return false;
+			if (!Nexus.checkPlayer(sender))
+				return true;
 
 			// check permission
 			if (!Nexus.checkPermission("nexus.teleport.toggle", player))

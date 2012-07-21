@@ -29,6 +29,8 @@ commands:
     usage: /<command> [set]
   tp:
     usage: /<command> (player) (player) or /<command> [toggle]
+  tpc:
+    usage: /<command> (x) (z) or /<command> (x) (y) (z)
   time:
     usage: /<command> [dawn|day|dusk|night|lock]
   unban:

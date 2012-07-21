@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.logging.Logger;
 import org.bukkit.*;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -86,7 +87,7 @@ public class Nexus extends JavaPlugin implements Listener {
 		getCommand("spawn").setExecutor(new Spawn(this));
 		getCommand("time").setExecutor(new Time(this));
 		getCommand("tp").setExecutor(new Teleport(this));
-		//getCommand("tpc").setExecutor(new TeleportCoords(this));
+		getCommand("tpc").setExecutor(new TeleportCoords(this));
 		//getCommand("tpr").setExecutor(new TeleportRequest(this));
 		getCommand("unban").setExecutor(new Unban(this));
 		//getCommand("unmute").setExecutor(new Unmute(this));
@@ -191,6 +192,15 @@ public class Nexus extends JavaPlugin implements Listener {
 			return false;
 		}
 		return true;
+	}
+
+	// check if player
+	static public boolean checkPlayer(CommandSender sender) {
+		if (sender instanceof Player)
+			return true;
+		else
+			sender.sendMessage(ChatColor.RED + "[Nexus] Command must be issued within game.");
+		return false;
 	}
 
 	// find online player
