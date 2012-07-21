@@ -29,6 +29,7 @@ public class Heal implements CommandExecutor {
 		Player player = null;
 		if (isPlayer)
 			player = (Player) sender;
+		Player target = null;
 
 		// check permission
 		if (isPlayer)
@@ -50,8 +51,8 @@ public class Heal implements CommandExecutor {
 		// <command> (player)
 		if (args.length == 1) {
 
-			// init vars
-			Player target = Nexus.findOnlinePlayer(args[0].toLowerCase());
+			// get player
+			target = Nexus.findOnlinePlayer(args[0]);
 
 			// check if player is offline
 			if (target == null) {
@@ -63,7 +64,7 @@ public class Heal implements CommandExecutor {
 			target.setFoodLevel(20);
 			target.setHealth(target.getMaxHealth());
 			target.sendMessage(ChatColor.GREEN + sender.getName() + " healed you.");
-			sender.sendMessage(ChatColor.GREEN + target.getName() + " healed.");
+			sender.sendMessage(ChatColor.GREEN + target.getName() + " is healed.");
 			return true;
 		}
 

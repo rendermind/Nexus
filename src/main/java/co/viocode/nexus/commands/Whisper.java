@@ -33,7 +33,10 @@ public class Whisper implements CommandExecutor {
 			return true;
 
 		// check if player is muted
-
+		if (Nexus.mute.contains(player)) {
+			player.sendMessage(ChatColor.RED + "You are muted.");
+			return true;
+		}
 
 		// format message
 		String message = "";

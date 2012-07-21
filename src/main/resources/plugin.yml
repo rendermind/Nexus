@@ -21,6 +21,8 @@ commands:
     usage: /<command> (player) (level)
   mode:
     usage: /<command> (player)
+  mute:
+    usage: /<command> (player)
   online:
     usage: /<command>
   r:
@@ -34,6 +36,8 @@ commands:
   time:
     usage: /<command> [dawn|day|dusk|night|lock]
   unban:
+    usage: /<command> (player)
+  unmute:
     usage: /<command> (player)
   w:
     usage: /<command> (player) (message)

@@ -1,17 +1,19 @@
 package co.viocode.nexus;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class EventListener implements Listener {
 
 	@EventHandler
-	public void onPlayerJoin (PlayerJoinEvent event) {
+	public void onPlayerJoin(PlayerJoinEvent event) {
 
 		// init vars
 		Player player = event.getPlayer();
@@ -58,5 +60,18 @@ public class EventListener implements Listener {
 
 		// store death world
 		Nexus.deathWorld.put(player, player.getLocation().getWorld());
+	}
+
+	@EventHandler
+	public void onPlayerChat(PlayerChatEvent event) {
+
+		// init vars
+		Player player = event.getPlayer();
+
+		// check if player is muted
+		if (Nexus.mute.contains(player)) {
+			player.sendMessage(ChatColor.RED + "You are muted.");
+			event.setCancelled(true);
+		}
 	}
 }

@@ -7,10 +7,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class TeleportCoords implements CommandExecutor {
+public class TeleportC implements CommandExecutor {
 
 	private Nexus plugin;
-	public TeleportCoords(Nexus plugin) {
+	public TeleportC(Nexus plugin) {
 		this.plugin = plugin;
 	}
 

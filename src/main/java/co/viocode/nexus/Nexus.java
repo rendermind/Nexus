@@ -33,6 +33,7 @@ public class Nexus extends JavaPlugin implements Listener {
 	static public Map<Player,World> deathWorld = new HashMap<Player,World>(20);
 	static public Map<Player,Player> reply = new HashMap<Player,Player>(200);
 	static public Set<Player> teleportToggle = new HashSet<Player>(200);
+	static public Set<Player> mute = new HashSet<Player>(200);
 
     /*
      * Special thanks to Dark_Balor for "getPrivateField()"
@@ -81,16 +82,16 @@ public class Nexus extends JavaPlugin implements Listener {
 		//getCommand("kit").setExecutor(new Kit(this));
 		getCommand("level").setExecutor(new Level(this));
 		getCommand("mode").setExecutor(new Mode(this));
-		//getCommand("mute").setExecutor(new Mute(this));
+		getCommand("mute").setExecutor(new Mute(this));
 		getCommand("online").setExecutor(new Online(this));
 		getCommand("r").setExecutor(new Reply(this));
 		getCommand("spawn").setExecutor(new Spawn(this));
 		getCommand("time").setExecutor(new Time(this));
 		getCommand("tp").setExecutor(new Teleport(this));
-		getCommand("tpc").setExecutor(new TeleportCoords(this));
+		getCommand("tpc").setExecutor(new TeleportC(this));
 		//getCommand("tpr").setExecutor(new TeleportRequest(this));
 		getCommand("unban").setExecutor(new Unban(this));
-		//getCommand("unmute").setExecutor(new Unmute(this));
+		getCommand("unmute").setExecutor(new Unmute(this));
 		getCommand("w").setExecutor(new Whisper(this));
 		getCommand("weather").setExecutor(new Weather(this));
 		//getCommand("wp").setExecutor(new Waypoint(this));
