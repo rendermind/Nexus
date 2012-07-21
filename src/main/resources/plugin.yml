@@ -5,10 +5,14 @@ name: Nexus
 url: http://viocode.co/
 version: 0.4.0
 commands:
+  ban:
+    usage: /<command> (player) (reason)
   broadcast:
     usage: /<command> (message)
   heal:
     usage: /<command> (player)
+  kick:
+    usage: /<command> (player) (reason)
   kill:
     usage: /<command> (player)
   level:
@@ -21,5 +25,7 @@ commands:
     usage: /<command> [set]
   time:
     usage: /<command> [dawn|day|dusk|night|lock]
+  unban:
+    usage: /<command> (player)
   weather:
     usage: /<command> [clear|rain|storm|lock]

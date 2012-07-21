@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.SimpleCommandMap;
@@ -66,13 +67,13 @@ public class Nexus extends JavaPlugin implements Listener {
 
 		// register commands
 		//getCommand("back").setExecutor(new Back(this));
-		//getCommand("ban").setExecutor(new Ban(this));
+		getCommand("ban").setExecutor(new Ban(this));
 		getCommand("broadcast").setExecutor(new Broadcast(this));
 		getCommand("heal").setExecutor(new Heal(this));
 		//getCommand("home").setExecutor(new Home(this));
 		//getCommand("inv").setExecutor(new Inventory(this));
 		//getCommand("item").setExecutor(new Item(this));
-		//getCommand("kick").setExecutor(new Kick(this));
+		getCommand("kick").setExecutor(new Kick(this));
 		getCommand("kill").setExecutor(new Kill(this));
 		//getCommand("kit").setExecutor(new Kit(this));
 		getCommand("level").setExecutor(new Level(this));
@@ -84,7 +85,7 @@ public class Nexus extends JavaPlugin implements Listener {
 		getCommand("spawn").setExecutor(new Spawn(this));
 		getCommand("time").setExecutor(new Time(this));
 		//getCommand("tp").setExecutor(new Teleport(this));
-		//getCommand("unban").setExecutor(new Unban(this));
+		getCommand("unban").setExecutor(new Unban(this));
 		//getCommand("unmute").setExecutor(new Unmute(this));
 		getCommand("weather").setExecutor(new Weather(this));
 		//getCommand("wp").setExecutor(new Waypoint(this));
@@ -112,6 +113,7 @@ public class Nexus extends JavaPlugin implements Listener {
 		try {
 			Metrics metrics = new Metrics(this);
 			metrics.start();
+			log.info("[Nexus] This plugin collects anonymous statistical data.");
 		} catch (IOException e) {
 			log.warning("[Nexus] Failed to submit metrics.");
 		}
@@ -187,10 +189,18 @@ public class Nexus extends JavaPlugin implements Listener {
 		return true;
 	}
 
-	// find player
-	static public Player findPlayer(String name) {
+	// find online player
+	static public Player findOnlinePlayer(String name) {
 		for (Player each : Bukkit.getOnlinePlayers())
-			if (each.getName().toLowerCase().contains(name))
+			if (each.getName().toLowerCase().contains(name.toLowerCase()))
+				return each;
+		return null;
+	}
+
+	// fine offline player
+	static public OfflinePlayer findOfflinePlayer(String name) {
+		for (OfflinePlayer each : Bukkit.getOfflinePlayers())
+			if (each.getName().toLowerCase().contains(name.toLowerCase()))
 				return each;
 		return null;
 	}

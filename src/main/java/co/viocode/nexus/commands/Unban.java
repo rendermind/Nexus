@@ -2,15 +2,16 @@ package co.viocode.nexus.commands;
 
 import co.viocode.nexus.Nexus;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Heal implements CommandExecutor {
+public class Unban implements CommandExecutor {
 
 	private Nexus plugin;
-	public Heal(Nexus plugin) {
+	public Unban(Nexus plugin) {
 		this.plugin = plugin;
 	}
 
@@ -29,45 +30,36 @@ public class Heal implements CommandExecutor {
 		Player player = null;
 		if (isPlayer)
 			player = (Player) sender;
+		OfflinePlayer target = Nexus.findOfflinePlayer(args[0]);
 
 		// check permission
 		if (isPlayer)
-			if (!Nexus.checkPermission("nexus.heal", player))
+			if (!Nexus.checkPermission("nexus.ban", player))
 				return true;
-
-		// <command>
-		if (args.length == 0) {
-
-			// check if player
-			if (!isPlayer)
-				return false;
-
-			player.setFoodLevel(20);
-			player.setHealth(player.getMaxHealth());
-			return true;
-		}
 
 		// <command> (player)
 		if (args.length == 1) {
 
-			// init vars
-			Player target = Nexus.findOnlinePlayer(args[0].toLowerCase());
-
-			// check if player is offline
+			// check if player exists
 			if (target == null) {
-				sender.sendMessage(ChatColor.RED + "Player is not online.");
+				sender.sendMessage(ChatColor.RED + "Player does not exist.");
 				return true;
 			}
 
-			// heal player
-			target.setFoodLevel(20);
-			target.setHealth(target.getMaxHealth());
-			target.sendMessage(ChatColor.GREEN + sender.getName() + " healed you.");
-			sender.sendMessage(ChatColor.GREEN + target.getName() + " healed.");
+			// check if player is banned
+			if (!target.isBanned()) {
+				sender.sendMessage(ChatColor.RED + "Player is not banned.");
+				return true;
+			}
+
+			// unban player
+			target.setBanned(false);
+			plugin.getServer().broadcastMessage(ChatColor.GREEN + target.getName() + " unbanned from server!");
 			return true;
 		}
 
 		// end of command
 		return false;
 	}
+
 }

@@ -59,9 +59,9 @@ public class Mode implements CommandExecutor {
 					return true;
 
 			// init vars
-			Player target = Nexus.findPlayer(args[0].toLowerCase());
+			Player target = Nexus.findOnlinePlayer(args[0].toLowerCase());
 
-			// check if player is online
+			// check if player is offline
 			if (target == null) {
 				sender.sendMessage(ChatColor.RED + "Player is not online.");
 				return true;
