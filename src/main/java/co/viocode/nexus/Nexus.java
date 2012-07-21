@@ -5,10 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Logger;
 import org.bukkit.*;
 import org.bukkit.command.Command;
@@ -31,9 +28,10 @@ public class Nexus extends JavaPlugin implements Listener {
     public static FileConfiguration spawnConfig = null;
     static File spawnConfigFile = null;
 
-	// init maps
+	// init global vars
 	static public Map<Player,World> deathWorld = new HashMap<Player,World>(20);
 	static public Map<Player,Player> reply = new HashMap<Player,Player>(200);
+	static public Set<Player> teleportToggle = new HashSet<Player>(200);
 
     /*
      * Special thanks to Dark_Balor for "getPrivateField()"
@@ -87,7 +85,9 @@ public class Nexus extends JavaPlugin implements Listener {
 		getCommand("r").setExecutor(new Reply(this));
 		getCommand("spawn").setExecutor(new Spawn(this));
 		getCommand("time").setExecutor(new Time(this));
-		//getCommand("tp").setExecutor(new Teleport(this));
+		getCommand("tp").setExecutor(new Teleport(this));
+		//getCommand("tpc").setExecutor(new TeleportCoords(this));
+		//getCommand("tpr").setExecutor(new TeleportRequest(this));
 		getCommand("unban").setExecutor(new Unban(this));
 		//getCommand("unmute").setExecutor(new Unmute(this));
 		getCommand("w").setExecutor(new Whisper(this));

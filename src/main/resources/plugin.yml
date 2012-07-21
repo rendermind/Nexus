@@ -27,6 +27,8 @@ commands:
     usage: /<command> (message)
   spawn:
     usage: /<command> [set]
+  tp:
+    usage: /<command> (player) (player) or /<command> [toggle]
   time:
     usage: /<command> [dawn|day|dusk|night|lock]
   unban:

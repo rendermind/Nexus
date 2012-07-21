@@ -3,6 +3,7 @@ command:
   ban: true
   broadcast: true
   heal: true
+  inv: true
   kick: true
   kill: true
   level: true
@@ -10,6 +11,7 @@ command:
   online: true
   r: true
   spawn: true
+  tp: true
   time: true
   unban: true
   w: true

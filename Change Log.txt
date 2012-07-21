@@ -9,6 +9,8 @@
 	Changed /inv [see] (player) to /inv [edit] (player)
 	Removed /ip
 	Changed permission nexus.msg to nexus.whisper
+	Changed permission nexus.tp to nexus.teleport
+	Changed permission nexus.tp.toggle to nexus.teleport.toggle
 	Removed permission nexus.inventory.clear.others
 	Restructure of spawn.yml
 	/spawn now supports multiple worlds
