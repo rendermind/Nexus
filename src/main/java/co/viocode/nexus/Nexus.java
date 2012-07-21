@@ -7,12 +7,10 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.SimpleCommandMap;
@@ -24,12 +22,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Nexus extends JavaPlugin implements Listener {
 
+	// init logger
 	public static final Logger log = Logger.getLogger("Nexus");
 
+	// init configs
     public static FileConfiguration commandConfig = null;
     static File commandConfigFile = null;
     public static FileConfiguration spawnConfig = null;
     static File spawnConfigFile = null;
+
+	// init maps
+	static public Map<Player,World> deathLocation = new HashMap<Player,World>(20);
 
     /*
      * Special thanks to Dark_Balor for "getPrivateField()"
