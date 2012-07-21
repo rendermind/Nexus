@@ -7,10 +7,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class W implements CommandExecutor {
+public class Whisper implements CommandExecutor {
 
 	private Nexus plugin;
-	public W(Nexus plugin) {
+	public Whisper(Nexus plugin) {
 		this.plugin = plugin;
 	}
 

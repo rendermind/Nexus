@@ -75,7 +75,7 @@ public class Nexus extends JavaPlugin implements Listener {
 		getCommand("broadcast").setExecutor(new Broadcast(this));
 		getCommand("heal").setExecutor(new Heal(this));
 		//getCommand("home").setExecutor(new Home(this));
-		//getCommand("inv").setExecutor(new Inventory(this));
+		getCommand("inv").setExecutor(new Inventory(this));
 		//getCommand("item").setExecutor(new Item(this));
 		getCommand("kick").setExecutor(new Kick(this));
 		getCommand("kill").setExecutor(new Kill(this));
@@ -84,13 +84,13 @@ public class Nexus extends JavaPlugin implements Listener {
 		getCommand("mode").setExecutor(new Mode(this));
 		//getCommand("mute").setExecutor(new Mute(this));
 		getCommand("online").setExecutor(new Online(this));
-		getCommand("r").setExecutor(new R(this));
+		getCommand("r").setExecutor(new Reply(this));
 		getCommand("spawn").setExecutor(new Spawn(this));
 		getCommand("time").setExecutor(new Time(this));
 		//getCommand("tp").setExecutor(new Teleport(this));
 		getCommand("unban").setExecutor(new Unban(this));
 		//getCommand("unmute").setExecutor(new Unmute(this));
-		getCommand("w").setExecutor(new W(this));
+		getCommand("w").setExecutor(new Whisper(this));
 		getCommand("weather").setExecutor(new Weather(this));
 		//getCommand("wp").setExecutor(new Waypoint(this));
 

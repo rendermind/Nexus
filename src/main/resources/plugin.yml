@@ -3,7 +3,7 @@ description: Vital commands for every server owner.
 main: co.viocode.nexus.Nexus
 name: Nexus
 url: http://viocode.co/
-version: 0.4.0
+version: 0.4.0-pre2
 commands:
   ban:
     usage: /<command> (player) (reason)
@@ -11,6 +11,8 @@ commands:
     usage: /<command> (message)
   heal:
     usage: /<command> (player)
+  inv:
+    usage: /<command> [clear|edit] (player)
   kick:
     usage: /<command> (player) (reason)
   kill:
