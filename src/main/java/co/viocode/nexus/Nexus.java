@@ -43,6 +43,7 @@ public class Nexus extends JavaPlugin implements Listener {
 	static public Set<Player> teleportToggle = new HashSet<Player>(200);
 	static public Map<Player,Player> reply = new HashMap<Player,Player>(200);
 	static public Set<Player> mute = new HashSet<Player>(200);
+	static public Map<String,String> itemList = new HashMap<String,String>(1000);
 
     /*
      * Special thanks to Dark_Balor for "getPrivateField()"
@@ -80,8 +81,15 @@ public class Nexus extends JavaPlugin implements Listener {
 		//saveHomeConfig();
 		loadKitConfig();
 		saveKitConfig();
-		//loadItemConfig();
-		//saveItemConfig();
+
+		// get item list
+		loadItemConfig();
+		saveItemConfig();
+		for (String each : itemConfig.getStringList("items")) {
+			String id = each.substring(0, each.indexOf(","));
+			String item = each.substring(each.indexOf(",") + 1);
+			itemList.put(item, id);
+		}
 
         // register events
         getServer().getPluginManager().registerEvents(new EventListener(), this);
@@ -93,7 +101,7 @@ public class Nexus extends JavaPlugin implements Listener {
 		getCommand("heal").setExecutor(new Heal(this));
 		//getCommand("home").setExecutor(new Home(this));
 		getCommand("inv").setExecutor(new Inventory(this));
-		//getCommand("item").setExecutor(new Item(this));
+		getCommand("item").setExecutor(new Item(this));
 		getCommand("kick").setExecutor(new Kick(this));
 		getCommand("kill").setExecutor(new Kill(this));
 		getCommand("kit").setExecutor(new Kit(this));
@@ -129,6 +137,17 @@ public class Nexus extends JavaPlugin implements Listener {
 			}
 		} catch (NullPointerException e) {
 			log.warning("[Nexus] \\commands.yml is out of date!");
+			log.warning("[Nexus] Delete the file and restart server!");
+		}
+
+		// check items.yml version
+		try {
+			if (!itemConfig.getString("version").equals("0.4.0")) {
+				log.warning("[Nexus] \\items.yml is out of date!");
+				log.warning("[Nexus] Delete the file and restart server!");
+			}
+		} catch (NullPointerException e) {
+			log.warning("[Nexus] \\items.yml is out of date!");
 			log.warning("[Nexus] Delete the file and restart server!");
 		}
 

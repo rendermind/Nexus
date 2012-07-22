@@ -13,6 +13,8 @@ commands:
     usage: /<command> (player)
   inv:
     usage: /<command> [clear|edit] (player)
+  item:
+    usage: /<command> (player) (id:meta) (quantity)
   kick:
     usage: /<command> (player) (reason)
   kill:

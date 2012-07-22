@@ -11,6 +11,7 @@
 	Changed /reply to /r
 	Changed /inv [see] (player) to /inv [edit] (player)
 	Changed /tpr [accept|deny] to /tpr [accept|deny] (player)
+	Changed /item default qty 64 to 1
 	Changed permission nexus.msg to nexus.whisper
 	Changed permission nexus.tp to nexus.teleport
 	Changed permission nexus.tp.toggle to nexus.teleport.toggle
@@ -24,6 +25,7 @@
 	Restructure of waypoints.yml
 	/spawn now supports multiple worlds
 	Respawn teleports player to either local world's spawn or default spawn
+	All commands now support Partial Name Recognition
 	Fixed Issue: /reply not responding to correct player
 	Updated to CraftBukkit 1.2.5-R4.0
 0.3.7
