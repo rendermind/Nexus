@@ -13,6 +13,7 @@ command:
   spawn: true
   tp: true
   tpc: true
+  tpr: true
   time: true
   unban: true
   w: true

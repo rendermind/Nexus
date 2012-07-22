@@ -30,9 +30,11 @@ commands:
   spawn:
     usage: /<command> [set]
   tp:
-    usage: /<command> (player) (player) or /<command> [toggle]
+    usage: /<command> [toggle] (player) (player)
   tpc:
-    usage: /<command> (x) (z) or /<command> (x) (y) (z)
+    usage: /<command> (x) (y) (z)
+  tpr:
+    usage: /<command> [accept|deny|cancel] (player)
   time:
     usage: /<command> [dawn|day|dusk|night|lock]
   unban:
