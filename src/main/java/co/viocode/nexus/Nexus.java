@@ -28,6 +28,8 @@ public class Nexus extends JavaPlugin implements Listener {
     static File commandConfigFile = null;
     public static FileConfiguration spawnConfig = null;
     static File spawnConfigFile = null;
+	public static FileConfiguration waypointConfig = null;
+	static File waypointConfigFile = null;
 
 	// init global vars
 	static public Map<Player,World> deathWorld = new HashMap<Player,World>(20);
@@ -66,6 +68,8 @@ public class Nexus extends JavaPlugin implements Listener {
 		saveCommandConfig();
 		loadSpawnConfig();
 		saveSpawnConfig();
+		loadWaypointConfig();
+		saveWaypointConfig();
 
         // register events
         getServer().getPluginManager().registerEvents(new EventListener(), this);
@@ -95,8 +99,8 @@ public class Nexus extends JavaPlugin implements Listener {
 		getCommand("unmute").setExecutor(new Unmute(this));
 		getCommand("w").setExecutor(new Whisper(this));
 		getCommand("weather").setExecutor(new Weather(this));
-		//getCommand("wp").setExecutor(new Waypoint(this));
-
+		getCommand("wp").setExecutor(new Waypoint(this));
+		
 		// unregister commands based on config
 		Set <String> commandList = Collections.EMPTY_SET;
 		if (commandConfig.isConfigurationSection("command"))
@@ -183,6 +187,32 @@ public class Nexus extends JavaPlugin implements Listener {
 			spawnConfig.save(spawnConfigFile);
 		} catch (IOException e) {
 			log.severe("[Nexus] Unable to save spawn config to " + spawnConfigFile);
+		}
+	}
+
+	// load waypoint config
+	public FileConfiguration loadWaypointConfig() {
+		if (waypointConfig == null) {
+			if (waypointConfigFile == null)
+				waypointConfigFile = new File(this.getDataFolder(), "waypoints.yml");
+			if (waypointConfigFile.exists()) {
+				waypointConfig = YamlConfiguration.loadConfiguration(waypointConfigFile);
+			} else {
+				InputStream defaultStream = getResource("waypoints.yml");
+				waypointConfig = YamlConfiguration.loadConfiguration(defaultStream);
+			}
+		}
+		return waypointConfig;
+	}
+
+	// save waypoint config
+	static public void saveWaypointConfig() {
+		if (waypointConfig == null || waypointConfigFile == null)
+			return;
+		try {
+			waypointConfig.save(waypointConfigFile);
+		} catch (IOException e) {
+			log.severe("[Nexus] Unable to save waypoint config to " + waypointConfigFile);
 		}
 	}
 

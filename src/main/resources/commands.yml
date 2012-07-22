@@ -16,5 +16,6 @@ command:
   tpr: true
   time: true
   unban: true
-  w: true
+  waypoint: true
   weather: true
+  w: true

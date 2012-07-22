@@ -1,7 +1,8 @@
-0.4.0
-	Recoded every line of code for optimization
+0.4.x
 	Added /time [lock], freezes the current time
 	Added /weather [lock], freezes the current weather
+0.4.0
+	Recoded every line of code for optimization
 	Added /spawn [list], displays list of spawn locations
 	Added /spawn (world), teleports player to specified spawn location
 	Added /tpr [list], displays a list of received teleport requests
@@ -15,9 +16,12 @@
 	Changed permission nexus.tp.toggle to nexus.teleport.toggle
 	Changed permission nexus.tpc to nexus.teleport.coords
 	Changed permission nexus.tpr to nexus.teleport.request
+	Changed permission nexus.wp to nexus.waypoint
+	Changed permission nexus.wp.set to nexus.waypoint.set
 	Removed /ip
 	Removed permission nexus.inventory.clear.others
 	Restructure of spawn.yml
+	Restructure of waypoints.yml
 	/spawn now supports multiple worlds
 	Respawn teleports player to either local world's spawn or default spawn
 	Fixed Issue: /reply not responding to correct player

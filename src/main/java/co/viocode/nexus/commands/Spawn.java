@@ -1,7 +1,6 @@
 package co.viocode.nexus.commands;
 
 import co.viocode.nexus.Nexus;
-import java.util.Collections;
 import java.util.Set;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -31,7 +30,7 @@ public class Spawn implements CommandExecutor {
 		// init vars
 		Player player = (Player) sender;
 		World world = player.getWorld();
-		Set <String> spawns = Collections.EMPTY_SET;
+		Set <String> spawns = Nexus.spawnConfig.getConfigurationSection("").getKeys(false);
 
 		// <command>
 		if (args.length == 0) {
@@ -62,10 +61,8 @@ public class Spawn implements CommandExecutor {
 			if (!Nexus.checkPermission("nexus.spawn", player))
 				return true;
 
-			// get spawns
-			if (Nexus.spawnConfig.isConfigurationSection("")) {
-				spawns = Nexus.spawnConfig.getConfigurationSection("").getKeys(false);
-			} else {
+			// if spawn does not exist
+			if (spawns.isEmpty()) {
 				player.sendMessage(ChatColor.RED + "Spawn is not set.");
 				return true;
 			}
@@ -110,10 +107,8 @@ public class Spawn implements CommandExecutor {
 			if (!Nexus.checkPermission("nexus.spawn", player))
 				return true;
 
-			// get spawns
-			if (Nexus.spawnConfig.isConfigurationSection("")) {
-				spawns = Nexus.spawnConfig.getConfigurationSection("").getKeys(false);
-			} else {
+			// if spawn does not exist
+			if (spawns.isEmpty()) {
 				player.sendMessage(ChatColor.RED + "Spawn is not set.");
 				return true;
 			}
