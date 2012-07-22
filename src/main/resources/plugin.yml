@@ -17,6 +17,8 @@ commands:
     usage: /<command> (player) (reason)
   kill:
     usage: /<command> (player)
+  kit:
+    usage: /<command> [list] (kit)
   level:
     usage: /<command> (player) (level)
   mode:

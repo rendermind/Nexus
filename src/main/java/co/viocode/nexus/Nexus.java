@@ -24,12 +24,18 @@ public class Nexus extends JavaPlugin implements Listener {
 	public static final Logger log = Logger.getLogger("Nexus");
 
 	// init configs
-    public static FileConfiguration commandConfig = null;
+    static public FileConfiguration commandConfig = null;
     static File commandConfigFile = null;
-    public static FileConfiguration spawnConfig = null;
+    static public FileConfiguration spawnConfig = null;
     static File spawnConfigFile = null;
-	public static FileConfiguration waypointConfig = null;
+	static public FileConfiguration waypointConfig = null;
 	static File waypointConfigFile = null;
+	static public FileConfiguration homeConfig = null;
+	static File homeConfigFile = null;
+	static public FileConfiguration kitConfig = null;
+	static File kitConfigFile = null;
+	static public FileConfiguration itemConfig = null;
+	static File itemConfigFile = null;
 
 	// init global vars
 	static public Map<Player,World> deathWorld = new HashMap<Player,World>(20);
@@ -70,6 +76,12 @@ public class Nexus extends JavaPlugin implements Listener {
 		saveSpawnConfig();
 		loadWaypointConfig();
 		saveWaypointConfig();
+		//loadHomeConfig();
+		//saveHomeConfig();
+		loadKitConfig();
+		saveKitConfig();
+		//loadItemConfig();
+		//saveItemConfig();
 
         // register events
         getServer().getPluginManager().registerEvents(new EventListener(), this);
@@ -84,7 +96,7 @@ public class Nexus extends JavaPlugin implements Listener {
 		//getCommand("item").setExecutor(new Item(this));
 		getCommand("kick").setExecutor(new Kick(this));
 		getCommand("kill").setExecutor(new Kill(this));
-		//getCommand("kit").setExecutor(new Kit(this));
+		getCommand("kit").setExecutor(new Kit(this));
 		getCommand("level").setExecutor(new Level(this));
 		getCommand("mode").setExecutor(new Mode(this));
 		getCommand("mute").setExecutor(new Mute(this));
@@ -100,7 +112,7 @@ public class Nexus extends JavaPlugin implements Listener {
 		getCommand("w").setExecutor(new Whisper(this));
 		getCommand("weather").setExecutor(new Weather(this));
 		getCommand("wp").setExecutor(new Waypoint(this));
-		
+
 		// unregister commands based on config
 		Set <String> commandList = Collections.EMPTY_SET;
 		if (commandConfig.isConfigurationSection("command"))
@@ -213,6 +225,84 @@ public class Nexus extends JavaPlugin implements Listener {
 			waypointConfig.save(waypointConfigFile);
 		} catch (IOException e) {
 			log.severe("[Nexus] Unable to save waypoint config to " + waypointConfigFile);
+		}
+	}
+
+	// load home config
+	public FileConfiguration loadHomeConfig() {
+		if (homeConfig == null) {
+			if (homeConfigFile == null)
+				homeConfigFile = new File(this.getDataFolder(), "homes.yml");
+			if (homeConfigFile.exists()) {
+				homeConfig = YamlConfiguration.loadConfiguration(homeConfigFile);
+			} else {
+				InputStream defaultStream = getResource("homes.yml");
+				homeConfig = YamlConfiguration.loadConfiguration(defaultStream);
+			}
+		}
+		return homeConfig;
+	}
+
+	// save home config
+	static public void saveHomeConfig() {
+		if (homeConfig == null || homeConfigFile == null)
+			return;
+		try {
+			homeConfig.save(homeConfigFile);
+		} catch (IOException e) {
+			log.severe("[Nexus] Unable to save home config to " + homeConfigFile);
+		}
+	}
+
+	// load kit config
+	public FileConfiguration loadKitConfig() {
+		if (kitConfig == null) {
+			if (kitConfigFile == null)
+				kitConfigFile = new File(this.getDataFolder(), "kits.yml");
+			if (kitConfigFile.exists()) {
+				kitConfig = YamlConfiguration.loadConfiguration(kitConfigFile);
+			} else {
+				InputStream defaultStream = getResource("kits.yml");
+				kitConfig = YamlConfiguration.loadConfiguration(defaultStream);
+			}
+		}
+		return kitConfig;
+	}
+
+	// save kit config
+	public void saveKitConfig() {
+		if (kitConfig == null || kitConfigFile == null)
+			return;
+		try {
+			kitConfig.save(kitConfigFile);
+		} catch (IOException e) {
+			log.severe("[Nexus] Unable to save kit config to " + kitConfigFile);
+		}
+	}
+
+	// load item config
+	public FileConfiguration loadItemConfig() {
+		if (itemConfig == null) {
+			if (itemConfigFile == null)
+				itemConfigFile = new File(this.getDataFolder(), "items.yml");
+			if (itemConfigFile.exists()) {
+				itemConfig = YamlConfiguration.loadConfiguration(itemConfigFile);
+			} else {
+				InputStream defaultStream = getResource("items.yml");
+				itemConfig = YamlConfiguration.loadConfiguration(defaultStream);
+			}
+		}
+		return itemConfig;
+	}
+
+	// save item config
+	public void saveItemConfig() {
+		if (itemConfig == null || itemConfigFile == null)
+			return;
+		try {
+			itemConfig.save(itemConfigFile);
+		} catch (IOException e) {
+			log.severe("[Nexus] Unable to save item config to " + itemConfigFile);
 		}
 	}
 

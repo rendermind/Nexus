@@ -6,6 +6,7 @@ command:
   inv: true
   kick: true
   kill: true
+  kit: true
   level: true
   mode: true
   online: true
