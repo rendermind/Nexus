@@ -33,6 +33,10 @@ public class Kit implements CommandExecutor {
 		Set<String> kits = Nexus.kitConfig.getConfigurationSection("").getKeys(false);
 		List<String> items = Collections.EMPTY_LIST;
 
+		// check permission
+		if (!Nexus.checkPermission("nexus.kick", player))
+			return true;
+
 		// <command> [list]
 		if (args.length == 1 && args[0].equalsIgnoreCase("list")) {
 
