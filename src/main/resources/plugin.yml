@@ -5,6 +5,8 @@ name: Nexus
 url: http://viocode.co/
 version: 0.4.0
 commands:
+  back:
+    usage: /<command>
   ban:
     usage: /<command> (player) (reason)
   broadcast:

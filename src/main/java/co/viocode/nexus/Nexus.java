@@ -39,6 +39,7 @@ public class Nexus extends JavaPlugin implements Listener {
 
 	// init global vars
 	static public Map<Player,World> deathWorld = new HashMap<Player,World>(20);
+	static public Map<Player,Location> teleportBack = new HashMap<Player, Location>(200);
 	static public Map<Player,Player> teleportRequest = new HashMap<Player,Player>(200);
 	static public Set<Player> teleportToggle = new HashSet<Player>(200);
 	static public Map<Player,Player> reply = new HashMap<Player,Player>(200);
@@ -95,7 +96,7 @@ public class Nexus extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new EventListener(), this);
 
 		// register commands
-		//getCommand("back").setExecutor(new Back(this));
+		getCommand("back").setExecutor(new Back(this));
 		getCommand("ban").setExecutor(new Ban(this));
 		getCommand("broadcast").setExecutor(new Broadcast(this));
 		getCommand("heal").setExecutor(new Heal(this));

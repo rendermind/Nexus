@@ -9,6 +9,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class EventListener implements Listener {
 
@@ -53,6 +54,17 @@ public class EventListener implements Listener {
 	}
 
 	@EventHandler
+	public void onPlayerTeleport(PlayerTeleportEvent event) {
+
+		// init vars
+		Player player = event.getPlayer();
+
+		// check teleport cause
+		if (!event.getCause().toString().equals("UNKNOWN"))
+			Nexus.teleportBack.put(player, event.getFrom());
+	}
+
+	@EventHandler
 	public void onPlayerDeath(PlayerDeathEvent event) {
 
 		// init vars
@@ -60,6 +72,10 @@ public class EventListener implements Listener {
 
 		// store death world
 		Nexus.deathWorld.put(player, player.getLocation().getWorld());
+
+		// store death location
+		if (Nexus.checkPermission("nexus.back.death", player))
+			Nexus.teleportBack.put(player, player.getLocation());
 	}
 
 	@EventHandler
