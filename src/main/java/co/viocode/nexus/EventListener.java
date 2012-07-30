@@ -1,5 +1,6 @@
 package co.viocode.nexus;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -43,6 +44,10 @@ public class EventListener implements Listener {
 			spawn.setWorld(Nexus.deathWorld.get(player));
 			Nexus.deathWorld.remove(player);
 		}
+
+		// check if spawn exists
+		if (!Nexus.spawnConfig.isConfigurationSection(spawn.getWorld().getName()))
+			spawn.setWorld(Bukkit.getServer().getWorlds().get(0));
 
 		// teleport player to spawn
 		spawn.setX(Nexus.spawnConfig.getDouble(spawn.getWorld().getName() + ".x"));

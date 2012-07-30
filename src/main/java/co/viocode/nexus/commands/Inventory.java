@@ -82,7 +82,7 @@ public class Inventory implements CommandExecutor {
 			}
 
 			// edit inventory
-			target.openInventory(target.getInventory());
+			player.openInventory(target.getInventory());
 			return true;
 		}
 

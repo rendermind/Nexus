@@ -40,7 +40,7 @@ public class Home implements CommandExecutor {
 
 			// check if default home exists
 			if (!Nexus.homeConfig.isConfigurationSection(player.getName() + ".default")) {
-				player.sendMessage(ChatColor.RED + "Home default does not exist.");
+				player.sendMessage(ChatColor.RED + "Home default does not exist, type /home [set].");
 				return true;
 			}
 
@@ -65,7 +65,7 @@ public class Home implements CommandExecutor {
 
 			// check if homes exist
 			if (!Nexus.homeConfig.isConfigurationSection(player.getName())) {
-				player.sendMessage(ChatColor.RED + "Home is not set.");
+				player.sendMessage(ChatColor.RED + "Home default does not exist, type /home [set].");
 				return true;
 			}
 
@@ -118,13 +118,10 @@ public class Home implements CommandExecutor {
 			if (!Nexus.checkPermission("nexus.home.multi", player))
 				return true;
 
-			// check if home limit reached
-			if (Nexus.homeConfig.isConfigurationSection(player.getName())) {
-				if (Nexus.homeConfig.getConfigurationSection(player.getName()).getKeys(false).size() ==
-						Nexus.homeConfig.getInt("limit")) {
-					player.sendMessage(ChatColor.RED + "Home limit already reached.");
-					return true;
-				}
+			// check if homes exist
+			if (!Nexus.homeConfig.isConfigurationSection(player.getName())) {
+				player.sendMessage(ChatColor.RED + "Home default does not exist, type /home [set].");
+				return true;
 			}
 
 			// get homes
@@ -169,7 +166,8 @@ public class Home implements CommandExecutor {
 			}
 
 			// get homes
-			homes = Nexus.homeConfig.getConfigurationSection(player.getName()).getKeys(false);
+			if (Nexus.homeConfig.isConfigurationSection(player.getName()))
+				homes = Nexus.homeConfig.getConfigurationSection(player.getName()).getKeys(false);
 
 			// check if home exists
 			for (String each : homes)
@@ -184,7 +182,7 @@ public class Home implements CommandExecutor {
 			Nexus.homeConfig.set(player.getName() + "." + args[1] + ".yaw", player.getLocation().getYaw());
 			Nexus.homeConfig.set(player.getName() + "." + args[1] + ".pitch", player.getLocation().getPitch());
 			Nexus.saveHomeConfig();
-			player.sendMessage(ChatColor.GREEN + "Home" + args[1] +  "set.");
+			player.sendMessage(ChatColor.GREEN + "Home " + args[1] +  " set.");
 			return true;
 		}
 
@@ -194,6 +192,12 @@ public class Home implements CommandExecutor {
 			// check permission
 			if (!Nexus.checkPermission("nexus.home.multi", player))
 				return true;
+
+			// check if homes exist
+			if (!Nexus.homeConfig.isConfigurationSection(player.getName())) {
+				player.sendMessage(ChatColor.RED + "Home default does not exist, type /home [set].");
+				return true;
+			}
 
 			// get homes
 			homes = Nexus.homeConfig.getConfigurationSection(player.getName()).getKeys(false);
