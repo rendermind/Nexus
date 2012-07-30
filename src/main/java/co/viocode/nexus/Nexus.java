@@ -77,8 +77,8 @@ public class Nexus extends JavaPlugin implements Listener {
 		saveSpawnConfig();
 		loadWaypointConfig();
 		saveWaypointConfig();
-		//loadHomeConfig();
-		//saveHomeConfig();
+		loadHomeConfig();
+		saveHomeConfig();
 		loadKitConfig();
 		saveKitConfig();
 
@@ -99,7 +99,7 @@ public class Nexus extends JavaPlugin implements Listener {
 		getCommand("ban").setExecutor(new Ban(this));
 		getCommand("broadcast").setExecutor(new Broadcast(this));
 		getCommand("heal").setExecutor(new Heal(this));
-		//getCommand("home").setExecutor(new Home(this));
+		getCommand("home").setExecutor(new Home(this));
 		getCommand("inv").setExecutor(new Inventory(this));
 		getCommand("item").setExecutor(new Item(this));
 		getCommand("kick").setExecutor(new Kick(this));

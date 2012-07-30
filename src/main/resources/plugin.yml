@@ -11,6 +11,8 @@ commands:
     usage: /<command> (message)
   heal:
     usage: /<command> (player)
+  home:
+    usage: /<command> [set|del|list] (home)
   inv:
     usage: /<command> [clear|edit] (player)
   item:

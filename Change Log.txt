@@ -21,13 +21,15 @@
 	Changed permission nexus.wp.set to nexus.waypoint.set
 	Removed /ip
 	Removed permission nexus.inventory.clear.others
+	Removed permission nexus.home.set
 	Restructure of spawn.yml
 	Restructure of waypoints.yml
+	Restructure of homes.yml
 	/spawn now supports multiple worlds
 	Respawn teleports player to either local world's spawn or default spawn
 	All commands now support Partial Name Recognition
 	Fixed Issue: /reply not responding to correct player
-	Updated to CraftBukkit 1.2.5-R4.0
+	Updated to CraftBukkit 1.2.5-R5.0
 0.3.7
     Updated items.yml file
     Changed /back y-axis to +0.1
