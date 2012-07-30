@@ -36,7 +36,7 @@ commands:
   r:
     usage: /<command> (message)
   spawn:
-    usage: /<command> [set]
+    usage: /<command> [set|list]
   tp:
     usage: /<command> [toggle] (player) (player)
   tpc:

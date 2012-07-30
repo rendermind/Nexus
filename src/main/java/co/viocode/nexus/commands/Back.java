@@ -35,8 +35,6 @@ public class Back implements CommandExecutor {
 
 		// teleport player to prior location
 		player.teleport(Nexus.teleportBack.get(player));
-
-		// end of command
-		return false;
+		return true;
 	}
 }
