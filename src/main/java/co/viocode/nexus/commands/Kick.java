@@ -45,6 +45,12 @@ public class Kick implements CommandExecutor {
 				return true;
 			}
 
+			// check if kick is blocked
+			if (target.hasPermission("nexus.kick.block")) {
+				sender.sendMessage(ChatColor.RED + "Player cannot be kicked.");
+				return true;
+			}
+
 			// kick player
 			target.kickPlayer("Kicked from server!");
 			plugin.getServer().broadcastMessage(ChatColor.RED + target.getName() + " kicked from server!");
@@ -65,6 +71,12 @@ public class Kick implements CommandExecutor {
 			for (int i = 1; i < args.length; i ++)
 				reason += args[i] + " ";
 			reason = reason.substring(0, reason.length() - 1);
+
+			// check if kick is blocked
+			if (target.hasPermission("nexus.kick.block")) {
+				sender.sendMessage(ChatColor.RED + "Player cannot be kicked.");
+				return true;
+			}
 
 			// kick player
 			target.kickPlayer("Kicked from server!  Reason: " + reason);

@@ -50,6 +50,12 @@ public class Ban implements CommandExecutor {
 					return true;
 				}
 
+				// check if ban is blocked
+				if (target.hasPermission("nexus.ban.block")) {
+					sender.sendMessage(ChatColor.RED + "Player cannot be banned.");
+					return true;
+				}
+
 				// ban player
 				target.setBanned(true);
 				target.kickPlayer("Banned from server!");
@@ -63,6 +69,12 @@ public class Ban implements CommandExecutor {
 				// check if banned
 				if (offlineTarget.isBanned()) {
 					sender.sendMessage(ChatColor.RED + "Player already banned.");
+					return true;
+				}
+
+				// check if ban is blocked
+				if (target.hasPermission("nexus.ban.block")) {
+					sender.sendMessage(ChatColor.RED + "Player cannot be banned.");
 					return true;
 				}
 
@@ -95,6 +107,12 @@ public class Ban implements CommandExecutor {
 					return true;
 				}
 
+				// check if ban is blocked
+				if (target.hasPermission("nexus.ban.block")) {
+					sender.sendMessage(ChatColor.RED + "Player cannot be banned.");
+					return true;
+				}
+
 				// ban player
 				target.setBanned(true);
 				target.kickPlayer("Banned from server!  Reason: " + reason);
@@ -108,6 +126,12 @@ public class Ban implements CommandExecutor {
 				// check if banned
 				if (offlineTarget.isBanned()) {
 					sender.sendMessage(ChatColor.RED + "Player already banned.");
+					return true;
+				}
+
+				// check if ban is blocked
+				if (target.hasPermission("nexus.ban.block")) {
+					sender.sendMessage(ChatColor.RED + "Player cannot be banned.");
 					return true;
 				}
 

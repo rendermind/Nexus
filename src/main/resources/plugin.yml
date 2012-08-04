@@ -3,7 +3,7 @@ description: Vital commands for every server owner.
 main: co.viocode.nexus.Nexus
 name: Nexus
 url: http://viocode.co/
-version: 0.4.0
+version: 0.4.1
 commands:
   back:
     usage: /<command>

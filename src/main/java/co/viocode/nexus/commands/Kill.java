@@ -58,6 +58,12 @@ public class Kill implements CommandExecutor {
 				return true;
 			}
 
+			// check if kill is blocked
+			if (target.hasPermission("nexus.kill.block")) {
+				sender.sendMessage(ChatColor.RED + "Player cannot be killed.");
+				return true;
+			}
+
 			// kill player
 			target.setHealth(0);
 			target.sendMessage(ChatColor.RED + sender.getName() + " killed you.");

@@ -56,6 +56,12 @@ public class Inventory implements CommandExecutor {
 				return true;
 			}
 
+			// check if inventory is blocked
+			if (target.hasPermission("nexus.inventory.block")) {
+				sender.sendMessage(ChatColor.RED + "Player inventory cannot be cleared.");
+				return true;
+			}
+
 			// clear inventory
 			target.getInventory().clear();
 
@@ -78,6 +84,12 @@ public class Inventory implements CommandExecutor {
 			// check if player is offline
 			if (target == null) {
 				player.sendMessage(ChatColor.RED + "Player is not online.");
+				return true;
+			}
+
+			// check if inventory is blocked
+			if (target.hasPermission("nexus.inventory.block")) {
+				sender.sendMessage(ChatColor.RED + "Player inventory cannot be edited.");
 				return true;
 			}
 

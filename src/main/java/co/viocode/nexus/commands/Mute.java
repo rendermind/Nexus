@@ -48,6 +48,12 @@ public class Mute implements CommandExecutor {
 			return true;
 		}
 
+		// check if mute is blocked
+		if (target.hasPermission("nexus.mute.block")) {
+			sender.sendMessage(ChatColor.RED + "Player cannot be muted.");
+			return true;
+		}
+
 		// mute player
 		Nexus.mute.add(target);
 		target.sendMessage(ChatColor.RED + sender.getName() + " muted you.");
