@@ -30,11 +30,6 @@ public class Kill implements CommandExecutor {
 		if (isPlayer)
 			player = (Player) sender;
 
-		// check permission
-		if (isPlayer)
-			if (!Nexus.checkPermission("nexus.kill", player))
-				return true;
-
 		// <command>
 		if (args.length == 0) {
 
@@ -42,12 +37,22 @@ public class Kill implements CommandExecutor {
 			if (!isPlayer)
 				return false;
 
+			// check permission
+			if (isPlayer)
+				if (!Nexus.checkPermission("nexus.kill", player))
+					return true;
+
 			player.setHealth(0);
 			return true;
 		}
 
 		// <command> (player)
 		if (args.length == 1) {
+
+			// check permission
+			if (isPlayer)
+				if (!Nexus.checkPermission("nexus.kill.others", player))
+					return true;
 
 			// init vars
 			Player target = Nexus.findOnlinePlayer(args[0].toLowerCase());

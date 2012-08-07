@@ -143,7 +143,7 @@ public class Nexus extends JavaPlugin implements Listener {
 
 		// check items.yml version
 		try {
-			if (!itemConfig.getString("version").equals("0.4.0")) {
+			if (!itemConfig.getString("version").equals("0.4.2")) {
 				log.warning("[Nexus] \\items.yml is out of date!");
 				log.warning("[Nexus] Delete the file and restart server!");
 			}
@@ -204,7 +204,7 @@ public class Nexus extends JavaPlugin implements Listener {
 
 				Location spawn = getServer().getWorlds().get(0).getSpawnLocation();
 				spawnConfig.set(spawn.getWorld().getName() + ".x", spawn.getX());
-				spawnConfig.set(spawn.getWorld().getName() + ".y", spawn.getY());
+				spawnConfig.set(spawn.getWorld().getName() + ".y", spawn.getWorld().getHighestBlockYAt(spawn) + 1);
 				spawnConfig.set(spawn.getWorld().getName() + ".z", spawn.getZ());
 			}
 		}

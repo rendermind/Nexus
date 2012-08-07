@@ -42,12 +42,13 @@ public class Level implements CommandExecutor {
 				return true;
 
 			// format level
-			int expNext = (int) (7 + (int) (player.getLevel() * 3.5));
-			int actualNext = expNext - (int) (player.getExp() * expNext) + player.getTotalExperience();
+			int playerLevel = player.getLevel() + 1;
+			int nextLevel = (int) (playerLevel * 17 + Math.max(playerLevel - 16, 0) * Math.max(playerLevel - 15, 0) * 1.5 +
+					Math.max(playerLevel - 31, 0) * Math.max(playerLevel - 30, 0) * 2);
 
 			// display level
-			player.sendMessage(ChatColor.GREEN + "Level: " + ChatColor.WHITE + player.getLevel() + "  " + ChatColor.GREEN + "Exp: " +
-					ChatColor.WHITE + player.getTotalExperience() + "/" + actualNext);
+			player.sendMessage(ChatColor.GREEN + "Level: " + ChatColor.WHITE + player.getLevel() + " " + ChatColor.GREEN + "Exp: " +
+					ChatColor.WHITE + player.getTotalExperience() + "/" + nextLevel);
 			return true;
 		}
 
@@ -71,19 +72,18 @@ public class Level implements CommandExecutor {
 			}
 
 			// check max level
-			if (level > 50) {
-				player.sendMessage(ChatColor.RED + "Maximum level is 50.");
+			if (level > 30) {
+				player.sendMessage(ChatColor.RED + "Maximum level is 30.");
 				return true;
 			}
 
+			// format level
+			int experience = (int) (level * 17 + Math.max(level - 16, 0) * Math.max(level - 15, 0) * 1.5 +
+					Math.max(level - 31, 0) * Math.max(level - 30, 0) * 2);
+
 			// set player level
-			player.setLevel(0);
-			player.setExp(0);
-			player.setTotalExperience(0);
-			for (int i = 0; i < level; i ++) {
-				player.setTotalExperience(player.getTotalExperience() + (int) (7 + (int) (player.getLevel() * 3.5)));
-				player.setLevel(player.getLevel() + 1);
-			}
+			player.setTotalExperience(experience);
+			player.setLevel(level);
 			return true;
 		}
 
@@ -106,19 +106,18 @@ public class Level implements CommandExecutor {
 			}
 
 			// check max level
-			if (level > 50) {
-				player.sendMessage(ChatColor.RED + "Maximum level is 50.");
+			if (level > 30) {
+				player.sendMessage(ChatColor.RED + "Maximum level is 30.");
 				return true;
 			}
 
+			// format level
+			int experience = (int) (level * 17 + Math.max(level - 16, 0) * Math.max(level - 15, 0) * 1.5 +
+					Math.max(level - 31, 0) * Math.max(level - 30, 0) * 2);
+
 			// set player level
-			target.setLevel(0);
-			target.setExp(0);
-			target.setTotalExperience(0);
-			for (int i = 0; i < level; i ++) {
-				target.setTotalExperience(target.getTotalExperience() + (int) (7 + (int) (target.getLevel() * 3.5)));
-				target.setLevel(target.getLevel() + 1);
-			}
+			target.setTotalExperience(experience);
+			target.setLevel(level);
 
 			// display
 			target.sendMessage(ChatColor.GREEN + sender.getName() + " set your level to " + level + ".");

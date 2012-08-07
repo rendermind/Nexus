@@ -31,17 +31,17 @@ public class Heal implements CommandExecutor {
 			player = (Player) sender;
 		Player target = null;
 
-		// check permission
-		if (isPlayer)
-			if (!Nexus.checkPermission("nexus.heal", player))
-				return true;
-
 		// <command>
 		if (args.length == 0) {
 
 			// check if player
 			if (!isPlayer)
 				return false;
+
+			// check permission
+			if (isPlayer)
+				if (!Nexus.checkPermission("nexus.heal", player))
+					return true;
 
 			player.setFoodLevel(20);
 			player.setHealth(player.getMaxHealth());
@@ -50,6 +50,11 @@ public class Heal implements CommandExecutor {
 
 		// <command> (player)
 		if (args.length == 1) {
+
+			// check permission
+			if (isPlayer)
+				if (!Nexus.checkPermission("nexus.heal.others", player))
+					return true;
 
 			// get player
 			target = Nexus.findOnlinePlayer(args[0]);
