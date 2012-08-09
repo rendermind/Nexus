@@ -51,9 +51,13 @@ public class Ban implements CommandExecutor {
 				}
 
 				// check if ban is blocked
-				if (target.hasPermission("nexus.ban.block")) {
-					sender.sendMessage(ChatColor.RED + "Player cannot be banned.");
-					return true;
+				if (isPlayer) {
+					if (!player.hasPermission("nexus.ban.bypass")) {
+						if (target.hasPermission("nexus.ban.block")) {
+							sender.sendMessage(ChatColor.RED + "Player cannot be banned.");
+							return true;
+						}
+					}
 				}
 
 				// ban player
@@ -73,9 +77,13 @@ public class Ban implements CommandExecutor {
 				}
 
 				// check if ban is blocked
-				if (target.hasPermission("nexus.ban.block")) {
-					sender.sendMessage(ChatColor.RED + "Player cannot be banned.");
-					return true;
+				if (isPlayer) {
+					if (!player.hasPermission("nexus.ban.bypass")) {
+						if (target.hasPermission("nexus.ban.block")) {
+							sender.sendMessage(ChatColor.RED + "Player cannot be banned.");
+							return true;
+						}
+					}
 				}
 
 				// ban player
@@ -108,9 +116,13 @@ public class Ban implements CommandExecutor {
 				}
 
 				// check if ban is blocked
-				if (target.hasPermission("nexus.ban.block")) {
-					sender.sendMessage(ChatColor.RED + "Player cannot be banned.");
-					return true;
+				if (isPlayer) {
+					if (!player.hasPermission("nexus.ban.bypass")) {
+						if (target.hasPermission("nexus.ban.block")) {
+							sender.sendMessage(ChatColor.RED + "Player cannot be banned.");
+							return true;
+						}
+					}
 				}
 
 				// ban player
@@ -130,9 +142,13 @@ public class Ban implements CommandExecutor {
 				}
 
 				// check if ban is blocked
-				if (target.hasPermission("nexus.ban.block")) {
-					sender.sendMessage(ChatColor.RED + "Player cannot be banned.");
-					return true;
+				if (isPlayer) {
+					if (!player.hasPermission("nexus.ban.bypass")) {
+						if (target.hasPermission("nexus.ban.block")) {
+							sender.sendMessage(ChatColor.RED + "Player cannot be banned.");
+							return true;
+						}
+					}
 				}
 
 				// ban player

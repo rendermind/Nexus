@@ -57,9 +57,11 @@ public class Inventory implements CommandExecutor {
 			}
 
 			// check if inventory is blocked
-			if (target.hasPermission("nexus.inventory.block")) {
-				sender.sendMessage(ChatColor.RED + "Player inventory cannot be cleared.");
-				return true;
+			if (!player.hasPermission("nexus.inventory.bypass")) {
+				if (target.hasPermission("nexus.inventory.block")) {
+					sender.sendMessage(ChatColor.RED + "Player inventory cannot be cleared.");
+					return true;
+				}
 			}
 
 			// clear inventory
@@ -88,9 +90,11 @@ public class Inventory implements CommandExecutor {
 			}
 
 			// check if inventory is blocked
-			if (target.hasPermission("nexus.inventory.block")) {
-				sender.sendMessage(ChatColor.RED + "Player inventory cannot be edited.");
-				return true;
+			if (!player.hasPermission("nexus.inventory.bypass")) {
+				if (target.hasPermission("nexus.inventory.block")) {
+					sender.sendMessage(ChatColor.RED + "Player inventory cannot be edited.");
+					return true;
+				}
 			}
 
 			// edit inventory

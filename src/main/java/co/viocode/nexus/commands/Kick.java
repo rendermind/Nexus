@@ -46,9 +46,13 @@ public class Kick implements CommandExecutor {
 			}
 
 			// check if kick is blocked
-			if (target.hasPermission("nexus.kick.block")) {
-				sender.sendMessage(ChatColor.RED + "Player cannot be kicked.");
-				return true;
+			if (isPlayer) {
+				if (!player.hasPermission("nexus.kick.bypass")) {
+					if (target.hasPermission("nexus.kick.block")) {
+						sender.sendMessage(ChatColor.RED + "Player cannot be kicked.");
+						return true;
+					}
+				}
 			}
 
 			// kick player
@@ -73,9 +77,13 @@ public class Kick implements CommandExecutor {
 			reason = reason.substring(0, reason.length() - 1);
 
 			// check if kick is blocked
-			if (target.hasPermission("nexus.kick.block")) {
-				sender.sendMessage(ChatColor.RED + "Player cannot be kicked.");
-				return true;
+			if (isPlayer) {
+				if (!player.hasPermission("nexus.kick.bypass")) {
+					if (target.hasPermission("nexus.kick.block")) {
+						sender.sendMessage(ChatColor.RED + "Player cannot be kicked.");
+						return true;
+					}
+				}
 			}
 
 			// kick player

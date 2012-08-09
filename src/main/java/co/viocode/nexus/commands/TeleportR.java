@@ -135,9 +135,11 @@ public class TeleportR implements CommandExecutor {
 			}
 
 			// check teleport toggle
-			if (Nexus.teleportToggle.contains(target)) {
-				player.sendMessage(ChatColor.RED + "Player has disabled incoming teleports.");
-				return true;
+			if (!player.hasPermission("nexus.teleport.bypass")) {
+				if (Nexus.teleportToggle.contains(target)) {
+					player.sendMessage(ChatColor.RED + "Player has disabled incoming teleports.");
+					return true;
+				}
 			}
 
 			// create teleport request

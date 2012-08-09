@@ -75,9 +75,11 @@ public class Teleport implements CommandExecutor {
 			}
 
 			// check teleport toggle
-			if (Nexus.teleportToggle.contains(target)) {
-				player.sendMessage(ChatColor.RED + "Player has disabled incoming teleports.");
-				return true;
+			if (!player.hasPermission("nexus.teleport.bypass")) {
+				if (Nexus.teleportToggle.contains(target)) {
+					player.sendMessage(ChatColor.RED + "Player has disabled incoming teleports.");
+					return true;
+				}
 			}
 
 			// teleport player
@@ -99,9 +101,13 @@ public class Teleport implements CommandExecutor {
 			}
 
 			// check teleport toggle
-			if (Nexus.teleportToggle.contains(fromTarget) || Nexus.teleportToggle.contains(toTarget)) {
-				player.sendMessage(ChatColor.RED + "Player has disabled incoming teleports.");
-				return true;
+			if (isPlayer) {
+				if (!player.hasPermission("nexus.teleport.bypass")) {
+					if (Nexus.teleportToggle.contains(fromTarget) || Nexus.teleportToggle.contains(toTarget)) {
+						player.sendMessage(ChatColor.RED + "Player has disabled incoming teleports.");
+						return true;
+					}
+				}
 			}
 
 			// teleport player
