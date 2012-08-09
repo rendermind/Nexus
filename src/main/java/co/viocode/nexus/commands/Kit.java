@@ -34,7 +34,7 @@ public class Kit implements CommandExecutor {
 		List<String> items = Collections.EMPTY_LIST;
 
 		// check permission
-		if (!Nexus.checkPermission("nexus.kick", player))
+		if (!Nexus.checkPermission("nexus.kit", player))
 			return true;
 
 		// <command> [list]
