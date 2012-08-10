@@ -79,7 +79,7 @@ public class EventListener implements Listener {
 		Nexus.deathWorld.put(player, player.getLocation().getWorld());
 
 		// store death location
-		if (Nexus.checkPermission("nexus.back.death", player))
+		if (player.hasPermission("nexus.back.death"))
 			Nexus.teleportBack.put(player, player.getLocation());
 	}
 

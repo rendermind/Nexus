@@ -8,6 +8,7 @@
 	Implemented /spy, toggles displaying all whispers & replies
 	All whispers & replies now show in console
 	Fixed Issue: /broadcast not checking if player is muted
+	Fixed Issue: player w/out permission nexus.back.death receiving do not have permission message
 0.4.4
 	Added permission nexus.ban.bypass, ignores ban.block permission
 	Added permission nexus.kick.bypass, ignores kick.block permission
