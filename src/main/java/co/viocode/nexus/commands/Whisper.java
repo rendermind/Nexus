@@ -53,6 +53,13 @@ public class Whisper implements CommandExecutor {
 		// display message to both players
 		target.sendMessage(ChatColor.GREEN + "[" + player.getName() + " -> Me] " + ChatColor.WHITE + message);
 		player.sendMessage(ChatColor.GREEN + "[Me -> " + target.getName() + "] " + ChatColor.WHITE + message);
+		Nexus.log.info(ChatColor.GREEN + "[" + player.getName() + " -> " + target.getName() + "]" + ChatColor.WHITE + message);
+
+		// display message to spies
+		for (Player each : plugin.getServer().getOnlinePlayers())
+			if (each.hasPermission("nexus.whisper.spy"))
+				if (!Nexus.spyToggle.contains(each))
+					each.sendMessage(ChatColor.GREEN + " [" + player.getName() + " -> " + target.getName() + "]" + ChatColor.WHITE + message);
 
 		// store player to/from
 		Nexus.reply.put(target, player);

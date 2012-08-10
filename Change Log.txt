@@ -1,13 +1,20 @@
 0.4.x
+	Added /ban (player) (time) (reason), bans player for specified amount of time
+	Added /mute (player) (time), mutes player for specified amount of time
+0.4.x
 	Added /time [lock], freezes the current time
 	Added /weather [lock], freezes the current weather
+0.4.5
+	Implemented /spy, toggles displaying all whispers & replies
+	All whispers & replies now show in console
+	Fixed Issue: /broadcast not checking if player is muted
 0.4.4
-	Added permission nexus.ban.bypass
-	Added permission nexus.kick.bypass
-	Added permission nexus.mute.bypass
-	Added permission nexus.kill.bypass
-	Added permission nexus.inventory.bypass
-	Added permission nexus.teleport.bypass
+	Added permission nexus.ban.bypass, ignores ban.block permission
+	Added permission nexus.kick.bypass, ignores kick.block permission
+	Added permission nexus.mute.bypass, ignores mute.block permission
+	Added permission nexus.kill.bypass, ignores kill.block permission
+	Added permission nexus.inventory.bypass, ignores inventory.block permission
+	Added permission nexus.teleport.bypass, ignores teleport.block permission
 	Fixed Issue: /kit requiring wrong permission
 0.4.3
 	Updated to CraftBukkit 1.3.1-R1.0

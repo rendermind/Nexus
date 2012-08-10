@@ -44,6 +44,7 @@ public class Nexus extends JavaPlugin implements Listener {
 	static public Set<Player> teleportToggle = new HashSet<Player>(200);
 	static public Map<Player,Player> reply = new HashMap<Player,Player>(200);
 	static public Set<Player> mute = new HashSet<Player>(200);
+	static public Set<Player> spyToggle = new HashSet<Player>(200);
 	static public Map<String,String> itemList = new HashMap<String,String>(1000);
 
     /*
@@ -112,6 +113,7 @@ public class Nexus extends JavaPlugin implements Listener {
 		getCommand("online").setExecutor(new Online(this));
 		getCommand("r").setExecutor(new Reply(this));
 		getCommand("spawn").setExecutor(new Spawn(this));
+		getCommand("spy").setExecutor(new Spy(this));
 		getCommand("time").setExecutor(new Time(this));
 		getCommand("tp").setExecutor(new Teleport(this));
 		getCommand("tpc").setExecutor(new TeleportC(this));
@@ -132,7 +134,7 @@ public class Nexus extends JavaPlugin implements Listener {
 
 		// check commands.yml version
 		try {
-			if (!commandConfig.getString("version").equals("0.4.0")) {
+			if (!commandConfig.getString("version").equals("0.4.5")) {
 				log.warning("[Nexus] \\commands.yml is out of date!");
 				log.warning("[Nexus] Delete the file and restart server!");
 			}

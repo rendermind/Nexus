@@ -37,6 +37,8 @@ commands:
     usage: /<command> (message)
   spawn:
     usage: /<command> [set|list]
+  spy:
+    usage: /<command>
   tp:
     usage: /<command> [toggle] (player) (player)
   tpc:

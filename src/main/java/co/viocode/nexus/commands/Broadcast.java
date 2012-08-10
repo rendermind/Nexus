@@ -30,12 +30,18 @@ public class Broadcast implements CommandExecutor {
 		if (isPlayer)
 			player = (Player) sender;
 
+		// check permission
 		if (isPlayer)
 			if (!Nexus.checkPermission("nexus.broadcast", player))
 				return true;
 
-		// check mute
-
+		// check if player is muted
+		if (isPlayer) {
+			if (Nexus.mute.contains(player)) {
+				player.sendMessage(ChatColor.RED + "You are muted.");
+				return true;
+			}
+		}
 
 		// format message
 		String message = "";
