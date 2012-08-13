@@ -15,10 +15,9 @@ import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Nexus extends JavaPlugin implements Listener {
+public class Nexus extends JavaPlugin {
 
 	// init logger
 	public static final Logger log = Logger.getLogger("Nexus");

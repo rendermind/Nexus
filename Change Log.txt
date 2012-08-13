@@ -1,9 +1,13 @@
+0.5.x
+	Added language support
 0.4.x
 	Added /ban (player) (time) (reason), bans player for specified amount of time
 	Added /mute (player) (time), mutes player for specified amount of time
 0.4.x
 	Added /time [lock], freezes the current time
 	Added /weather [lock], freezes the current weather
+0.4.6
+	Fixed Issue: /ban & /kick not allowing reasons more than 1 word
 0.4.5
 	Implemented /spy, toggles displaying all whispers & replies
 	All whispers & replies now show in console

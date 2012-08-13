@@ -17,7 +17,7 @@ public class Kick implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
 
 		// invalid args
-		if (args.length < 1 || args.length > 2)
+		if (args.length < 1)
 			return false;
 
 		// check if player
