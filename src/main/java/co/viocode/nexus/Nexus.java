@@ -133,7 +133,7 @@ public class Nexus extends JavaPlugin {
 
 		// check commands.yml version
 		try {
-			if (!commandConfig.getString("version").equals("0.4.5")) {
+			if (!commandConfig.getString("version").equals("0.4.7")) {
 				log.warning("[Nexus] \\commands.yml is out of date!");
 				log.warning("[Nexus] Delete the file and restart server!");
 			}

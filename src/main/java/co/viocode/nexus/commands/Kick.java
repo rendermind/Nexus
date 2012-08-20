@@ -62,7 +62,7 @@ public class Kick implements CommandExecutor {
 		}
 
 		// <command> (player) (reason)
-		if (args.length == 2) {
+		if (args.length > 1) {
 
 			// check if player is offline
 			if (target == null) {

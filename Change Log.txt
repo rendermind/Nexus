@@ -3,9 +3,10 @@
 0.4.x
 	Added /ban (player) (time) (reason), bans player for specified amount of time
 	Added /mute (player) (time), mutes player for specified amount of time
-0.4.x
-	Added /time [lock], freezes the current time
-	Added /weather [lock], freezes the current weather
+0.4.7
+	Fixed Issue: /ban & /kick still not allowing reasons more than 1 word
+	Fixed Issue: /home not listed in commands.yml
+	Updated to CraftBukkit 1.3.1-R2.0
 0.4.6
 	Fixed Issue: /ban & /kick not allowing reasons more than 1 word
 0.4.5

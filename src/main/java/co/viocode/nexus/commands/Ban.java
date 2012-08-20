@@ -98,7 +98,7 @@ public class Ban implements CommandExecutor {
 		}
 
 		// <command> (player) (reason)
-		if (args.length == 2) {
+		if (args.length > 1) {
 
 			// format reason
 			String reason = "";

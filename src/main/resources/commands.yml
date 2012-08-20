@@ -1,9 +1,10 @@
-version: 0.4.5
+version: 0.4.7
 command:
   back: true
   ban: true
   broadcast: true
   heal: true
+  home: true
   inv: true
   kick: true
   kill: true
